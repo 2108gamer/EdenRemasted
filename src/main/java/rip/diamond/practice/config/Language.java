@@ -1,7 +1,6 @@
 package rip.diamond.practice.config;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -685,7 +684,7 @@ public enum Language {
     TABLIST_FOOTER("tablist.footer"),
     ;
 
-    @Getter private final String path;
+    private final String path;
 
     @Override
     public String toString() {

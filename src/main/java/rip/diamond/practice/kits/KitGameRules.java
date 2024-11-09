@@ -68,7 +68,7 @@ public class KitGameRules implements Cloneable {
 
 	@Override
 	public KitGameRules clone() {
-		KitGameRules rules = new KitGameRules();
+        KitGameRules rules = new KitGameRules();
 		for (Field field : this.getClass().getDeclaredFields()) {
 			field.setAccessible(true);
 		}

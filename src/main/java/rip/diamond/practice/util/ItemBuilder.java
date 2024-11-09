@@ -4,7 +4,6 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagString;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -145,11 +144,10 @@ public class ItemBuilder implements Listener {
 		return this;
 	}
 
-	public ItemBuilder unbreakable() {
+	public void unbreakable() {
 		ItemMeta im = this.is.getItemMeta();
 		im.spigot().setUnbreakable(true);
 		this.is.setItemMeta(im);
-		return this;
 	}
 
 	public ItemBuilder hideItemFlags() {
@@ -164,12 +162,11 @@ public class ItemBuilder implements Listener {
 		return this;
 	}
 
-	public ItemBuilder glow() {
+	public void glow() {
 		is.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 		ItemMeta im = is.getItemMeta();
 		im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		is.setItemMeta(im);
-		return this;
 	}
 
 	public ItemBuilder addNBTTag(String s1, String s2) {

@@ -48,7 +48,7 @@ public class ProfileListener implements Listener {
         Player player = event.getPlayer();
 
         if (PlayerProfile.get(player) != null) {
-            player.kickPlayer(CC.RED + "[Eden] Please wait for a few seconds before re-login");
+            player.kickPlayer(CC.RED + "[Practice] Please wait for a few seconds before re-login");
             return;
         }
         PlayerProfile profile = PlayerProfile.createPlayerProfile(player);
@@ -59,7 +59,7 @@ public class ProfileListener implements Listener {
 
         profile.load((success) -> {
             if (!success) {
-                Tasks.run(()-> player.kickPlayer(CC.RED + "[Eden] Unable to load your data. Please try to re-login in a few seconds"));
+                Tasks.run(()-> player.kickPlayer(CC.RED + "[Practice] Unable to load your data. Please try to re-login in a few seconds"));
             } else {
                 Language.JOIN_MESSAGE.sendListOfMessage(player);
                 plugin.getLobbyManager().sendToSpawnAndReset(player);
@@ -78,7 +78,7 @@ public class ProfileListener implements Listener {
         Player player = event.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);
 
-        if (profile == null) { //當在 PlayerJoinEvent 未能加載資料的時候, profile 就會是 null
+        if (profile == null) { //When the data fails to be loaded in PlayerJoinEvent, profile will be null
             Common.log(player.getName() + "'s profile is not saved due to the profile is null");
             return;
         }
@@ -87,7 +87,7 @@ public class ProfileListener implements Listener {
             if (success) {
                 PlayerProfile.getProfiles().remove(player.getUniqueId());
             } else {
-                Common.log(CC.RED + "[Eden] Unable to save " + player.getName() + "'s profile. Data is not going to clear.");
+                Common.log(CC.RED + "[Practice] Unable to save " + player.getName() + "'s profile. Data is not going to clear.");
             }
         });
     }
@@ -182,7 +182,7 @@ public class ProfileListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        //防止玩家移動物品欄中的物品
+        //Prevents player from moving items in inventory
         if (event.getWhoClicked() instanceof Player) {
             Player player = (Player) event.getWhoClicked();
             PlayerProfile profile = PlayerProfile.get(player);
@@ -210,7 +210,6 @@ public class ProfileListener implements Listener {
             if (!usableCommands.isEmpty() && usableCommands.contains(cmd)) {
                 event.setCancelled(true);
                 Language.BANNED_COMMAND.sendMessage(player);
-                return;
             }
         }
     }

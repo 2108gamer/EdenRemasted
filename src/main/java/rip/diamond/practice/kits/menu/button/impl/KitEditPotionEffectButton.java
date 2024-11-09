@@ -56,7 +56,7 @@ public class KitEditPotionEffectButton extends KitButton {
                 Language.KIT_BUTTON_EDIT_POTION_EFFECT_PROCEDURE_SUCCESS_REMOVE.sendMessage(player, kit.getName(), WordUtil.toCapital(effect.getName()));
                 return;
             } else {
-                if (!Checker.isInteger(args[1]) || !Checker.isInteger(args[2])) {
+                if (Checker.isInteger(args[1]) || Checker.isInteger(args[2])) {
                     Language.INVALID_SYNTAX.sendMessage(player);
                     return;
                 }

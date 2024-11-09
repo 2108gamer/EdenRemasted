@@ -25,9 +25,6 @@ public class HookManager {
     public HookManager(Eden plugin) {
         this.plugin = plugin;
 
-
-
-
         if (Checker.isPluginEnabled("PlaceholderAPI")) {
             new EdenPlaceholderExpansion(plugin).register();
             this.placeholderAPIHook = new PlaceholderAPIHook();

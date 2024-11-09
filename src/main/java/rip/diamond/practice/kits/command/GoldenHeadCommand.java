@@ -27,7 +27,7 @@ public class GoldenHeadCommand extends Command {
         if (args.length != 1) {
             player.getInventory().addItem(goldenHead);
         } else {
-            if (!Checker.isInteger(args[0])) {
+            if (Checker.isInteger(args[0])) {
                 Language.INVALID_SYNTAX.sendMessage(player);
                 return;
             }
@@ -35,6 +35,6 @@ public class GoldenHeadCommand extends Command {
             player.getInventory().addItem(goldenHead);
         }
 
-        Common.sendMessage(player, CC.YELLOW + "[Eden] Added " + CC.GREEN + (args.length != 1 ? 1 : args[0]) + CC.GOLD + " Golden Head " + CC.YELLOW + "into your inventory.");
+        Common.sendMessage(player, CC.YELLOW + "[Practice] Added " + CC.GREEN + (args.length != 1 ? 1 : args[0]) + CC.GOLD + " Golden Head " + CC.YELLOW + "into your inventory.");
     }
 }

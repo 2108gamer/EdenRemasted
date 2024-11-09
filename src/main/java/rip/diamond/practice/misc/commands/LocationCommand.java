@@ -22,7 +22,6 @@ public class LocationCommand extends Command {
 
         if (args.length == 0) {
             Common.sendMessage(player, CC.RED + "Usage: /" + command.getLabel() + " <type>");
-            return;
         } else if (args.length == 1) {
             LocationType type;
             try {

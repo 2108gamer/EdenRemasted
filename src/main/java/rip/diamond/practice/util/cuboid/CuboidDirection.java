@@ -6,7 +6,7 @@ public enum CuboidDirection {
     UP, DOWN, HORIZONTAL, VERTICAL, BOTH,
     UNKNOWN;
 
-    private CuboidDirection() {
+    CuboidDirection() {
 
     }
 

@@ -156,7 +156,7 @@ public class Util {
         URL resource = codeSource.getLocation();
         String relPath = packageName.replace('.', '/');
         String resPath = resource.getPath().replace("%20", " ");
-        String jarPath = resPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
+        String jarPath = resPath.replaceFirst("[.]jar!.*", ".jar").replaceFirst("file:", "");
         JarFile jarFile;
 
         try {

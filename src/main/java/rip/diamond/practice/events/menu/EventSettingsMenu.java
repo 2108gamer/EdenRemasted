@@ -22,7 +22,7 @@ import java.util.Map;
 public class EventSettingsMenu extends Menu {
     private final EventType eventType;
     private int maxPlayers;
-    private int minPlayers;
+    private final int minPlayers;
     private int teamSize = 1;
     @Setter private Kit kit = Kit.getKits().get(0);
 

@@ -120,14 +120,13 @@ public class SumoEvent extends EdenEvent {
                         broadcast(Language.EVENT_SUMO_EVENT_MATCH_END_MESSAGE.toString(match.getOpponentTeam(team).getLeader().getUsername(), team.getLeader().getUsername()));
 
                         Party party = Party.getByPlayer(team.getLeader().getPlayer());
-                        //如果玩家在戰鬥時退出伺服器的話, Party 可能會是null
+                        //Party may be null if the player exits the server during combat
                         if (party != null) {
                             eliminate(party);
                         }
 
                         if (canEnd()) {
                             end(false);
-                            return;
                         }
                     }
                 }
@@ -145,15 +144,15 @@ public class SumoEvent extends EdenEvent {
     @Override
     public List<String> getLobbyScoreboard(Player player) {
         /*
-         * 如果 sumoEventState == SumoEventState.NONE, 意思就是相撲比賽還沒開始
-         * 這個情況下, getState() 應該會回傳 EventState.WAITING
+         * If sumoEventState == SumoEventState.NONE, it means the sumo wrestling match has not started yet
+         * In this case, getState() should return EventState.WAITING
          */
         if (sumoEventState == SumoEventState.NONE) {
             return Language.EVENT_SUMO_EVENT_LOBBY_SCOREBOARD_STARTING_EVENT.toStringList(player);
         }
         /*
-         * 如果 sumoEventState == SumoEventState.STARTING_NEW_ROUND 或者 SumoEventState.FIGHTING, 意思就是相撲比賽回合已經開始, 活動內的玩家正在戰鬥中
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If sumoEventState == SumoEventState.STARTING_NEW_ROUND or SumoEventState.FIGHTING, it means that the sumo wrestling round has started and the players in the event are fighting.
+         * In this case, getState() should return EventState.RUNNING
          */
         if (sumoEventState == SumoEventState.STARTING_NEW_ROUND || sumoEventState == SumoEventState.FIGHTING) {
             return Language.EVENT_SUMO_EVENT_LOBBY_SCOREBOARD_FIGHTING.toStringList(player, round, teamA.getLeader().getUsername(), teamB.getLeader().getUsername());
@@ -165,24 +164,24 @@ public class SumoEvent extends EdenEvent {
     public List<String> getInGameScoreboard(Player player) {
         if (state == EventState.RUNNING) {
             /*
-             * 如果 sumoEventState == SumoEventState.NONE, 意思就是相撲比賽還沒開始
-             * 這個情況下, getState() 應該會回傳 EventState.WAITING
+             * If sumoEventState == SumoEventState.NONE, it means the sumo wrestling match has not started yet
+             * In this case, getState() should return EventState.WAITING
              */
             if (sumoEventState == SumoEventState.NONE) {
                 return Language.EVENT_SUMO_EVENT_IN_GAME_SCOREBOARD_STARTING_MATCH.toStringList(player);
             }
             /*
-             * 如果 sumoEventState == SumoEventState.STARTING_NEW_ROUND 或者 SumoEventState.FIGHTING, 意思就是相撲比賽回合已經開始, 活動內的玩家正在戰鬥中
-             * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+             * If sumoEventState == SumoEventState.STARTING_NEW_ROUND or SumoEventState.FIGHTING, it means that the sumo wrestling round has started and the players in the event are fighting.
+             * In this case, getState() should return EventState.RUNNING
              *
-             * 這裏比較特別, 因為每輪戰鬥結束的時候, sumoEventState 都會是 SumoEventState.ENDING, 不代表整個活動已經結束, 所以當 sumoEventState == SumoEventState.ENDING 我們也可以顯示正在戰鬥的計分版
+             * This is special, because at the end of each round of combat, sumoEventState will be SumoEventState.ENDING, which does not mean that the entire activity has ended, so when sumoEventState == SumoEventState.ENDING we can also display the score board of the ongoing battle.
              */
             if (sumoEventState == SumoEventState.STARTING_NEW_ROUND || sumoEventState == SumoEventState.FIGHTING || sumoEventState == SumoEventState.ENDING) {
                 return Language.EVENT_SUMO_EVENT_IN_GAME_SCOREBOARD_FIGHTING.toStringList(player, getTeamName(teamA), getTeamName(teamB));
             }
         }
 
-        //這裏就是代表整個活動已經結束的時候要顯示的東西
+        //Here is what will be displayed when the entire activity has ended.
         if (state == EventState.ENDING) {
             return Language.EVENT_SUMO_EVENT_IN_GAME_SCOREBOARD_ENDING.toStringList(player);
         }
@@ -192,22 +191,22 @@ public class SumoEvent extends EdenEvent {
     @Override
     public List<String> getStatus(Player player) {
         /*
-         * 如果 tournamentState == TournamentState.NONE, 意思就是錦標賽還沒開始
-         * 這個情況下, getState() 應該會回傳 EventState.WAITING
+         * If tournamentState == TournamentState.NONE, it means the tournament has not started yet
+         * In this case, getState() should return EventState.WAITING
          */
         if (sumoEventState == SumoEventState.NONE) {
             return Language.EVENT_TOURNAMENT_STATUS_STARTING_EVENT.toStringList(player, getUncoloredEventName());
         }
         /*
-         * 如果 tournamentState == TournamentState.STARTING_NEW_ROUND, 意思就是錦標賽正在準備開始新的一個回合
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If tournamentState == TournamentState.STARTING_NEW_ROUND, it means the tournament is preparing to start a new round
+         * In this case, getState() should return EventState.RUNNING
          */
         else if (sumoEventState == SumoEventState.STARTING_NEW_ROUND) {
             return Language.EVENT_TOURNAMENT_STATUS_STARTING_NEW_ROUND.toStringList(player, getUncoloredEventName(), round);
         }
         /*
-         * 如果 tournamentState == TournamentState.FIGHTING, 意思就是錦標賽回合已經開始, 活動內的玩家正在戰鬥中
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If tournamentState == TournamentState.FIGHTING, it means that the tournament round has started and the players in the event are fighting.
+         * In this case, getState() should return EventState.RUNNING
          */
         else if (sumoEventState == SumoEventState.FIGHTING) {
             return Language.EVENT_TOURNAMENT_STATUS_FIGHTING.toStringList(player, getUncoloredEventName(), round, getTeamName(teamA), getTeamName(teamB));
@@ -221,7 +220,7 @@ public class SumoEvent extends EdenEvent {
         String kitName = Config.EVENT_SUMO_EVENT_KIT.toString();
         Kit kit = Kit.getByName(kitName);
         if (kit == null) {
-            broadcastToEventPlayers("&c[Eden] Unable to find a kit named " + kitName + ", please contact an administrator.");
+            broadcastToEventPlayers("&c[Practice] Unable to find a kit named " + kitName + ", please contact an administrator.");
             end(true);
             return;
         }
@@ -229,7 +228,7 @@ public class SumoEvent extends EdenEvent {
         Arena arena = Arena.getArena(arenaNames.get(new Random().nextInt(arenaNames.size())));
         ArenaDetail arenaDetail = Arena.getArenaDetail(arena);
         if (arenaDetail == null) {
-            broadcastToEventPlayers("&c[Eden] Unable to find a usable arena, please contact an administrator.");
+            broadcastToEventPlayers("&c[Practice] Unable to find a usable arena, please contact an administrator.");
             end(true);
             return;
         }
@@ -240,7 +239,6 @@ public class SumoEvent extends EdenEvent {
 
         if (canEnd()) {
             end(false);
-            return;
         }
     }
 

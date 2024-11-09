@@ -10,10 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Getter
 public abstract class FilterablePaginatedMenu<T> extends PaginatedMenu {
 
-	@Getter private final List<PageFilter<T>> filters;
-	@Getter @Setter private int scrollIndex = 0;
+	private final List<PageFilter<T>> filters;
+	@Setter private int scrollIndex = 0;
 
 	{
 		filters = generateFilters();

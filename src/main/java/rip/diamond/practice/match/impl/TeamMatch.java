@@ -21,9 +21,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class TeamMatch extends Match {
-    @Getter private final Team teamA;
-    @Getter private final Team teamB;
+    private final Team teamA;
+    private final Team teamB;
 
     public TeamMatch(ArenaDetail arena, Kit kit, Team teamA, Team teamB) {
         super(arena, kit, Arrays.asList(teamA, teamB));
@@ -32,7 +33,7 @@ public class TeamMatch extends Match {
 
         setDuel(true);
 
-        Common.debug("正在開始一場 TeamMatch 戰鬥 (" + teamA.getLeader().getUsername() + " vs " + teamB.getLeader().getUsername() + ") (職業: " + kit.getName() + ") (地圖: " + arena.getArena().getName() + ") (UUID: " + getUuid() + ")");
+        Common.debug("Starting a TeamMatch battle (" + teamA.getLeader().getUsername() + " vs " + teamB.getLeader().getUsername() + ") (Kit: " + kit.getName() + ") (Map: " + arena.getArena().getName() + ") (UUID: " + getUuid() + ")");
     }
 
     @Override

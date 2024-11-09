@@ -12,7 +12,6 @@ import rip.diamond.practice.party.fight.menu.ChooseMatchTypeMenu;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
 import rip.diamond.practice.util.Checker;
-import rip.diamond.practice.util.Common;
 import rip.diamond.practice.util.command.Command;
 import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
@@ -39,17 +38,15 @@ public class ChooseMatchTypeCommand extends Command {
 
         if (args.length == 0) {
             new ChooseMatchTypeMenu().openMenu(player);
-            return;
         } else if (args.length == 1) {
-            if (!Checker.isKitMatchType(args[0])) {
+            if (Checker.isKitMatchType(args[0])) {
                 Language.PARTY_INVALID_MATCH_TYPE.sendMessage(player, args[0]);
                 return;
             }
             KitMatchType type = KitMatchType.valueOf(args[0]);
             new ChooseKitMenu(type).openMenu(player);
-            return;
         } else if (args.length == 2) {
-            if (!Checker.isKitMatchType(args[0])) {
+            if (Checker.isKitMatchType(args[0])) {
                 Language.PARTY_INVALID_MATCH_TYPE.sendMessage(player, args[0]);
                 return;
             }
@@ -61,9 +58,8 @@ public class ChooseMatchTypeCommand extends Command {
                 return;
             }
             new ChooseArenaMenu(type, kit).openMenu(player);
-            return;
         } else if (args.length == 3) {
-            if (!Checker.isKitMatchType(args[0])) {
+            if (Checker.isKitMatchType(args[0])) {
                 Language.PARTY_INVALID_MATCH_TYPE.sendMessage(player, args[0]);
                 return;
             }
@@ -82,7 +78,6 @@ public class ChooseMatchTypeCommand extends Command {
             }
 
             plugin.getPartyFightManager().startPartyEvent(player, type, kit, Arena.getEnabledArena(kit));
-            return;
         }
     }
 }

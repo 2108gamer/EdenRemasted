@@ -100,7 +100,7 @@ public class KitEditorListener implements Listener {
         }
     }
 
-    //防止玩家放置物品到其他位置
+    //Prevents players from placing items at other locations
     @EventHandler
     public void onDrag(InventoryDragEvent event) {
         Player player = (Player) event.getWhoClicked();

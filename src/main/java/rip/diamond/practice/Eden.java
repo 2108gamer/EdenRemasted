@@ -116,7 +116,6 @@ public class Eden extends JavaPlugin {
         loadCommands();
         loadGeneral();
 
-
     }
 
     @Override

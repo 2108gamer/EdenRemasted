@@ -74,7 +74,7 @@ public class PlayerProfile {
                 }
                 settings.put(s, option);
             } catch (IllegalArgumentException e) {
-                Common.debug(username + " 的 SettingsDocument 裏面有不存在的 '" + data + "' 設定, 由於無法找到合適的設定, 所以已把它忽略");
+                Common.debug(username + " The SettingsDocument does not exist '" + data + "' Settings, ignored because no suitable setting could be found");
             }
         }
 
@@ -104,7 +104,7 @@ public class PlayerProfile {
         //This document is temporary, meaning it is not going to load into profile, only for record purpose
         //This is mainly used to catch leaderboard data
         Document temporaryDocument = new Document()
-                .append("globalElo", kitData.values().stream().mapToInt(ProfileKitData::getElo).sum() / (kitData.size() == 0 ? 1 : kitData.size()))
+                .append("globalElo", kitData.values().stream().mapToInt(ProfileKitData::getElo).sum() / (kitData.isEmpty() ? 1 : kitData.size()))
                 ;
         //temporaryDocument End
 
@@ -201,7 +201,7 @@ public class PlayerProfile {
         if (Config.MONGO_ENABLED.toBoolean()) {
             document = Eden.INSTANCE.getMongoManager().getProfiles().find(Filters.eq("uuid", uniqueId.toString())).first();
         } else {
-            Common.sendMessage(getPlayer(), CC.RED + "[Eden] WARNING: Database connection is disabled. Statistics will not be loaded and saved.");
+            Common.sendMessage(getPlayer(), CC.RED + "[Practice] WARNING: Database connection is disabled. Statistics will not be loaded and saved.");
         }
 
         load(document, callback);

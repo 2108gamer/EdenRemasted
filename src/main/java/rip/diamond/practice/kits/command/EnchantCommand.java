@@ -20,13 +20,12 @@ public class EnchantCommand extends Command {
             Language.INVALID_SYNTAX.sendMessage(player);
             return;
         }
-        if (!Checker.isEnchantment(args[0]) || !Checker.isInteger(args[1])) {
+        if (!Checker.isEnchantment(args[0]) || Checker.isInteger(args[1])) {
             Language.INVALID_SYNTAX.sendMessage(player);
             return;
         }
 
         player.getItemInHand().addUnsafeEnchantment(Enchantment.getByName(args[0].toUpperCase()), Integer.parseInt(args[1]));
-        Common.sendMessage(player, CC.YELLOW + "[Eden] Successfully enchanted your item.");
-        return;
+        Common.sendMessage(player, CC.YELLOW + "[Practice] Successfully enchanted your item.");
     }
 }

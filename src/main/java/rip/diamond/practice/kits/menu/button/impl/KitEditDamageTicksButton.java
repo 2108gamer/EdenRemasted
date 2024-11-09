@@ -36,7 +36,7 @@ public class KitEditDamageTicksButton extends KitButton {
         Procedure.buildProcedure(player, Language.KIT_BUTTON_EDIT_DAMAGE_TICKS_PROCEDURE_MESSAGE.toString(), ProcedureType.CHAT, (s) -> {
             String message = (String) s;
 
-            if (!Checker.isInteger(message)) {
+            if (Checker.isInteger(message)) {
                 Language.INVALID_SYNTAX.sendMessage(player);
                 return;
             }

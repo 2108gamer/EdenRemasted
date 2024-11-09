@@ -12,9 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
 public class CitizensHook {
 
-    @Getter private final List<NPC> npcs = new ArrayList<>();
+    private final List<NPC> npcs = new ArrayList<>();
 
     public boolean isNPC(UUID uuid) {
         return CitizensAPI.getNPCRegistry().getByUniqueId(uuid) != null;

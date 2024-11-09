@@ -63,11 +63,11 @@ public class ArenaDetail {
 
     public void restoreChunk() {
         long started = System.currentTimeMillis();
-        Common.debug("正在嘗試還原場地...");
+        Common.debug("Trying to restore venue...");
 
         cachedChunks.forEach(IArenaChunk::restore);
 
         long ended = System.currentTimeMillis();
-        Common.debug("還原場地成功! 耗費 " + (ended - started) + "ms");
+        Common.debug("Site restoration successful! Cost" + (ended - started) + "ms");
     }
 }

@@ -29,7 +29,6 @@ public class EventCommand extends Command {
                     return;
                 }
                 new EventCreateMenu().openMenu(player);
-                return;
             } else if (args[0].equalsIgnoreCase("forcestart")) {
                 if (!player.hasPermission("eden.command.event.forcestart")) {
                     Language.NO_PERMISSION.sendMessage(player);
@@ -44,7 +43,6 @@ public class EventCommand extends Command {
                     return;
                 }
                 event.start();
-                return;
             } else if (args[0].equalsIgnoreCase("status")) {
                 if (event == null) {
                     Language.EVENT_EVENT_IS_NOT_RUNNING.sendMessage(player);
@@ -56,7 +54,6 @@ public class EventCommand extends Command {
                 }
 
                 Common.sendMessage(player, event.getStatus(player));
-                return;
             } else if (args[0].equalsIgnoreCase("cancel")) {
                 if (!player.hasPermission("eden.command.event.cancel")) {
                     Language.NO_PERMISSION.sendMessage(player);
@@ -67,7 +64,6 @@ public class EventCommand extends Command {
                     return;
                 }
                 event.end(true);
-                return;
             }
         }
     }

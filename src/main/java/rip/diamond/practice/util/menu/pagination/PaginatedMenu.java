@@ -8,9 +8,10 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public abstract class PaginatedMenu extends Menu {
 
-	@Getter public int page = 1;
+	public int page = 1;
 
 	@Override
 	public String getTitle(Player player) {

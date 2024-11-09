@@ -19,24 +19,25 @@ import rip.diamond.practice.util.Util;
 
 import java.util.UUID;
 
+@Getter
 public class TeamPlayer {
 
-	@Getter private final UUID uuid;
-	@Getter private final String username;
-	@Getter @Setter private boolean alive = true;
-	@Getter @Setter private boolean respawning = false;
-	@Getter @Setter private boolean disconnected = false;
-	@Getter @Setter private int potionsThrown;
-	@Getter @Setter private int potionsMissed;
-	@Getter @Setter private int hits;
-	@Getter @Setter private int blockedHits;
-	@Getter @Setter private int gotHits;
-	@Getter @Setter private TeamPlayer lastHitDamager;
-	@Getter @Setter private int combo;
-	@Getter @Setter private int longestCombo;
-	@Getter @Setter private double damageDealt;
-	@Getter @Setter private KitLoadout kitLoadout;
-	@Getter @Setter private long protectionUntil = -1;
+	private final UUID uuid;
+	private final String username;
+	@Setter private boolean alive = true;
+	@Setter private boolean respawning = false;
+	@Setter private boolean disconnected = false;
+	@Setter private int potionsThrown;
+	@Setter private int potionsMissed;
+	@Setter private int hits;
+	@Setter private int blockedHits;
+	@Setter private int gotHits;
+	@Setter private TeamPlayer lastHitDamager;
+	@Setter private int combo;
+	@Setter private int longestCombo;
+	@Setter private double damageDealt;
+	@Setter private KitLoadout kitLoadout;
+	@Setter private long protectionUntil = -1;
 
 	public TeamPlayer(Player player) {
 		this.uuid = player.getUniqueId();

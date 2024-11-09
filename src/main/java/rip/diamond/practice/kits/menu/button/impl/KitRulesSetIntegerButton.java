@@ -50,7 +50,7 @@ public class KitRulesSetIntegerButton extends Button {
         player.closeInventory();
         Procedure.buildProcedure(player, Language.KIT_BUTTON_RULES_SET_VALUE_PROCEDURE_MESSAGE.toString(getName()), ProcedureType.CHAT, (s) -> {
             String message = (String) s;
-            if (!Checker.isInteger(message)) {
+            if (Checker.isInteger(message)) {
                 Language.INVALID_SYNTAX.sendMessage(player);
                 return;
             }

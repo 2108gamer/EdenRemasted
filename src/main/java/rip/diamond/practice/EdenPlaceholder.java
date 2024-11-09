@@ -66,7 +66,7 @@ public class EdenPlaceholder {
                         .replace("{event-uncolored-name}", event.getUncoloredEventName())
                         .replace("{event-total-players}", event.getTotalPlayers().size() + "")
                         .replace("{event-max-players}", event.getMaxPlayers() + "")
-                        .replace("{event-countdown}", event.getCountdown() == null ? "0.0" : event.getCountdown().getMilliSecondsLeft(false) + "");
+                        .replace("{event-countdown}", event.getCountdown() == null ? "0.0" : event.getCountdown().getMilliSecondsLeft(false));
             }
 
             if (profile.getPlayerState() == PlayerState.IN_QUEUE && qProfile != null) {
@@ -211,8 +211,8 @@ public class EdenPlaceholder {
                         Team teamB = ((TeamMatch) match).getTeamB();
 
                         str = str
-                                .replace("{spectate-team1-leader}", teamA.getLeader().getUsername() + "")
-                                .replace("{spectate-team2-leader}", teamB.getLeader().getUsername() + "")
+                                .replace("{spectate-team1-leader}", teamA.getLeader().getUsername())
+                                .replace("{spectate-team2-leader}", teamB.getLeader().getUsername())
                                 .replace("{spectate-team1-alive}", teamA.getAliveCount() + "")
                                 .replace("{spectate-team2-alive}", teamB.getAliveCount() + "")
                                 .replace("{spectate-team1-size}", teamA.getTeamPlayers().size() + "")

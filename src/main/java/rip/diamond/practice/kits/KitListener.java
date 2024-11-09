@@ -17,8 +17,8 @@ public class KitListener implements Listener {
     public void onClose(InventoryCloseEvent event) {
         Player player = (Player) event.getPlayer();
         Inventory inventory = event.getView().getTopInventory();
-        if (inventory.getTitle().endsWith("的額外物品")) {
-            String kitName = inventory.getTitle().replaceAll("的額外物品", "");
+        if (inventory.getTitle().endsWith("extra items")) {
+            String kitName = inventory.getTitle().replaceAll("extra items", "");
             Kit kit = Kit.getByName(kitName);
             if (kit == null) {
                 Language.KIT_CANNOT_SAVE_EXTRA_ITEMS.sendMessage(player, kitName);

@@ -43,12 +43,12 @@ public enum TabColumn {
      */
     FAR_RIGHT(3,"Far-Right", 60, 61, 1);
 
-    private int startNumber;
-    private int incrementBy;
-    private int rawStart;
-    private List<Integer> numbers = new ArrayList<>();
-    private String identifier;
-    private int ordinal;
+    private final int startNumber;
+    private final int incrementBy;
+    private final int rawStart;
+    private final List<Integer> numbers = new ArrayList<>();
+    private final String identifier;
+    private final int ordinal;
 
     TabColumn(int ordinal, String identifier, int rawStart, int startNumber, int incrementBy){
         this.ordinal = ordinal;

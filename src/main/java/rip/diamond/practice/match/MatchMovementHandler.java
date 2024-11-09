@@ -61,11 +61,11 @@ public class MatchMovementHandler {
                         .isExpired())) {
                     TeamPlayer teamPlayer = match.getTeamPlayer(player);
                     if (match.getState() == MatchState.FIGHTING && !teamPlayer.isRespawning()) {
-                        //檢查 KitGameRules 水上即死
+                        //Check KitGameRules for Death on Water
                         if (gameRules.isDeathOnWater() && (block.getType() == Material.WATER || block.getType() == Material.STATIONARY_WATER)) {
                             if (gameRules.isPoint(match)) {
                                 TeamPlayer lastHitDamager = teamPlayer.getLastHitDamager();
-                                //玩家有機會在不被敵方攻擊的情況下死亡, 例如岩漿, 如果是這樣, 就在敵方隊伍隨便抽一個玩家出來
+                                //Players have a chance to die without being attacked by the enemy, such as lava. If so, just randomly draw a player from the enemy team.
                                 if (lastHitDamager == null) {
                                     lastHitDamager = match.getOpponentTeam(match.getTeam(player)).getAliveTeamPlayers().get(0);
                                 }
@@ -76,7 +76,7 @@ public class MatchMovementHandler {
                             return;
                         }
 
-                        //檢查 KitGameRules 進入目標
+                        //Check KitGameRules into target
                         if (gameRules.isPortalGoal() && block.getType() == Material.ENDER_PORTAL) {
                             Team playerTeam = match.getTeam(player);
                             Team portalBelongsTo = match.getTeams().stream().min(Comparator.comparing(team -> team.getSpawnLocation().distance(to))).orElse(null);
@@ -90,7 +90,6 @@ public class MatchMovementHandler {
                                 //Prevent player scoring their own goal
                                 Util.damage(player, 99999);
                             }
-                            return;
                         }
                     }
                 }
@@ -101,7 +100,6 @@ public class MatchMovementHandler {
 
                 if (!arenaDetail.getCuboid().clone().outset(CuboidDirection.HORIZONTAL, Config.MATCH_SPECTATE_EXPEND_CUBOID.toInteger()).contains(player) || arena.getYLimit() > player.getLocation().getY()) {
                     player.teleport(arenaDetail.getSpectator());
-                    return;
                 }
             }
         });

@@ -39,7 +39,7 @@ public class EloResetTask extends TaskTicker {
                     CC.YELLOW + "A total of " + CC.GREEN + successUsers.size() + " users " + CC.YELLOW + "has been reset",
                     CC.YELLOW + "A total of " + CC.RED + failUsers.size() + " users " + CC.YELLOW + "failed to reset"
             );
-            if (failUsers.size() != 0) {
+            if (!failUsers.isEmpty()) {
                 Common.broadcastMessage(CC.YELLOW + "Failed users contain: ");
                 Common.broadcastMessage(failUsers.entrySet().stream().map(entry -> " - " + CC.YELLOW + entry.getKey().toString() + CC.GRAY + " (" + entry.getValue() + ")").collect(Collectors.toList()));
             }

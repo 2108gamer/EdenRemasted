@@ -46,6 +46,5 @@ public class JoinEventCommand extends Command {
         }
 
         event.join(party);
-        return;
     }
 }

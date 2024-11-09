@@ -26,13 +26,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 public class SoloMatch extends Match {
 
-    @Getter private final Team teamA;
-    @Getter private final Team teamB;
+    private final Team teamA;
+    private final Team teamB;
 
-    @Getter private final TeamPlayer playerA;
-    @Getter private final TeamPlayer playerB;
+    private final TeamPlayer playerA;
+    private final TeamPlayer playerB;
 
     public SoloMatch(ArenaDetail arenaDetail, Kit kit, Team teamA, Team teamB, QueueType queueType, boolean duel) {
         super(arenaDetail, kit, Arrays.asList(teamA, teamB));
@@ -46,7 +47,7 @@ public class SoloMatch extends Match {
         setQueueType(queueType);
         setDuel(duel);
 
-        Common.debug("正在開始一場 SoloMatch 戰鬥 (" + playerA.getUsername() + " vs " + playerB.getUsername() + ") (職業: " + kit.getName() + ") (地圖: " + arenaDetail.getArena().getName() + ") (UUID: " + getUuid() + ") (Duel: " + duel + ")");
+        Common.debug("Starting a SoloMatch battle(" + playerA.getUsername() + " vs " + playerB.getUsername() + ") (Kit: " + kit.getName() + ") (Map: " + arenaDetail.getArena().getName() + ") (UUID: " + getUuid() + ") (Duel: " + duel + ")");
     }
 
     @Override
@@ -87,7 +88,7 @@ public class SoloMatch extends Match {
         TeamPlayer tWinner = getWinningPlayers().get(0);
         TeamPlayer tLoser = getOpponent(getWinningPlayers().get(0));
 
-        //Set Post-Match Inventories swtichTo
+        //Set Post-Match Inventories swtich to
         getPostMatchInventories().get(tWinner.getUuid()).setSwitchTo(tLoser.getUsername(), tLoser.getUuid());
         getPostMatchInventories().get(tLoser.getUuid()).setSwitchTo(tWinner.getUsername(), tWinner.getUuid());
 
@@ -129,14 +130,14 @@ public class SoloMatch extends Match {
         if (!winCommands.isEmpty()) {
             for (String cmd : winCommands) {
                 String c = cmd.replace("{player}", tWinner.getUsername());
-                Common.debug("正在執行後台指令 " + c);
+                Common.debug("Executing background instructions " + c);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), c);
             }
         }
         if (!loseCommands.isEmpty()) {
             for (String cmd1 : loseCommands) {
                 String d = cmd1.replace("{loser-player}", tLoser.getUsername());
-                Common.debug("正在執行後台指令 " + d);
+                Common.debug("Executing background instructions " + d);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), d);
             }
         }

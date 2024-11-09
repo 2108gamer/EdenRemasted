@@ -3,7 +3,6 @@ package rip.diamond.practice.util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Fireball;
 import org.bukkit.util.Vector;
-import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 
 import java.lang.reflect.Field;
@@ -43,7 +42,7 @@ public class FireballUtil {
     }
 
 
-    public static Fireball setDirection(Fireball fireball, Vector direction) {
+    public static void setDirection(Fireball fireball, Vector direction) {
         double speed = Config.MATCH_FIREBALL_SPEED.toDouble();
 
         try {
@@ -55,7 +54,6 @@ public class FireballUtil {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        return fireball;
     }
 
 

@@ -36,7 +36,7 @@ public class ChooseArenaMenu extends PaginatedMenu {
 
         for (Arena arena : Arena.getArenas()) {
             ArenaDetail arenaDetail = Arena.getArenaDetail(arena);
-            if (arena.isEnabled() && !arena.isLocked() && arenaDetail != null && arena.getAllowedKits().contains(kit.getName())) {
+            if (arena.isEnabled() && arena.isLocked() && arenaDetail != null && arena.getAllowedKits().contains(kit.getName())) {
                 buttons.put(buttons.size(), new Button() {
                     @Override
                     public ItemStack getButtonItem(Player player) {
@@ -74,7 +74,7 @@ public class ChooseArenaMenu extends PaginatedMenu {
             public void clicked(Player player, ClickType clickType) {
                 Arena arena = Arena.getEnabledArena(kit);
                 if (arena == null) {
-                    Common.log("[Eden] There's no available arenas for kit " + kit.getName() + ", consider add more arenas.");
+                    Common.log("[Practice] There's no available arenas for kit " + kit.getName() + ", consider add more arenas.");
                     return;
                 }
 

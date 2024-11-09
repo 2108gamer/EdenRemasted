@@ -62,6 +62,7 @@ public class MatchResetTask extends MatchTaskTicker {
                             .forEach(player -> {
                                 PlayerProfile profile = PlayerProfile.get(player);
                                 if (profile.getMatch() == match) {
+                                    player.getInventory().clear();
                                     EdenItems.giveItem(player, EdenItems.MATCH_REQUEUE);
                                 }
                             });

@@ -1,19 +1,21 @@
 package rip.diamond.practice.util.cuboid;
 
+import lombok.Getter;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
 import java.util.Iterator;
 
+@Getter
 public class CuboidBlockIterator implements Iterator<Block> {
 
-    private World world;
-    private int baseX;
-    private int baseY;
-    private int baseZ;
-    private int sizeX;
-    private int sizeY;
-    private int sizeZ;
+    private final World world;
+    private final int baseX;
+    private final int baseY;
+    private final int baseZ;
+    private final int sizeX;
+    private final int sizeY;
+    private final int sizeZ;
     private int x;
     private int y;
     private int z;
@@ -54,44 +56,5 @@ public class CuboidBlockIterator implements Iterator<Block> {
         throw new UnsupportedOperationException();
     }
 
-    public World getWorld() {
-        return this.world;
-    }
-
-    public int getBaseX() {
-        return this.baseX;
-    }
-
-    public int getBaseY() {
-        return this.baseY;
-    }
-
-    public int getBaseZ() {
-        return this.baseZ;
-    }
-
-    public int getSizeX() {
-        return this.sizeX;
-    }
-
-    public int getSizeY() {
-        return this.sizeY;
-    }
-
-    public int getSizeZ() {
-        return this.sizeZ;
-    }
-
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public int getZ() {
-        return this.z;
-    }
 }
 

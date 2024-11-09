@@ -100,14 +100,10 @@ public class MatchListener implements Listener {
             }
 
             if (match.getQueueType() == QueueType.UNRANKED) {
-                Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents).forEach(s -> {
-                    Common.sendMessage(p, s);
-                });
+                Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents).forEach(s -> Common.sendMessage(p, s));
             } else if (match.getQueueType() == QueueType.RANKED && match.getMatchType() == MatchType.SOLO) {
                 int elo = PlayerProfile.get(match.getOpponent(match.getTeamPlayer(p)).getUuid()).getKitData().get(kit.getName()).getElo();
-                Language.MATCH_START_RANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents, elo).forEach(s -> {
-                    Common.sendMessage(p, s);
-                });
+                Language.MATCH_START_RANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents, elo).forEach(s -> Common.sendMessage(p, s));
             }
         });
     }
@@ -168,7 +164,7 @@ public class MatchListener implements Listener {
                 new MatchRespawnTask(match, teamPlayer);
             } else if (gameRules.isPoint(match)) {
                 TeamPlayer lastHitDamager = teamPlayer.getLastHitDamager();
-                //玩家有機會在不被敵方攻擊的情況下死亡, 例如岩漿, 如果是這樣, 就在敵方隊伍隨便抽一個玩家出來
+                //Players have a chance to die without being attacked by the enemy, such as lava. If so, just randomly draw a player from the enemy team.
                 if (lastHitDamager == null) {
                     lastHitDamager = match.getOpponentTeam(match.getTeam(player)).getAliveTeamPlayers().get(0);
                 }
@@ -253,7 +249,6 @@ public class MatchListener implements Listener {
             if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
                 Util.damage(player, 99999);
                 event.setCancelled(true);
-                return;
             }
         }
     }
@@ -295,9 +290,9 @@ public class MatchListener implements Listener {
                 Team teamEntity = match.getTeam(entity);
                 Team teamDamager = match.getTeam(damager);
 
-                //檢查攻擊方和被攻擊方是不是同隊
+                //Check whether the attacking party and the attacked party are on the same team
                 if (teamEntity == teamDamager) {
-                    //檢查攻擊方和被攻擊方是不是同一個人
+                    //Check whether the attacker and the attacked party are the same person
                     if (entity != damager) {
                         if (!kit.getGameRules().isTeamProjectile() && event.getDamager() instanceof Projectile) {
                             event.setCancelled(true);
@@ -314,7 +309,7 @@ public class MatchListener implements Listener {
                     }
                 }
 
-                //檢查職業是否只允許遠程攻擊傷害
+                //Check if the profession only allows ranged attack damage
                 if (kit.getGameRules().isProjectileOnly() && event.getDamager() instanceof Player) {
                     event.setCancelled(true);
                     return;
@@ -348,12 +343,12 @@ public class MatchListener implements Listener {
                 teamPlayerDamager.handleHit(event.getFinalDamage());
                 teamPlayerEntity.handleGotHit(match.getTeamPlayer(damager), entity.isBlocking());
 
-                //顯示造成的傷害
+                //Show damage done
                 if (event.getDamager() instanceof Arrow && entity != damager) {
                     Util.sendArrowHitMessage(event);
                 }
 
-                //檢查職業是否為Boxing, 和檢查是否達到最大Boxing攻擊數, 如果是的話就死亡
+                //Check whether the occupation is Boxing, and check whether the maximum number of Boxing attacks has been reached. If so, die.
                 if (kit.getGameRules().isBoxing() && match.getTeam(entity).getGotHits() >= match.getMaximumBoxingHits()) {
                     match.getTeam(entity).getAliveTeamPlayers().forEach(teamPlayer -> {
                         teamPlayer.setProtectionUntil(0); //Allow our system to damage the player
@@ -462,7 +457,6 @@ public class MatchListener implements Listener {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 2));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 2400, 0));
                     player.setFoodLevel(Math.min(player.getFoodLevel() + 6, 20));
-                    return;
                 } else if (match.getKit().getGameRules().isInstantGapple()) {
                     event.setCancelled(true);
                     player.setItemInHand(new ItemBuilder(player.getItemInHand()).amount(player.getItemInHand().getAmount() - 1).build());
@@ -476,14 +470,12 @@ public class MatchListener implements Listener {
                     } else {
                         ((CraftPlayer) player).getHandle().setAbsorptionHearts(0);
                     }
-                    return;
                 } else if (event.getItem().hasItemMeta() && ChatColor.stripColor(event.getItem().getItemMeta().getDisplayName()).toLowerCase().contains("golden head")) {
                     player.removePotionEffect(PotionEffectType.REGENERATION);
                     player.removePotionEffect(PotionEffectType.ABSORPTION);
                     player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 1));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 2400, 0));
                     player.setFoodLevel(Math.min(player.getFoodLevel() + 6, 20));
-                    return;
                 }
             }
         }
@@ -522,9 +514,8 @@ public class MatchListener implements Listener {
                         player.setItemInHand(new ItemBuilder(player.getItemInHand()).amount(player.getItemInHand().getAmount() - 1).build());
                         player.updateInventory();
                     }
-                    //無論金頭顱食用結果如何, 都必須要 cancel event, 不然玩家就可以放置金頭顱在地上
+                    //No matter what the result of eating the golden head is, the event must be canceled, otherwise the player can place the golden head on the ground.
                     event.setCancelled(true);
-                    return;
                 }
                 //Ender Pearl
                 else if (itemStack.getType() == Material.ENDER_PEARL && action.name().startsWith("RIGHT_")) {
@@ -538,7 +529,6 @@ public class MatchListener implements Listener {
                             String time = TimeUtil.millisToSeconds(profile.getCooldowns().get(CooldownType.ENDER_PEARL).getRemaining());
                             Language.MATCH_USE_AGAIN_ENDER_PEARL.sendMessage(player, time);
                             event.setCancelled(true);
-                            return;
                         } else {
                             Util.throwEnderPearl(event); //Try to fix #514
                             profile.getCooldowns().put(CooldownType.ENDER_PEARL, new Cooldown(16) {
@@ -565,10 +555,8 @@ public class MatchListener implements Listener {
                                     if (player.getExp() > 0.0F) player.setExp(0.0F);
                                 }
                             });
-                            return;
                         }
                     }
-                    return;
                 }
                 //Fireball
                 else if (itemStack.getType() == Material.FIREBALL && action.name().startsWith("RIGHT_") && Config.MATCH_FIREBALL_ENABLED.toBoolean()) {
@@ -593,7 +581,6 @@ public class MatchListener implements Listener {
                         player.setItemInHand(itemStack);
                     }
                     event.setCancelled(true);
-                    return;
                 }
                 //Soup
                 else if (itemStack.getType() == Material.MUSHROOM_SOUP && player.getHealth() < 19.0) {
@@ -604,7 +591,6 @@ public class MatchListener implements Listener {
                     player.updateInventory();
 
                     event.setCancelled(true);
-                    return;
                 }
                 //Kit Loadout Book
                 else if (itemStack.getType() == Material.BOOK || itemStack.getType() == Material.ENCHANTED_BOOK) {
@@ -621,7 +607,6 @@ public class MatchListener implements Listener {
                             Language.MATCH_RECEIVED_KIT_LOADOUT.sendMessage(player, name);
                         }
                     }
-                    return;
                 }
             }
         }

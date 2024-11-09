@@ -86,7 +86,7 @@ public abstract class Command {
                 sender.sendMessage(ChatColor.RED + "This is for player use only!");
                 return false;
             }
-            if (this.getPermission().length() > 0 && !sender.hasPermission(this.getPermission())) {
+            if (!this.getPermission().isEmpty() && !sender.hasPermission(this.getPermission())) {
                 sender.sendMessage(Language.NO_PERMISSION.toString());
                 return false;
             }

@@ -20,12 +20,11 @@ public class KitCommand extends Command {
         String[] args = command.getArgs();
 
         if (args.length == 0) {
-            if (Kit.getKits().size() == 0) {
+            if (Kit.getKits().isEmpty()) {
                 Language.KIT_NO_KITS_FOUND.sendMessage(player);
                 return;
             }
             new KitsManagementMenu().openMenu(player);
-            return;
         } else if (args.length == 1) {
             if (args[0].equalsIgnoreCase("list")) {
                 new KitsManagementMenu().openMenu(player);

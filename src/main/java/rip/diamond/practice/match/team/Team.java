@@ -195,7 +195,7 @@ public class Team {
 
 	public void teleport(Location location) {
 		if (!location.getChunk().isLoaded()) {
-			Common.debug(LocationSerialization.toReadable(location) + CC.RED + " 的區塊還沒加載, 可是系統正在傳送玩家到該位置, 這可能會造成伺服器卡頓, 請盡快修復");
+			Common.debug(LocationSerialization.toReadable(location) + CC.RED + "The block has not been loaded yet, but the system is teleporting the player to that location. This may cause server lag. Please fix it as soon as possible.");
 		}
 		for (TeamPlayer teamPlayer : getTeamPlayers()) {
 			if (teamPlayer.getPlayer() == null || teamPlayer.isDisconnected()) {

@@ -65,7 +65,6 @@ public class EdenCommand extends Command {
                 return;
             case SPIGOT:
                 Common.sendMessage(sender, CC.YELLOW + "Eden is currently hooked to " + CC.AQUA + SpigotAPI.INSTANCE.getSpigotType().name());
-                return;
         }
     }
 

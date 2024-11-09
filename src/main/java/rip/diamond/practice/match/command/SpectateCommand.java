@@ -30,7 +30,6 @@ public class SpectateCommand extends Command {
 
         if (args.length == 0) {
             new SpectateMenu().openMenu(player);
-            return;
         } else {
             String name = args[0];
             Player target = Bukkit.getPlayer(name);

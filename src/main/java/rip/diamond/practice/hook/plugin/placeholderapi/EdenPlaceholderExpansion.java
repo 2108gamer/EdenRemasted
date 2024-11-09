@@ -3,6 +3,7 @@ package rip.diamond.practice.hook.plugin.placeholderapi;
 import lombok.RequiredArgsConstructor;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
@@ -26,12 +27,12 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
     private final Eden plugin;
 
     @Override
-    public String getIdentifier() {
-        return "eden";
+    public @NotNull String getIdentifier() {
+        return "practice";
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return "GoodestEnglish";
     }
 
@@ -41,12 +42,12 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return Eden.INSTANCE.getDescription().getVersion();
     }
 
     @Override
-    public String onPlaceholderRequest(Player player, String param) {
+    public String onPlaceholderRequest(Player player, @NotNull String param) {
         if (player == null) {
             return null;
         }

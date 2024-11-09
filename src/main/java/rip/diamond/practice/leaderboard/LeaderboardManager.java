@@ -35,13 +35,13 @@ public class LeaderboardManager {
 
     public void update() {
         long previous = System.currentTimeMillis();
-        Common.debug("正在更新排行榜... 這可能需要一段時間");
+        Common.debug("Updating the leaderboard... this may take a while");
         for (Map<Kit, KitLeaderboard> datas : Arrays.asList(winsLeaderboard, eloLeaderboard, winstreakLeaderboard, bestWinstreakLeaderboard)) {
-            //每五分鐘更新排行榜
+            //Ranking updated every five minutes
             datas.values().forEach(Leaderboard::update);
         }
         long current = System.currentTimeMillis();
-        Common.debug("排行榜更新完畢! 耗時" + (current - previous) + "ms");
+        Common.debug("Ranking updated! Time consuming" + (current - previous) + "ms");
     }
 
 }

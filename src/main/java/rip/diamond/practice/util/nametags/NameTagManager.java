@@ -28,7 +28,7 @@ public class NameTagManager {
     private final List<NameTagProvider> providers = new ArrayList<>();
     private final List<NameTagInfo> registeredTeams = Collections.synchronizedList(new ArrayList<>());
 
-    private boolean initiated = false;
+    private boolean initiated;
     private boolean async = true;
     private static int teamCreateIndex = 1;
 

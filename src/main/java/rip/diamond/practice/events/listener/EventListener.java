@@ -94,7 +94,7 @@ public class EventListener implements Listener {
                 Party party = Party.getByPlayer(player);
                 boolean exists = edenEvent.getParties().removeIf(p -> p == party);
                 if (exists) {
-                    party.broadcast("&c錯誤: 你已被本活動移除", "&c這是一個系統錯誤, 請回報給系統管理員");
+                    party.broadcast("&cError: You have been removed from this event", "&cThis is a system error, please report it to the system administrator");
                 }
             });
         }

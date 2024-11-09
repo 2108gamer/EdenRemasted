@@ -34,7 +34,7 @@ public class ArenaChunk extends Reflection implements IArenaChunk {
 
     @Override
     public void restore() {
-        //Common.debug("正在還原 chunk (" + world.getName() + ":" + x + ":" + z + ")");
+        //Common.debug("Restoring chunk (" + world.getName() + ":" + x + ":" + z + ")");
 
         CraftWorld craftWorld = (CraftWorld) world;
 

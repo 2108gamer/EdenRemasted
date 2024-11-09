@@ -8,8 +8,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class JumpToMenuButton extends Button {
 
-	private Menu menu;
-	private ItemStack itemStack;
+	private final Menu menu;
+	private final ItemStack itemStack;
 
 	public JumpToMenuButton(Menu menu, ItemStack itemStack) {
 		this.menu = menu;

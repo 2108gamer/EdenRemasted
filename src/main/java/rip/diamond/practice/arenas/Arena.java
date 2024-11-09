@@ -12,7 +12,6 @@ import rip.diamond.practice.config.Config;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.util.Common;
 import rip.diamond.practice.util.ItemBuilder;
-import rip.diamond.practice.util.exception.PracticeUnexpectedException;
 import rip.diamond.practice.util.serialization.BukkitSerialization;
 import rip.diamond.practice.util.serialization.LocationSerialization;
 
@@ -49,7 +48,7 @@ public class Arena {
         return arenas.stream()
                 .filter(arena ->
                         arena.isEnabled() &&
-                        !arena.isLocked() &&
+                                arena.isLocked() &&
                         !arena.getArenaDetails().isEmpty() &&
                         arena.getAllowedKits().contains(kit.getName()) &&
                         arena.getName().equalsIgnoreCase(name)
@@ -108,7 +107,7 @@ public class Arena {
 
     //If an arena is locked, which means the arena can only be accessible by special cases, like event
     public boolean isLocked() {
-        return Config.EVENT_SUMO_EVENT_ARENAS.toStringList().contains(name);
+        return !Config.EVENT_SUMO_EVENT_ARENAS.toStringList().contains(name);
     }
 
     public boolean hasClone() {
@@ -186,7 +185,7 @@ public class Arena {
             arena.setAllowedKits(allowedKits);
             arena.setEnabled(enabled);
 
-            //場地加載
+            //Venue loading
             ConfigurationSection details = arenaSection.getConfigurationSection(name + ".details");
             if (details != null) {
                 details.getKeys(false).forEach(id -> {

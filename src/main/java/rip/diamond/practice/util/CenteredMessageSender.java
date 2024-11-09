@@ -1,5 +1,6 @@
 package rip.diamond.practice.util;
 
+import lombok.Getter;
 import org.bukkit.ChatColor;
 
 public class CenteredMessageSender {
@@ -7,7 +8,7 @@ public class CenteredMessageSender {
     private final static int CENTER_PX = 154;
 
     public static String getCenteredMessage(String message){
-        if(message == null || message.equals("")) {
+        if(message == null || message.isEmpty()) {
             return "";
         }
 
@@ -42,6 +43,7 @@ public class CenteredMessageSender {
         return sb.toString() + message;
     }
 
+    @Getter
     public enum DefaultFontInfo {
         A('A', 5),
         a('a', 5),
@@ -140,20 +142,12 @@ public class CenteredMessageSender {
         SPACE(' ', 3),
         DEFAULT('a', 4);
 
-        private char character;
-        private int length;
+        private final char character;
+        private final int length;
 
         DefaultFontInfo(char character, int length) {
             this.character = character;
             this.length = length;
-        }
-
-        public char getCharacter() {
-            return this.character;
-        }
-
-        public int getLength() {
-            return this.length;
         }
 
         public int getBoldLength() {

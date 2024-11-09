@@ -23,7 +23,7 @@ public class NameTagAdapter extends NameTagProvider {
         String prefix = Language.translate(getPrefix(target, viewer), target);
         int length = prefix.length();
         if (length > 16) {
-            Common.log(CC.RED + "[Eden] Nametag prefix should only contain 16 character. Currently prefix has " + length + " character. (" + prefix + ")");
+            Common.log(CC.RED + "[Practice] Nametag prefix should only contain 16 character. Currently prefix has " + length + " character. (" + prefix + ")");
             return createNameTag("", "");
         }
         return createNameTag(prefix, "");

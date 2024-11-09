@@ -11,6 +11,7 @@ import rip.diamond.practice.util.Util;
 
 import java.util.List;
 
+@Getter
 @AllArgsConstructor
 public enum Config {
 
@@ -116,8 +117,8 @@ public enum Config {
     EXPERIMENT_K_FACTOR("experiment.k-factor", 32),
     ;
 
-    @Getter private final String path;
-    @Getter private final Object defaultValue;
+    private final String path;
+    private final Object defaultValue;
 
     public String toString() {
         String str = Eden.INSTANCE.getConfigFile().getString(path);
@@ -158,7 +159,7 @@ public enum Config {
             String path = config.getPath();
             String str = configFile.getString(path);
             if (str.equals(path)) {
-                Common.debug("沒有找到 '" + path + "'... 正在加入到 config.yml");
+                Common.debug("not found '" + path + "'... Joining config.yml");
                 configFile.getConfiguration().set(path, config.getDefaultValue());
             }
         }

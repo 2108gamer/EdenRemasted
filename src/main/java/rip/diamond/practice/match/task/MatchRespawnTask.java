@@ -53,7 +53,7 @@ public class MatchRespawnTask extends MatchTaskTicker {
         player.setFlying(true);
         if (getStartTick() > 0 && Config.MATCH_RESPAWN_TELEPORT_TO_SPAWN_WHEN_DIE.toBoolean()) Util.teleport(player, match.getTeam(player).getSpawnLocation());
 
-        //我也不知道為什麼, 這兩項東西需要重新用一次才能正常運作
+        //I don't know why, these two things need to be used again to function properly.
         player.setAllowFlight(true);
         player.setFlying(true);
 

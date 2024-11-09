@@ -19,17 +19,18 @@ import rip.diamond.practice.util.ItemBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class ProfileKitData {
 
-	@Getter private int elo = Config.PROFILE_DEFAULT_ELO.toInteger();
-	@Getter @Setter private int peakElo = Config.PROFILE_DEFAULT_ELO.toInteger();
-	@Getter @Setter private int unrankedWon = 0;
-	@Getter @Setter private int unrankedLost = 0;
-	@Getter @Setter private int rankedWon = 0;
-	@Getter @Setter private int rankedLost = 0;
-	@Getter @Setter private int bestWinstreak = 0;
-	@Getter @Setter private int winstreak = 0;
-	@Getter @Setter private KitLoadout[] loadouts = new KitLoadout[4];
+	private int elo = Config.PROFILE_DEFAULT_ELO.toInteger();
+	@Setter private int peakElo = Config.PROFILE_DEFAULT_ELO.toInteger();
+	@Setter private int unrankedWon = 0;
+	@Setter private int unrankedLost = 0;
+	@Setter private int rankedWon = 0;
+	@Setter private int rankedLost = 0;
+	@Setter private int bestWinstreak = 0;
+	@Setter private int winstreak = 0;
+	@Setter private KitLoadout[] loadouts = new KitLoadout[4];
 
 	public void fromBson(Document document) {
 		elo = document.getInteger("elo");

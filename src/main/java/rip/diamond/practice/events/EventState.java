@@ -3,17 +3,17 @@ package rip.diamond.practice.events;
 public enum EventState {
 
     /**
-     * 該活動正在等待玩家的加入
+     * This event is waiting for players to join
      */
     WAITING,
 
     /**
-     * 該活動正在運行中
+     * The event is running
      */
     RUNNING,
 
     /**
-     * 該活動正在結束
+     * The event is ending
      */
     ENDING
 

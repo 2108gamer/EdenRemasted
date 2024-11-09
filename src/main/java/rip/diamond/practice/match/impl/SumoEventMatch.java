@@ -27,7 +27,7 @@ public class SumoEventMatch extends Match {
 
         setDuel(true);
 
-        Common.debug("正在開始一場 SumoEventMatch 戰鬥 (" + teams.stream().map(team -> team.getLeader().getUsername()).collect(Collectors.joining(" vs ")) + ") (職業: " + kit.getName() + ") (地圖: " + arena.getArena().getName() + ") (UUID: " + getUuid() + ")");
+        Common.debug("Starting a SumoEventMatch battle (" + teams.stream().map(team -> team.getLeader().getUsername()).collect(Collectors.joining(" vs ")) + ") (Kit: " + kit.getName() + ") (Map: " + arena.getArena().getName() + ") (UUID: " + getUuid() + ")");
     }
 
     @Override

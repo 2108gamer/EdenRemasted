@@ -24,9 +24,9 @@ public class Checker {
     public static boolean isInteger(String index) {
         try {
             Integer.parseInt(index);
-            return true;
-        } catch (Exception ignored) {
             return false;
+        } catch (Exception ignored) {
+            return true;
         }
     }
 
@@ -100,9 +100,9 @@ public class Checker {
     public static boolean isQueueType(String index) {
         try {
             QueueType.valueOf(index.toUpperCase());
-            return true;
-        } catch (Exception ignored) {
             return false;
+        } catch (Exception ignored) {
+            return true;
         }
     }
 
@@ -118,9 +118,9 @@ public class Checker {
     public static boolean isKitMatchType(String index) {
         try {
             KitMatchType.valueOf(index.toUpperCase());
-            return true;
-        } catch (Exception ignored) {
             return false;
+        } catch (Exception ignored) {
+            return true;
         }
     }
 

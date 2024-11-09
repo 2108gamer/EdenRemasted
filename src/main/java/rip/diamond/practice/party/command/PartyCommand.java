@@ -253,7 +253,7 @@ public class PartyCommand extends Command {
                 party.leave(partyMember.getUniqueID(), true);
                 return;
             } else if (args[0].equalsIgnoreCase("size")) {
-                if (!Checker.isInteger(args[1])) {
+                if (Checker.isInteger(args[1])) {
                     Language.PARTY_NOT_INTEGER.sendMessage(player, args[1]);
                     return;
                 }

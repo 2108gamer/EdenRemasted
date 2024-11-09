@@ -139,7 +139,7 @@ public class ArenaCommand extends Command {
                     case "y-limit":
                         Procedure.buildProcedure(player, Language.ARENA_EDIT_Y_LIMIT.toString(arena.getName()), ProcedureType.CHAT, (s) -> {
                             String message = (String) s;
-                            if (!Checker.isInteger(message)) {
+                            if (Checker.isInteger(message)) {
                                 Language.INVALID_SYNTAX.sendMessage(player);
                                 return;
                             }
@@ -153,7 +153,7 @@ public class ArenaCommand extends Command {
                     case "build-max":
                         Procedure.buildProcedure(player, Language.ARENA_EDIT_BUILD_MAX.toString(arena.getName()), ProcedureType.CHAT, (s) -> {
                             String message = (String) s;
-                            if (!Checker.isInteger(message)) {
+                            if (Checker.isInteger(message)) {
                                 Language.INVALID_SYNTAX.sendMessage(player);
                                 return;
                             }
@@ -167,7 +167,7 @@ public class ArenaCommand extends Command {
                     case "portal-protection-radius":
                         Procedure.buildProcedure(player, Language.ARENA_EDIT_PORTAL_PROTECTION_RADIUS.toString(arena.getName()), ProcedureType.CHAT, (s) -> {
                             String message = (String) s;
-                            if (!Checker.isInteger(message)) {
+                            if (Checker.isInteger(message)) {
                                 Language.INVALID_SYNTAX.sendMessage(player);
                                 return;
                             }

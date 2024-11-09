@@ -25,12 +25,12 @@ public class EloResetCommand extends Command {
     public void execute(CommandArguments command) {
         CommandSender sender = command.getSender();
 
-        if (Bukkit.getOnlinePlayers().size() != 0) {
+        if (!Bukkit.getOnlinePlayers().isEmpty()) {
             Common.sendMessage(sender, CC.RED + "You cannot use this command when there is online players.");
             return;
         }
 
-        if (PlayerProfile.getProfiles().size() != 0) {
+        if (!PlayerProfile.getProfiles().isEmpty()) {
             Common.sendMessage(sender, CC.RED + "You cannot use this command when player profile is not equal to 0");
             return;
         }

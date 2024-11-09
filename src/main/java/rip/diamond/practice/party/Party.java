@@ -218,7 +218,7 @@ public class Party {
     }
 
     public boolean isAllPlayersInState(PlayerState... playerStates) {
-        return getAllPartyMembers().stream().map(partyMember -> PlayerProfile.get(partyMember.getUniqueID())).filter(Objects::nonNull).allMatch(practicePlayer -> Arrays.asList(playerStates).contains(practicePlayer.getPlayerState()));
+        return !getAllPartyMembers().stream().map(partyMember -> PlayerProfile.get(partyMember.getUniqueID())).filter(Objects::nonNull).allMatch(practicePlayer -> Arrays.asList(playerStates).contains(practicePlayer.getPlayerState()));
     }
 
 }

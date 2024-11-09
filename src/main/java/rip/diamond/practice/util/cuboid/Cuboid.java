@@ -1,14 +1,19 @@
 package rip.diamond.practice.util.cuboid;
 
 import com.google.common.base.Preconditions;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+@Setter
+@Getter
 public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializable {
 
     private String worldName;
@@ -90,7 +95,7 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
         int capacity = (maxX - minX) * 4 + (maxZ - minZ) * 4;
 
         ArrayList<Vector> result = new ArrayList<>(capacity += 4);
-        if (capacity <= 0) {
+        if (capacity == 0) {
             return result;
         }
 
@@ -435,7 +440,7 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
     }
 
     @Override
-    public Iterator<Block> iterator() {
+    public @NotNull Iterator<Block> iterator() {
         return new CuboidBlockIterator(this.getWorld(), this.x1, this.y1, this.z1, this.x2, this.y2, this.z2);
     }
 
@@ -455,60 +460,5 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
         return "Cuboid: " + this.worldName + ',' + this.x1 + ',' + this.y1 + ',' + this.z1 + "=>" + this.x2 + ',' + this.y2 + ',' + this.z2;
     }
 
-    public String getWorldName() {
-        return this.worldName;
-    }
-
-    public int getX1() {
-        return this.x1;
-    }
-
-    public int getY1() {
-        return this.y1;
-    }
-
-    public int getZ1() {
-        return this.z1;
-    }
-
-    public int getX2() {
-        return this.x2;
-    }
-
-    public int getY2() {
-        return this.y2;
-    }
-
-    public int getZ2() {
-        return this.z2;
-    }
-
-    public void setWorldName(String worldName) {
-        this.worldName = worldName;
-    }
-
-    public void setX1(int x1) {
-        this.x1 = x1;
-    }
-
-    public void setY1(int y1) {
-        this.y1 = y1;
-    }
-
-    public void setZ1(int z1) {
-        this.z1 = z1;
-    }
-
-    public void setX2(int x2) {
-        this.x2 = x2;
-    }
-
-    public void setY2(int y2) {
-        this.y2 = y2;
-    }
-
-    public void setZ2(int z2) {
-        this.z2 = z2;
-    }
 }
 

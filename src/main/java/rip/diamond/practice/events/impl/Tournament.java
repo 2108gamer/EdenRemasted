@@ -72,7 +72,7 @@ public class Tournament extends EdenEvent {
                     broadcast(Language.EVENT_TOURNAMENT_MATCH_END_MESSAGE.toString(getTeamName(winner), getTeamName(loser), matches.size()));
 
                     Party party = Party.getByPlayer(loser.getLeader().getPlayer());
-                    //如果玩家在戰鬥時退出伺服器的話, Party 可能會是null
+                    //Party may be null if the player exits the server during combat
                     if (party != null) {
                         eliminate(party);
                     }
@@ -100,22 +100,22 @@ public class Tournament extends EdenEvent {
     @Override
     public List<String> getLobbyScoreboard(Player player) {
         /*
-         * 如果 tournamentState == TournamentState.NONE, 意思就是錦標賽還沒開始
-         * 這個情況下, getState() 應該會回傳 EventState.WAITING
+         * If tournamentState == TournamentState.NONE, it means the tournament has not started yet
+         * In this case, getState() should return EventState.WAITING
          */
         if (tournamentState == TournamentState.NONE) {
             return Language.EVENT_TOURNAMENT_SCOREBOARD_STARTING_EVENT.toStringList(player);
         }
         /*
-         * 如果 tournamentState == TournamentState.STARTING_NEW_ROUND, 意思就是錦標賽正在準備開始新的一個回合
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If tournamentState == TournamentState.STARTING_NEW_ROUND, it means the tournament is preparing to start a new round
+         * In this case, getState() should return EventState.RUNNING
          */
         if (tournamentState == TournamentState.STARTING_NEW_ROUND) {
             return Language.EVENT_TOURNAMENT_SCOREBOARD_STARTING_NEW_ROUND.toStringList(player, round);
         }
         /*
-         * 如果 tournamentState == TournamentState.FIGHTING, 意思就是錦標賽回合已經開始, 活動內的玩家正在戰鬥中
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If tournamentState == TournamentState.FIGHTING, it means that the tournament round has started and the players in the event are fighting.
+         * In this case, getState() should return EventState.RUNNING
          */
         if (tournamentState == TournamentState.FIGHTING) {
             return Language.EVENT_TOURNAMENT_SCOREBOARD_FIGHTING.toStringList(player, round, matches.size());
@@ -131,22 +131,22 @@ public class Tournament extends EdenEvent {
     @Override
     public List<String> getStatus(Player player) {
         /*
-         * 如果 tournamentState == TournamentState.NONE, 意思就是錦標賽還沒開始
-         * 這個情況下, getState() 應該會回傳 EventState.WAITING
+         * If tournamentState == TournamentState.NONE, it means the tournament has not started yet
+         * In this case, getState() should return EventState.WAITING
          */
         if (tournamentState == TournamentState.NONE) {
             return Language.EVENT_SUMO_EVENT_STATUS_STARTING_EVENT.toStringList(player, getUncoloredEventName());
         }
         /*
-         * 如果 tournamentState == TournamentState.STARTING_NEW_ROUND, 意思就是錦標賽正在準備開始新的一個回合
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If tournamentState == TournamentState.STARTING_NEW_ROUND, it means the tournament is preparing to start a new round
+         * In this case, getState() should return EventState.RUNNING
          */
         else if (tournamentState == TournamentState.STARTING_NEW_ROUND) {
             return Language.EVENT_SUMO_EVENT_STATUS_STARTING_NEW_ROUND.toStringList(player, getUncoloredEventName(), round);
         }
         /*
-         * 如果 tournamentState == TournamentState.FIGHTING, 意思就是錦標賽回合已經開始, 活動內的玩家正在戰鬥中
-         * 這個情況下, getState() 應該會回傳 EventState.RUNNING
+         * If tournamentState == TournamentState.FIGHTING, it means that the tournament round has started and the players in the event are fighting.
+         * In this case, getState() should return EventState.RUNNING
          */
         else if (tournamentState == TournamentState.FIGHTING) {
             List<String> listOfFightingPlayers = new ArrayList<>();

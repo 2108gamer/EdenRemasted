@@ -47,7 +47,7 @@ public class QueueCommand extends Command {
                 return;
             }
 
-            if (!Checker.isQueueType(args[0])) {
+            if (Checker.isQueueType(args[0])) {
                 Language.INVALID_SYNTAX.sendMessage(player);
                 return;
             }
@@ -56,7 +56,7 @@ public class QueueCommand extends Command {
             new QueueMenu(queueType).openMenu(player);
             return;
         } else if (args.length == 2) {
-            if (!Checker.isQueueType(args[0])) {
+            if (Checker.isQueueType(args[0])) {
                 Language.INVALID_SYNTAX.sendMessage(player);
                 return;
             }
