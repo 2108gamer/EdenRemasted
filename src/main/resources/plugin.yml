@@ -1,8 +1,7 @@
 main: rip.diamond.practice.Eden
-name: Eden
+name: Prax
 version: '${version}'
-author: GoodestEnglish
+author: GoodestEnglish forked by iRicx
 description: The best practice plugin with premium features
-website: https://youtube.com/c/goodestenglishpvp
 depend: [WorldEdit, FastAsyncWorldEdit, ProtocolLib]
 softdepend: [ViaVersion, PlaceholderAPI, Citizens]

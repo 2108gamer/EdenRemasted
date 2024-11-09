@@ -775,6 +775,7 @@ public class MatchListener implements Listener {
                 return;
             }
             if (match.isProtected(block.getLocation(), true, block)) {
+                player.sendMessage(Language.MAX_BUILD_MESSAGE.toString());
                 event.setCancelled(true);
                 return;
             }

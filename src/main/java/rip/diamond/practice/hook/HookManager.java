@@ -25,9 +25,8 @@ public class HookManager {
     public HookManager(Eden plugin) {
         this.plugin = plugin;
 
-        if (plugin.getSpigotAPI().getSpigotType() == SpigotType.IMANITY_SPIGOT_3) {
-            this.imanitySpigot3Hook = new ImanitySpigot3Hook();
-        }
+
+
 
         if (Checker.isPluginEnabled("PlaceholderAPI")) {
             new EdenPlaceholderExpansion(plugin).register();

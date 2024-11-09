@@ -37,6 +37,8 @@ public class PlayerProfile {
 
     @Getter private static final Map<UUID, PlayerProfile> profiles = new ConcurrentHashMap<>();
 
+    @Getter @Setter int globalElo = 1000;
+    @Getter @Setter int globalExp = 0;
     private final UUID uniqueId;
     private final String username;
     private final Map<String, ProfileKitData> kitData = new HashMap<>();
@@ -48,6 +50,8 @@ public class PlayerProfile {
 
     @Setter private boolean temporary = false;
     private boolean saving = false;
+
+
 
     public PlayerProfile(UUID uniqueId, String username) {
         this.uniqueId = uniqueId;

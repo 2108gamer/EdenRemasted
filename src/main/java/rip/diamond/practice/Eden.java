@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import io.github.epicgo.sconey.SconeyHandler;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import rip.diamond.practice.arenas.Arena;
@@ -57,6 +58,7 @@ import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueListener;
 import rip.diamond.practice.queue.command.QueueCommand;
 import rip.diamond.practice.util.BasicConfigFile;
+import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.EntityHider;
 import rip.diamond.practice.util.InventoryUtil;
 import rip.diamond.practice.util.command.CommandManager;
@@ -73,6 +75,7 @@ import java.util.Arrays;
 public class Eden extends JavaPlugin {
 
     public static Eden INSTANCE;
+    private static Eden eden;
     public static DecimalFormat DECIMAL = new DecimalFormat("0.##");
     public static final Gson GSON = new Gson();
 
@@ -112,6 +115,8 @@ public class Eden extends JavaPlugin {
         loadListeners();
         loadCommands();
         loadGeneral();
+
+
     }
 
     @Override
@@ -251,4 +256,11 @@ public class Eden extends JavaPlugin {
 
         InventoryUtil.handleRemoveCrafting();
     }
+    public static void sendMessage(String message) {
+        Bukkit.getServer().getConsoleSender().sendMessage(message);
+    }
+    public static Eden get() {
+        return eden;
+    }
+
 }

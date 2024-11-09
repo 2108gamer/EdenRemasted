@@ -60,7 +60,7 @@ repositories {
 
 dependencies {
     implementation 'org.mongodb:mongodb-driver-sync:4.9.0' //MongoDB driver (This has to be included in the plugin jar file, so we use implementation)
-    implementation 'rip.diamond:spigotapi:1.0-SNAPSHOT'
+    implementation 'rip.diamond:apispigot'
     implementation 'com.github.ben-manes.caffeine:caffeine:2.9.3' //https://github.com/ben-manes/caffeine - A high performance caching library
 
     testImplementation 'dev.imanity.mockbukkit:MockBukkit1.8:1.0.31'
