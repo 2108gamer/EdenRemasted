@@ -89,7 +89,7 @@ public abstract class Match {
         //Check if the kit allows block building and breaking. If yes, we set the ArenaDetail to using to prevent player using the same arena
         if (kit.getGameRules().isBuild() || kit.getGameRules().isSpleef()) {
             if (Match.getMatches().values().stream().filter(match -> match != this).anyMatch(match -> (match.getKit().getGameRules().isBuild() || match.getKit().getGameRules().isSpleef()) && match.getArenaDetail() == arenaDetail)) {
-                end(true, "其他戰鬥正在使用這個場地, 並且該戰鬥的職業需要使用方塊");
+                end(true, "Another battle is using this field, and the battle's profession requires the use of blocks");
                 return;
             }
             arenaDetail.setUsing(true);
@@ -153,7 +153,7 @@ public abstract class Match {
      * @param scorer The TeamPlayer who scored the point
      */
     public void score(PlayerProfile profile, TeamPlayer entity, TeamPlayer scorer) {
-        getMatchPlayers().stream().map(PlayerProfile::get).filter(p -> !p.getCooldowns().get(CooldownType.SCORE).isExpired()).findFirst().ifPresent(lastScorerProfile -> Common.log("[Eden] " + scorer.getUsername() + " tries to score when " + lastScorerProfile.getUsername() + " scored in last 3 seconds (UUID: " + uuid + ")"));
+        getMatchPlayers().stream().map(PlayerProfile::get).filter(p -> !p.getCooldowns().get(CooldownType.SCORE).isExpired()).findFirst().ifPresent(lastScorerProfile -> Common.log("[Practice] " + scorer.getUsername() + " tries to score when " + lastScorerProfile.getUsername() + " scored in last 3 seconds (UUID: " + uuid + ")"));
 
         profile.getCooldowns().put(CooldownType.SCORE, new Cooldown(3));
 
@@ -272,7 +272,7 @@ public abstract class Match {
             return;
         }
 
-        Common.debug("正在結束 " + getClass().getSimpleName() + " 戰鬥 (" + teams.stream().map(team -> team.getLeader().getUsername()).collect(Collectors.joining(" vs ")) + ") (職業: " + kit.getName() + ") (地圖: " + arenaDetail.getArena().getName() + ") (UUID: " + uuid + ")");
+        Common.debug("Ending " + getClass().getSimpleName() + " fighting (" + teams.stream().map(team -> team.getLeader().getUsername()).collect(Collectors.joining(" vs ")) + ") (Kit: " + kit.getName() + ") (Map: " + arenaDetail.getArena().getName() + ") (UUID: " + uuid + ")");
         state = MatchState.ENDING;
 
         MatchEndEvent event = new MatchEndEvent(this, forced);
