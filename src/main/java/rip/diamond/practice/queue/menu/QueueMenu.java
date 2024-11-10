@@ -29,30 +29,41 @@ public class QueueMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         final Map<Integer, Button> buttons = new HashMap<>();
+
         Kit.getKits().stream()
                 .filter(Kit::isEnabled)
                 .filter(kit -> queueType == QueueType.UNRANKED || kit.isRanked())
-                .forEach(kit -> buttons.put(buttons.size(), new Button() {
-                    @Override
-                    public ItemStack getButtonItem(Player player) {
-                        return new ItemBuilder(kit.getDisplayIcon().clone())
-                                .name(kit.getDisplayName())
-                                .lore(kit.getDescription())
-                                .lore(Language.QUEUE_MENU_BUTTON_LORE.toStringList(player,
-                                        Queue.getPlayers().values().stream().filter(profile -> profile.getKit() == kit && profile.getQueueType() == queueType).count(),
-                                        Match.getMatches().values().stream().filter(match -> match.getKit() == kit && match.getQueueType() == queueType).mapToInt(match -> match.getMatchPlayers().size()).sum(),
-                                        kit.getDisplayName()
-                                ))
-                                .build();
-                    }
+                .forEach(kit -> {
+                    int slot = kit.getSlot();
+                    if (slot < getSize() && !buttons.containsKey(slot)) {
+                        buttons.put(slot, new Button() {
+                            @Override
+                            public ItemStack getButtonItem(Player player) {
+                                return new ItemBuilder(kit.getDisplayIcon().clone())
+                                        .name(kit.getDisplayName())
+                                        .lore(kit.getDescription())
+                                        .lore(Language.QUEUE_MENU_BUTTON_LORE.toStringList(player,
+                                                Queue.getPlayers().values().stream().filter(profile -> profile.getKit() == kit && profile.getQueueType() == queueType).count(),
+                                                Match.getMatches().values().stream().filter(match -> match.getKit() == kit && match.getQueueType() == queueType).mapToInt(match -> match.getMatchPlayers().size()).sum(),
+                                                kit.getDisplayName()
+                                        ))
+                                        .build();
+                            }
 
-                    @Override
-                    public void clicked(Player player, ClickType clickType) {
-                        player.closeInventory();
-                        Queue.joinQueue(player, kit, queueType);
+                            @Override
+                            public void clicked(Player player, ClickType clickType) {
+                                player.closeInventory();
+                                Queue.joinQueue(player, kit, queueType);
+                            }
+                        });
                     }
-        }));
+                });
+
         return buttons;
     }
 
+    @Override
+    public int getSize() {
+        return 45;
+    }
 }

@@ -48,6 +48,10 @@ public class LobbyManager {
         profile.setPlayerState(PlayerState.IN_LOBBY);
         profile.setupItems();
         profile.getCooldowns().forEach((name, cooldown) -> cooldown.cancelCountdown());
+
+        if (player.hasPermission("eden.extra.lobby-flight")) {
+            player.setAllowFlight(true);
+        }
     }
 
     public void sendToSpawnAndReset(Player player) {

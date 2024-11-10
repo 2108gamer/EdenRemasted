@@ -1,5 +1,16 @@
 scoreboard:
-  title: "&bPractice"
+  title:
+    - "&b&lPractice"
+    - "&f&lP&b&lractice"
+    - "&b&lP&f&lr&b&lactice"
+    - "&b&lPr&f&la&b&lctice"
+    - "&b&lPra&f&lc&b&ltice"
+    - "&b&lPrac&f&lt&b&lice"
+    - "&b&lPract&f&li&b&lce"
+    - "&b&lPracti&f&lc&b&le"
+    - "&b&lPractic&f&le"
+    - "&b&lPractice"
+    - "&f&lPractice"
   boxing-counter:
     no-combo: "&fNo Combo"
     text-solo: "{0}{1} Combo"
@@ -783,6 +794,15 @@ kit:
         message: "&e&lChanging &b&lkit priority&e&l... Please enter a new value in chat"
         success: "&fChanged kit &b{0} &f's kit priority to &b{1}"
         additional-message: "&cYour message must be in numbers"
+    edit-slot:
+      name: "&b&lEdit kit slot"
+      lore:
+        - ""
+        - "&7Current kit slot: {0}"
+        - ""
+        - "&e&nClick to edit kit slot!"
+      procedure:
+        success: "&fChanged kit &b{0} &f's kit priority to &b{1}"
     preview:
       lore:
         - ""
@@ -1390,6 +1410,10 @@ profile:
         - ""
         - "&7Receive duel requests in lobby"
         - ""
+    profile-theme-selection: "AQUA"
+    profile-theme-selection-lore:
+        - ""
+        - "Cambia el color de la scoreboard"
     allow-party-invite:
       name: "Party Invites"
       lore:
@@ -1492,6 +1516,8 @@ button:
 menu:
   view-all-pages:
     title: "&bView all pages"
+edit-kit-slot-name: "&eEdiata el slot del kit"
+edit-kit-slot-lore: "&TEST"
 tablist:
   ## If you want to disable header or footer, just simply put null
   ## Note that you cannot only keep the header and disable the footer, you have to enable both or disable both

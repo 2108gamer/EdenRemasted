@@ -35,7 +35,7 @@ public class Kit {
 	@Getter @Setter private KitGameRules gameRules = new KitGameRules();
 	@Getter @Setter private List<KitMatchType> kitMatchTypes = new ArrayList<>();
 	@Getter @Setter private List<KitExtraItem> kitExtraItems = new ArrayList<>();
-
+	@Getter @Setter private int slot;
 	public Kit(String name) {
 		this.name = name;
 		this.displayName = name;
@@ -64,7 +64,7 @@ public class Kit {
 			KitGameRules gameRules = Eden.GSON.fromJson(kitSection.getString(id + ".game-rules"), GsonType.KIT_GAME_RULES);
 			List<KitMatchType> kitMatchTypes = Eden.GSON.fromJson(kitSection.getString(id + ".kit-match-types"), GsonType.KIT_MATCH_TYPES);
 			List<KitExtraItem> kitExtraItems = Eden.GSON.fromJson(kitSection.getString(id + ".kit-extra-item"), GsonType.KIT_EXTRA_ITEM);
-
+			int slot = kitSection.getInt(id + ".slot");
 			Kit kit = new Kit(id);
 			kit.setEnabled(enabled);
 			kit.setRanked(ranked);
@@ -79,12 +79,15 @@ public class Kit {
 			kit.setGameRules(gameRules);
 			kit.setKitMatchTypes(kitMatchTypes);
 			kit.setKitExtraItems(kitExtraItems);
+			kit.setSlot(slot);
 
 			kits.add(kit);
 		});
 
 		sortKit();
 	}
+
+
 
 	public static void sortKit() {
 		kits.sort(Comparator.comparing(Kit::getPriority));
@@ -115,8 +118,13 @@ public class Kit {
 		fileConfig.set(kitRoot + ".game-rules", Eden.GSON.toJson(gameRules, GsonType.KIT_GAME_RULES));
 		fileConfig.set(kitRoot + ".kit-match-types", Eden.GSON.toJson(kitMatchTypes, GsonType.KIT_MATCH_TYPES));
 		fileConfig.set(kitRoot + ".kit-extra-item", Eden.GSON.toJson(kitExtraItems, GsonType.KIT_EXTRA_ITEM));
-
+        fileConfig.set(kitRoot + ".slot", slot);
 		Eden.INSTANCE.getKitFile().save();
+	}
+
+
+	public int getSlot() {
+		return slot;
 	}
 
 	public void autoSave() {

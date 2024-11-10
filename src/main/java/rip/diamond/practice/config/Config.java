@@ -96,6 +96,7 @@ public enum Config {
     //Profile
     PROFILE_DEFAULT_ELO("profile.default-elo", 1000),
     PROFILE_SAVE_ON_SERVER_STOP("profile.save-on-server-stop", true),
+    PROFILE_DEFAULT_SETTINGS_THEME_SELECTION("profile.default.theme", "AQUA"),
     PROFILE_DEFAULT_SETTINGS_TIME_CHANGER("profile.default-settings.time-changer", "normal"),
     PROFILE_DEFAULT_SETTINGS_ARENA_SELECTION("profile.default-settings.arena-selection", false),
     PROFILE_DEFAULT_SETTINGS_MATCH_SCOREBOARD("profile.default-settings.match-scoreboard", true),
