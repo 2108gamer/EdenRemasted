@@ -4,6 +4,7 @@ import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.PacketEventsAPI;
 import com.google.gson.Gson;
 import io.github.epicgo.sconey.SconeyHandler;
+import io.github.nosequel.tab.shared.TabHandler;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -69,10 +70,8 @@ import rip.diamond.practice.util.menu.MenuListener;
 import rip.diamond.practice.util.nametags.NameTagManager;
 import rip.diamond.practice.util.tablist.ImanityTabHandler;
 import rip.diamond.spigotapi.SpigotAPI;
-import xyz.refinedev.api.tablist.TablistHandler;
-import xyz.refinedev.api.tablist.adapter.impl.ExampleAdapter;
-import xyz.refinedev.api.tablist.util.Skin;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
+
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -109,9 +108,6 @@ public class Eden extends JavaPlugin {
     private ImanityTabHandler tabHandler;
     private EdenCache cache;
     private EdenPlaceholder placeholder;
-    private TablistHandler tablistHandler;
-    private PacketEventsAPI<?> packetEvents;
-    private Skin skinAPI;
 
     @Override
     public void onEnable() {
@@ -256,7 +252,7 @@ public class Eden extends JavaPlugin {
         this.cache = new EdenCache();
         this.placeholder = new EdenPlaceholder(this);
         if (Config.NAMETAG_ENABLED.toBoolean()) this.nameTagManager.registerAdapter(new NameTagAdapter());
-
+        new TabHandler(new TabAdapter(), this, 20L);
         if (Config.DISABLE_SAVE_WORLD.toBoolean()) {
             for (World world : Bukkit.getWorlds()) {
                 world.setAutoSave(false);
@@ -271,5 +267,7 @@ public class Eden extends JavaPlugin {
     public static Eden get() {
         return eden;
     }
+
+
 
 }
