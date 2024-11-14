@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Eden.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Eden.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Eden.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Eden.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rip.diamond.Eden.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rip.diamond.Eden.test.iml" />
     </modules>
   </component>
 </project>

@@ -48,7 +48,7 @@ public class PlayerProfile {
     @Setter private Match match;
     @Setter private Party party;
     @Setter @Getter private int winStreak = 0;
-    @Setter @Getter private int wins = 0;
+
 
     private int wins = 0;
 

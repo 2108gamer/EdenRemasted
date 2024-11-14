@@ -38,11 +38,12 @@ repositories {
         dir("./libs")
     }
 
-    //Spigot and ImanitySpigot API
+
     maven {
         name "imanityLibraries"
         url "https://maven.imanity.dev/imanity-libraries"
     }
+    maven { url 'https://jitpack.io' }
     //PlaceholderAPI
     maven {
         url "https://repo.extendedclip.com/content/repositories/placeholderapi/"
@@ -56,15 +57,25 @@ repositories {
         name 'citizens-repo'
         url 'https://maven.citizensnpcs.co/repo'
     }
+    maven {
+        url "https://maven.refinedev.xyz/public-repo"
+    }
+    maven { url ("https://repo.codemc.io/repository/maven-releases/")
+          }
+    maven { url ("https://repo.codemc.io/repository/maven-snapshots/")
+          }
 }
 
 dependencies {
+    //dependencies
     implementation 'org.mongodb:mongodb-driver-sync:4.9.0' //MongoDB driver (This has to be included in the plugin jar file, so we use implementation)
     implementation 'rip.diamond:apispigot'
     implementation 'com.github.ben-manes.caffeine:caffeine:2.9.3' //https://github.com/ben-manes/caffeine - A high performance caching library
-
     testImplementation 'dev.imanity.mockbukkit:MockBukkit1.8:1.0.31'
+    implementation 'com.github.retrooper:packetevents-spigot:2.6.0' //PacketEvents For TabListAPI
     testImplementation 'junit:junit:4.13.1'
+    implementation files('libs/TabAPI.jar') //TABLIST API
+    implementation files('libs/TABLISTDEPEND.jar') //Library for the tablist API to work
 
     //Libraries from local
     compileOnly name: 'ImanitySpigot-API-2022.08.1b2'
