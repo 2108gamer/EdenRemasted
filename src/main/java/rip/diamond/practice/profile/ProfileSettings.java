@@ -9,10 +9,12 @@ import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.event.SettingsChangeEvent;
+import rip.diamond.practice.profile.themes.Themes;
 import rip.diamond.practice.util.option.FalseOption;
 import rip.diamond.practice.util.option.Option;
 import rip.diamond.practice.util.option.TrueOption;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -137,7 +139,7 @@ public enum ProfileSettings {
             Language.PROFILE_SETTINGS_PING_RANGE_LORE.toStringList(),
             "eden.settings.ping-range",
             ImmutableList.of(
-                    new Option(Config.PROFILE_DEFAULT_SETTINGS_PING_RANGE.toString().equals("infinite"), Language.PROFILE_SETTINGS_PING_RANGE_UNLIMITED.toString()) {
+                    new Option(Config.PROFILE_DEFAULT_SETTINGS_PING_RANGE.toString().equals("infinite"), Language.PROFILE_SETTINGS_PING_RANGE_LORE.toString()) {
                         @Override
                         public void run(Player player) {
 
@@ -209,8 +211,17 @@ public enum ProfileSettings {
                         }
                     }
             )
-    )
-    ;
+    ),
+    THEME_SELECTION(
+            Material.PAINTING,
+            Language.PROFILE_SETTINGS_THEME_SELECTION_NAME.toString(),
+            Language.PROFILE_SETTINGS_THEME_SELECTION_LORE.toStringList(),
+            "eden.settings.theme-selection",
+            getThemeOptions()
+    );
+
+
+
 
     private final Material icon;
     private final String name;
@@ -255,6 +266,113 @@ public enum ProfileSettings {
         return ImmutableList.of(
                 new TrueOption(defaultValue),
                 new FalseOption(!defaultValue)
+        );
+    }
+
+
+
+
+    private static List<Option> getThemeOptions() {
+        return ImmutableList.of(
+                new Option(false, "Orange") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.ORANGE);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "ORANGE";
+                    }
+                },
+                new Option(false, "Green") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.GREEN);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "GREEN";
+                    }
+                },
+                new Option(true, "Aqua") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.AQUA);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "AQUA";
+                    }
+                },
+                new Option(false, "Red") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.RED);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "RED";
+                    }
+                },
+                new Option(false, "Yellow") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.YELLOW);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "YELLOW";
+                    }
+                },
+                new Option(false, "Purple") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.PURPLE);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "PURPLE";
+                    }
+                },
+                new Option(false, "Pink") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.PINK);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "PINK";
+                    }
+                },
+                new Option(false, "Blue") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.BLUE);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "BLUE";
+                    }
+                },
+                new Option(false, "White") {
+                    @Override
+                    public void run(Player player) {
+                        Themes.applyTheme(player, Themes.WHITE);
+                    }
+
+                    @Override
+                    public String getValue() {
+                        return "WHITE";
+                    }
+                }
         );
     }
 

@@ -2,6 +2,7 @@ package rip.diamond.practice.hook.plugin.placeholderapi;
 
 import lombok.RequiredArgsConstructor;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import rip.diamond.practice.Eden;
@@ -15,6 +16,7 @@ import rip.diamond.practice.match.Match;
 import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.data.ProfileKitData;
+import rip.diamond.practice.profile.themes.Themes;
 import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueType;
 
@@ -125,6 +127,12 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
             if (param.equalsIgnoreCase("match_queue_type")) {
                 return match.getQueueType().getReadable();
             }
+            if(param.equalsIgnoreCase("theme")) {
+                PlayerProfile prof = PlayerProfile.get(player);
+                ChatColor c = prof.getTheme().getColor();
+                return c.toString();
+            }
+
             //Requested in #445
             if (param.equalsIgnoreCase("match_player_team_color")) {
                 return match.getTeam(player).getTeamColor().getColor();

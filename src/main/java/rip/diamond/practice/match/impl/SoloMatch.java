@@ -2,6 +2,7 @@ package rip.diamond.practice.match.impl;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
@@ -122,8 +123,15 @@ public class SoloMatch extends Match {
         kWinner.incrementWon(getQueueType() == QueueType.RANKED);
         kLoser.incrementLost(getQueueType() == QueueType.RANKED);
 
+        pWinner.incrementWins();
+        pLoser.resetWinStreak();
         kWinner.calculateWinstreak(true);
         kLoser.calculateWinstreak(false);
+        pWinner.save(true, sucess -> {
+            if(sucess) {
+
+            }
+        });
 
         List<String> winCommands = Config.MATCH_WIN_COMMANDS.toStringList();
         List<String> loseCommands = Config.MATCH_LOSE_COMMANDS.toStringList();
@@ -239,4 +247,6 @@ public class SoloMatch extends Match {
             throw new PracticeUnexpectedException("Cannot get opponent player from a solo match.");
         }
     }
+
+
 }

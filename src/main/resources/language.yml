@@ -1411,9 +1411,11 @@ profile:
         - "&7Receive duel requests in lobby"
         - ""
     profile-theme-selection: "AQUA"
+    profile-theme-selection-name: "&eCambia el color"
+    profile-theme-selection-changed: "Tema cambiado a {0}"
     profile-theme-selection-lore:
         - ""
-        - "Cambia el color de la scoreboard"
+        - "Personaliza al color que quieras"
     allow-party-invite:
       name: "Party Invites"
       lore:
@@ -1467,7 +1469,9 @@ queue:
   wrong-state: "&cCannot join a queue in the current state"
   error-kit-data-not-found: "&cCannot join a queue, please rejoin"
   error-not-enough-wins: "&cYou need at least {0} wins to queue ranked. You now have {1} wins."
-  success-join: "&fYou have joined &b{0} &f's game queue"
+  success-join:
+    - "&b{0}"
+    - "Ping Range: {1}"
   success-quit: "&fYou have left &b{0} &f's game queue"
 button:
   back:

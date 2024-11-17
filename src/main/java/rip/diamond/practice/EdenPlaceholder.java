@@ -2,7 +2,9 @@ package rip.diamond.practice;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.events.EdenEvent;
 import rip.diamond.practice.events.EventType;
@@ -245,10 +247,23 @@ public class EdenPlaceholder {
         if (str.contains(SKIP_LINE)) {
             return null;
         } else {
+
+            PlayerProfile profile = PlayerProfile.get(player);
+            ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+            Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+            if (theme == null) {
+                theme = Config.DEFAULT_THEME;
+            }
+            ChatColor c = CC.getColorFromName(theme.toString());
+            if (c == null) {
+                c = def;
+            }
             return str
                     .replace("{online-players}", plugin.getCache().getPlayersSize() + "")
                     .replace("{queue-players}", plugin.getCache().getQueuePlayersSize() + "")
                     .replace("{match-players}", plugin.getCache().getMatchPlayersSize() + "")
+                    .replace("<theme>", c.toString())
+
                     ;
         }
     }

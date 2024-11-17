@@ -9,6 +9,7 @@ import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
+import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.data.ProfileKitData;
 import rip.diamond.practice.queue.task.QueueTask;
 
@@ -68,7 +69,7 @@ public class Queue {
         profile.setPlayerState(PlayerState.IN_QUEUE);
         profile.setupItems();
 
-        Language.QUEUE_SUCCESS_JOIN.sendMessage(player, kit.getDisplayName());
+        Language.QUEUE_SUCCESS_JOIN.sendListOfMessage(player, kit.getDisplayName(), profile.getSettings().get(ProfileSettings.PING_RANGE).toString());
     }
 
     public static void leaveQueue(Player player) {

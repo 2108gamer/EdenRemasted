@@ -252,7 +252,7 @@ public class Eden extends JavaPlugin {
         this.cache = new EdenCache();
         this.placeholder = new EdenPlaceholder(this);
         if (Config.NAMETAG_ENABLED.toBoolean()) this.nameTagManager.registerAdapter(new NameTagAdapter());
-        new TabHandler(new TabAdapter(), this, 20L);
+
         if (Config.DISABLE_SAVE_WORLD.toBoolean()) {
             for (World world : Bukkit.getWorlds()) {
                 world.setAutoSave(false);

@@ -3,21 +3,16 @@ package rip.diamond.practice.profile;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.EdenItems;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.event.PlayerProfileDataLoadEvent;
 import rip.diamond.practice.event.PlayerProfileDataSaveEvent;
 import rip.diamond.practice.events.EdenEvent;
-import rip.diamond.practice.hook.plugin.citizens.CitizensHook;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.party.Party;
@@ -27,7 +22,7 @@ import rip.diamond.practice.profile.data.ProfileKitData;
 import rip.diamond.practice.profile.task.ProfileAutoSaveTask;
 import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.option.Option;
-
+import rip.diamond.practice.profile.themes.Themes;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
@@ -48,10 +43,8 @@ public class PlayerProfile {
     @Setter private Match match;
     @Setter private Party party;
     @Setter @Getter private int winStreak = 0;
-
-
     private int wins = 0;
-
+    @Getter private String theme;
     @Setter private boolean temporary = false;
     private boolean saving = false;
 
@@ -60,6 +53,18 @@ public class PlayerProfile {
     public PlayerProfile(UUID uniqueId, String username) {
         this.uniqueId = uniqueId;
         this.username = username;
+    }
+
+
+    public Themes getTheme() {
+        try {
+            return Themes.valueOf(theme.toUpperCase());
+        } catch (IllegalArgumentException | NullPointerException e) {
+            return Themes.AQUA;
+        }
+    }
+    public void setTheme(Themes theme) {
+        this.theme = theme.name();
     }
 
     public static void init() {
@@ -97,8 +102,10 @@ public class PlayerProfile {
     public Document toBson() {
         Document settingsDocument = new Document();
         for (Map.Entry<ProfileSettings, Option> options : settings.entrySet()) {
-            settingsDocument.put(options.getKey().name(), options.getValue().getValue());
+                settingsDocument.put(options.getKey().name(), options.getValue().getValue());
         }
+
+
 
         Document kitDataDocument = new Document();
         for (Map.Entry<String, ProfileKitData> kitDataMap : kitData.entrySet()) {
@@ -118,6 +125,8 @@ public class PlayerProfile {
                 .append("lowerCaseUsername", username.toLowerCase())
                 .append("settings", settingsDocument)
                 .append("kitData", kitDataDocument)
+                .append("winstreak", winStreak)
+                .append("theme", this.theme)
 
                 .append("temporary", temporaryDocument)
                 ;
@@ -274,6 +283,13 @@ public class PlayerProfile {
         PlayerProfile profile = new PlayerProfile(uuid, username);
         profiles.put(uuid, profile);
         return profile;
+    }
+    public void incrementWins() {
+        winStreak++;
+    }
+
+    public void resetWinStreak() {
+        winStreak = 0;
     }
 
 }

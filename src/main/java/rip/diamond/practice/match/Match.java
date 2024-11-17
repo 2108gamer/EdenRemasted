@@ -5,6 +5,7 @@ import lombok.Setter;
 import net.minecraft.server.v1_8_R3.EntityLightning;
 import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntityWeather;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
+import net.minecraft.server.v1_8_R3.PlayerList;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -95,7 +96,8 @@ public abstract class Match {
             arenaDetail.setUsing(true);
         }
 
-        //Setup player logic
+
+        logPlayersInMatch();
         for (Player player : getMatchPlayers()) {
             PlayerProfile profile = PlayerProfile.get(player);
             profile.setMatch(this);
@@ -146,6 +148,8 @@ public abstract class Match {
         event.call();
 
         new MatchNewRoundTask(this, null, false);
+        
+
     }
 
     /**
@@ -461,7 +465,10 @@ public abstract class Match {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList())));
         return players;
+
     }
+
+
 
     public List<Player> getSpectators() {
         List<Player> players = new ArrayList<>();
@@ -571,6 +578,13 @@ public abstract class Match {
     }
     public void broadcastSpectatorsSound(Sound sound) {
         getSpectators().forEach(player -> player.playSound(player.getLocation(), sound, 10, 1));
+    }
+    public void logPlayersInMatch() {
+       // only for testing
+        List<Player> players = getMatchPlayers();
+        for (Player player : players) {
+            Bukkit.getLogger().info("Jugador en el match: " + player.getName());
+        }
     }
     public void broadcastSpectatorsSound(EdenSound sound) {
         getSpectators().forEach(sound::play);

@@ -16,6 +16,7 @@ import java.util.List;
 public enum Config {
 
     DEBUG("debug", false),
+    DEFAULT_THEME("DEFAULT-THEME", "AQUA"),
     ARENA_KIT_AUTO_SAVE("arena-kit-auto-save", false),
     DISABLE_SAVE_WORLD("disable-save-world", true),
     LOBBY_ONLY_COMMANDS("lobby-only-commands", ImmutableList.of()),
@@ -106,6 +107,7 @@ public enum Config {
     PROFILE_DEFAULT_SETTINGS_SPECTATOR_JOIN_LEAVE_MESSAGE("profile.default-settings.spectator-join-leave-message", true),
     PROFILE_DEFAULT_SETTINGS_EVENT_ANNOUNCEMENT("profile.default-settings.event-announcement", true),
     PROFILE_DEFAULT_SETTINGS_PING_RANGE("profile.default-settings.ping-range", "infinite"),
+
     //Crafting Options
     CRAFTING_ENABLED("crafting.enabled", false),
     CRAFTING_WHITELISTED_ITEMS("crafting.whitelisted-items", ImmutableList.of("MUSHROOM_SOUP")),
