@@ -15,5 +15,5 @@ public interface SconeyElementAdapter {
      * @param player the player containing the provided scoreboard
      * @return the scoreboard element used by this instance
      */
-    Object getElement(final Player player);
+    SconeyElement getElement(final Player player);
 }

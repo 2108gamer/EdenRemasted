@@ -30,6 +30,7 @@ public class ProfileKitData {
 	@Setter private int rankedLost = 0;
 	@Setter private int bestWinstreak = 0;
 	@Setter private int winstreak = 0;
+	@Setter @Getter String division;
 	@Setter private KitLoadout[] loadouts = new KitLoadout[4];
 
 	public void fromBson(Document document) {
@@ -41,6 +42,7 @@ public class ProfileKitData {
 		rankedLost = document.getInteger("rankedLost");
 		bestWinstreak = document.getInteger("bestWinstreak");
 		winstreak = document.getInteger("winstreak");
+		division = document.getString("division");
 		loadouts = Eden.GSON.fromJson(document.getString("loadouts"), KitLoadout[].class);
 	}
 
@@ -55,6 +57,7 @@ public class ProfileKitData {
 				.append("won", getWon()) //Used for leaderboard display
 				.append("bestWinstreak", bestWinstreak)
 				.append("winstreak", winstreak)
+				.append("division", division)
 				.append("loadouts", Eden.GSON.toJson(loadouts))
 				;
 	}
@@ -94,6 +97,7 @@ public class ProfileKitData {
 			winstreak = 0;
 		}
 	}
+
 
 	public KitLoadout getLoadout(int index) {
 		return loadouts[index];

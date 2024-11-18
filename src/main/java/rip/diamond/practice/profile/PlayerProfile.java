@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.Document;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.EdenItems;
@@ -19,6 +20,7 @@ import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.cooldown.Cooldown;
 import rip.diamond.practice.profile.cooldown.CooldownType;
 import rip.diamond.practice.profile.data.ProfileKitData;
+import rip.diamond.practice.profile.divisions.Division;
 import rip.diamond.practice.profile.task.ProfileAutoSaveTask;
 import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.option.Option;
@@ -126,7 +128,6 @@ public class PlayerProfile {
                 .append("settings", settingsDocument)
                 .append("kitData", kitDataDocument)
                 .append("winstreak", winStreak)
-                .append("theme", this.theme)
 
                 .append("temporary", temporaryDocument)
                 ;
@@ -155,11 +156,24 @@ public class PlayerProfile {
 
     public void setupItems() {
         Player player = getPlayer();
+        PlayerProfile profile = PlayerProfile.get(player);
         if (player == null) {
             return;
         }
         player.getInventory().clear();
         player.getInventory().setArmorContents(null);
+
+        ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+        Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+        if (theme == null) {
+            theme = Config.DEFAULT_THEME;
+        }
+        ChatColor c = CC.getColorFromName(theme.toString());
+        if (c == null) {
+            c = def;
+        }
+
+
         if (playerState == PlayerState.IN_LOBBY) {
             if (Party.getByPlayer(player) == null) {
                 EdenItems.giveItem(player, EdenItems.LOBBY_UNRANKED_QUEUE);
@@ -284,12 +298,6 @@ public class PlayerProfile {
         profiles.put(uuid, profile);
         return profile;
     }
-    public void incrementWins() {
-        winStreak++;
-    }
 
-    public void resetWinStreak() {
-        winStreak = 0;
-    }
 
 }

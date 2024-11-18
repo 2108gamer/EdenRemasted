@@ -2,15 +2,19 @@ package rip.diamond.practice.leaderboard.menu.impl;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import rip.diamond.practice.Eden;
+import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.leaderboard.menu.LeaderboardMenu;
 import rip.diamond.practice.profile.PlayerProfile;
+import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.data.ProfileKitData;
+import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.ItemBuilder;
 import rip.diamond.practice.util.menu.Button;
 
@@ -54,9 +58,18 @@ public class KitStatsMenu extends LeaderboardMenu {
             int rankedLost = profile.getKitData().values().stream().mapToInt(ProfileKitData::getRankedLost).sum();
             int unrankedWon = profile.getKitData().values().stream().mapToInt(ProfileKitData::getUnrankedWon).sum();
             int unrankedLost = profile.getKitData().values().stream().mapToInt(ProfileKitData::getUnrankedLost).sum();
-
+            PlayerProfile profile = PlayerProfile.get(player);
+            ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+            Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+            if (theme == null) {
+                theme = Config.DEFAULT_THEME;
+            }
+            ChatColor c = CC.getColorFromName(theme.toString());
+            if (c == null) {
+                c = def;
+            }
             return new ItemBuilder(Material.NETHER_STAR)
-                    .name(Language.LEADERBOARD_KIT_STATS_MENU_GLOBAL_STATS_NAME.toString())
+                    .name(Language.LEADERBOARD_KIT_STATS_MENU_GLOBAL_STATS_NAME.toString().replace("<theme>", c.toString()))
                     .lore(Language.LEADERBOARD_KIT_STATS_MENU_GLOBAL_STATS_LORE.toStringList(player,
                             unrankedWon,
                             unrankedLost,
@@ -80,6 +93,21 @@ public class KitStatsMenu extends LeaderboardMenu {
             if (kit == null) {
                 return new ItemStack(Material.AIR);
             }
+
+
+            ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+            Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+            if (theme == null) {
+                theme = Config.DEFAULT_THEME;
+            }
+            ChatColor c = CC.getColorFromName(theme.toString());
+            if (c == null) {
+                c = def;
+            }
+
+
+
+
             int rankedWon = profile.getKitData().get(kitName).getRankedWon();
             int rankedLost = profile.getKitData().get(kitName).getRankedLost();
             int unrankedWon = profile.getKitData().get(kitName).getUnrankedWon();
@@ -87,7 +115,7 @@ public class KitStatsMenu extends LeaderboardMenu {
             int winstreak = profile.getKitData().get(kitName).getWinstreak();
             int bestWinstreak = profile.getKitData().get(kitName).getBestWinstreak();
             return new ItemBuilder(kit.getDisplayIcon().clone())
-                    .name(Language.LEADERBOARD_KIT_STATS_MENU_KIT_STATS_NAME.toString(kit.getDisplayName()))
+                    .name(Language.LEADERBOARD_KIT_STATS_MENU_KIT_STATS_NAME.toString(kit.getDisplayName()).replace("<theme>", c.toString()))
                     .lore(Language.LEADERBOARD_KIT_STATS_MENU_KIT_STATS_LORE.toStringList(player,
                             unrankedWon,
                             unrankedLost,

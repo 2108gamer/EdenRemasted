@@ -692,6 +692,7 @@ public enum Language {
     EDIT_KIT_NAME_LORE("edit-kit-slot-lore"),
     TABLIST_HEADER("tablist.header"),
     TABLIST_FOOTER("tablist.footer"),
+    UPDATE_DIVISION("UPDATE-DIVISION-MESSAGE")
     ;
 
     private final String path;

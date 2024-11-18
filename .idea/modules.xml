@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Eden.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Eden.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Eden.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Eden.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rip.diamond.Eden.test.iml" filepath="$PROJECT_DIR$/.idea/modules/rip.diamond.Eden.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Prax.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Prax.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Prax.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Prax.test.iml" />
     </modules>
   </component>
 </project>

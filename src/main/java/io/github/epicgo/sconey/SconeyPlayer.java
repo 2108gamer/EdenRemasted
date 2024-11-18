@@ -44,7 +44,7 @@ public class SconeyPlayer {
      * Handle a sidebar to send to a player scoreboard
      */
     public void handleUpdate() {
-        final SconeyElement boardElement = (SconeyElement) this.adapter.getElement(player);
+        final SconeyElement boardElement = this.adapter.getElement(player);
         String title = ChatColor.translateAlternateColorCodes('&', boardElement.getTitle());
         if (title.length() > 32)
             title = title.substring(0, 32);

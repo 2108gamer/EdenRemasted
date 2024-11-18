@@ -1,0 +1,25 @@
+DIVISIONS:
+  ENABLED: true
+  RANKS:
+    SILVER_1:
+      DISPLAY_NAME: "&7Silver I"
+      ICON: IRON_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&7[I]"
+      DEFAULT: true
+      WINS-MIN: 0
+      WINS-MAX: 10
+    SILVER_2:
+      DISPLAY_NAME: "&7Silver II"
+      ICON: IRON_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&7[II]"
+      WINS-MIN: 11
+      WINS-MAX: 20
+    GOLD_1:
+      DISPLAY_NAME: "&6Gold I"
+      ICON: GOLD_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&6[I]"
+      WINS-MIN: 21
+      WINS-MAX: 30

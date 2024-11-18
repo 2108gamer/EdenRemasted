@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.arenas.ArenaDetail;
@@ -14,7 +15,10 @@ import rip.diamond.practice.match.MatchType;
 import rip.diamond.practice.match.team.Team;
 import rip.diamond.practice.match.team.TeamPlayer;
 import rip.diamond.practice.profile.PlayerProfile;
+import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.data.ProfileKitData;
+import rip.diamond.practice.profile.divisions.Division;
+import rip.diamond.practice.profile.divisions.DivisionManager;
 import rip.diamond.practice.queue.QueueType;
 import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.Clickable;
@@ -77,11 +81,33 @@ public class SoloMatch extends Match {
 
     @Override
     public void displayMatchEndTitle() {
+
+
         TeamPlayer tWinner = getWinningPlayers().get(0);
         TeamPlayer tLoser = getOpponent(getWinningPlayers().get(0));
+        PlayerProfile profile = PlayerProfile.get(tWinner.getPlayer());
+        ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+        Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+        if (theme == null) {
+            theme = Config.DEFAULT_THEME;
+        }
+        ChatColor c = CC.getColorFromName(theme.toString());
+        if (c == null) {
+            c = def;
+        }
+        PlayerProfile profi = PlayerProfile.get(tLoser.getPlayer());
+        ChatColor de = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+        Object them = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+        if (them == null) {
+            them = Config.DEFAULT_THEME;
+        }
+        ChatColor co = CC.getColorFromName(them.toString());
+        if (co == null) {
+            co = de;
+        }
 
-        tWinner.broadcastTitle(Language.MATCH_END_TITLE_WIN_TITLE.toString(), Language.MATCH_END_TITLE_WIN_SUBTITLE.toString(tWinner.getUsername()));
-        tLoser.broadcastTitle(Language.MATCH_END_TITLE_LOSE_TITLE.toString(), Language.MATCH_END_TITLE_LOSE_SUBTITLE.toString(tWinner.getUsername()));
+        tWinner.broadcastTitle(Language.MATCH_END_TITLE_WIN_TITLE.toString(), Language.MATCH_END_TITLE_WIN_SUBTITLE.toString(tWinner.getUsername()).replace("<theme>", c.toString()));
+        tLoser.broadcastTitle(Language.MATCH_END_TITLE_LOSE_TITLE.toString(), Language.MATCH_END_TITLE_LOSE_SUBTITLE.toString(tWinner.getUsername()).replace("<theme>", co.toString()));
     }
 
     @Override
@@ -122,16 +148,47 @@ public class SoloMatch extends Match {
 
         kWinner.incrementWon(getQueueType() == QueueType.RANKED);
         kLoser.incrementLost(getQueueType() == QueueType.RANKED);
+        int totalKitWinsWinner = kWinner.getWon();
+        Division newDivisionWinner = DivisionManager.getDivisionByWins(totalKitWinsWinner, DivisionManager.getDivisions());
 
-        pWinner.incrementWins();
-        pLoser.resetWinStreak();
+
+        if (newDivisionWinner != null && !newDivisionWinner.getDisplayName().equals(kWinner.getDivision())) {
+
+            kWinner.setDivision(newDivisionWinner.getDisplayName().toString());
+
+
+            Division nextDivision = DivisionManager.getNextDivision(newDivisionWinner);
+
+            if (nextDivision != null) {
+                int winsToNextDivision = nextDivision.getWinsMin() - kWinner.getWon();
+
+
+                if (winsToNextDivision > 0) {
+                    Language.UPDATE_DIVISION.sendListOfMessage(pWinner.getPlayer(), newDivisionWinner.getDisplayName(), winsToNextDivision, nextDivision.getDisplayName());
+                }
+            } else {
+
+                tWinner.getPlayer().sendMessage("§a¡Has alcanzado la división más alta!");
+            }
+
+
+            pWinner.save(true, sucess -> {
+                if(sucess) {
+                Common.debug("saved division data for player" + pWinner.getUsername() + "Division" + newDivisionWinner.toString());
+                }
+            });
+
+
+        }
+
+
+
+
+
         kWinner.calculateWinstreak(true);
         kLoser.calculateWinstreak(false);
-        pWinner.save(true, sucess -> {
-            if(sucess) {
 
-            }
-        });
+        kWinner.getWon();
 
         List<String> winCommands = Config.MATCH_WIN_COMMANDS.toStringList();
         List<String> loseCommands = Config.MATCH_LOSE_COMMANDS.toStringList();
@@ -247,6 +304,8 @@ public class SoloMatch extends Match {
             throw new PracticeUnexpectedException("Cannot get opponent player from a solo match.");
         }
     }
+
+
 
 
 }

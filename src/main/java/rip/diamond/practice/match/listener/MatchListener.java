@@ -51,8 +51,12 @@ import rip.diamond.practice.match.team.Team;
 import rip.diamond.practice.match.team.TeamPlayer;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
+import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.cooldown.Cooldown;
 import rip.diamond.practice.profile.cooldown.CooldownType;
+import rip.diamond.practice.profile.data.ProfileKitData;
+import rip.diamond.practice.profile.divisions.Division;
+import rip.diamond.practice.queue.QueueProfile;
 import rip.diamond.practice.queue.QueueType;
 import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.cuboid.Cuboid;
@@ -100,7 +104,24 @@ public class MatchListener implements Listener {
             }
 
             if (match.getQueueType() == QueueType.UNRANKED) {
-                Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents).forEach(s -> Common.sendMessage(p, s));
+
+                PlayerProfile profile = PlayerProfile.get(p);
+                ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+                Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+                if (theme == null) {
+                    theme = Config.DEFAULT_THEME;
+                }
+                ChatColor c = CC.getColorFromName(theme.toString());
+                if (c == null) {
+                    c = def;
+                }
+
+
+
+
+
+
+                Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable().replace("<theme>", c.toString()), kit.getDisplayName().replace("<theme>", c.toString()),match.getArenaDetail().getArena().getDisplayName().replace("<theme>", c.toString()), opponents).forEach(s -> Common.sendMessage(p, s));
             } else if (match.getQueueType() == QueueType.RANKED && match.getMatchType() == MatchType.SOLO) {
                 int elo = PlayerProfile.get(match.getOpponent(match.getTeamPlayer(p)).getUuid()).getKitData().get(kit.getName()).getElo();
                 Language.MATCH_START_RANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents, elo).forEach(s -> Common.sendMessage(p, s));

@@ -57,8 +57,7 @@ public abstract class LeaderboardMenu extends PaginatedMenu {
             }
         }
 
-        buttons.put(0, new PageButton(-1, this));
-        buttons.put(8, new PageButton(1, this));
+
 
         for (int i = 1; i < 8; i++) {
             buttons.put(i, getPlaceholderButton());
@@ -84,11 +83,7 @@ public abstract class LeaderboardMenu extends PaginatedMenu {
     public Map<Integer, Button> getGlobalButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
-        buttons.put(getSize() - 9 + 1, new SwitchLeaderboardButton(Material.CARPET, 1, Language.LEADERBOARD_WINS_MENU_TITLE.toString(), WinsLeaderboardMenu.class));
-        buttons.put(getSize() - 9 + 2, new SwitchLeaderboardButton(Material.CARPET, 2, Language.LEADERBOARD_ELO_MENU_TITLE.toString(), EloLeaderboardMenu.class));
-        buttons.put(getSize() - 9 + 4, new SwitchLeaderboardButton(Material.DIAMOND, 0, Language.LEADERBOARD_SWITCH_LEADERBOARD_BUTTON_VIEW_STATS_BUTTON_NAME.toString(), KitStatsMenu.class));
-        buttons.put(getSize() - 9 + 6, new SwitchLeaderboardButton(Material.CARPET, 3, Language.LEADERBOARD_WINSTREAK_MENU_TITLE.toString(), WinstreakLeaderboardMenu.class));
-        buttons.put(getSize() - 9 + 7, new SwitchLeaderboardButton(Material.CARPET, 4, Language.LEADERBOARD_BEST_WINSTREAK_MENU_TITLE.toString(), BestWinstreakLeaderboardMenu.class));
+
 
         return buttons;
     }

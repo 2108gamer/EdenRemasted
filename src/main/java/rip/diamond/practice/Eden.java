@@ -55,15 +55,13 @@ import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.command.SettingsCommand;
 import rip.diamond.practice.profile.command.StatsCommand;
 import rip.diamond.practice.profile.command.settings.*;
+import rip.diamond.practice.profile.divisions.DivisionManager;
 import rip.diamond.practice.profile.listener.ProfileListener;
 import rip.diamond.practice.profile.procedure.ProcedureListener;
 import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueListener;
 import rip.diamond.practice.queue.command.QueueCommand;
-import rip.diamond.practice.util.BasicConfigFile;
-import rip.diamond.practice.util.CC;
-import rip.diamond.practice.util.EntityHider;
-import rip.diamond.practice.util.InventoryUtil;
+import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.command.CommandManager;
 import rip.diamond.practice.util.menu.Menu;
 import rip.diamond.practice.util.menu.MenuListener;
@@ -91,6 +89,7 @@ public class Eden extends JavaPlugin {
     private BasicConfigFile arenaFile;
     private BasicConfigFile kitFile;
     private BasicConfigFile soundFile;
+    private BasicConfigFile divisionsFile;
 
     private CommandManager commandManager;
     private MongoManager mongoManager;
@@ -101,7 +100,7 @@ public class Eden extends JavaPlugin {
     private LeaderboardManager leaderboardManager;
     private HookManager hookManager;
     private NameTagManager nameTagManager;
-
+    DivisionManager divisionManager;
     private SpigotAPI spigotAPI;
     private EntityHider entityHider;
     private SconeyHandler scoreboardHandler;
@@ -151,11 +150,15 @@ public class Eden extends JavaPlugin {
         this.arenaFile = new BasicConfigFile(this, "arena.yml");
         this.kitFile = new BasicConfigFile(this, "kit.yml");
         this.soundFile = new BasicConfigFile(this, "sound.yml");
+        this.divisionsFile = new BasicConfigFile(this, "divisions.yml");
+
 
         Config.loadDefault();
     }
 
     private void loadManagers() {
+        this.divisionManager.loadDivisions();
+        Common.debug(divisionManager + "Divisiones Cargadas");
         this.commandManager = new CommandManager(this);
         this.mongoManager = new MongoManager(this);
         this.lobbyManager = new LobbyManager(this);
