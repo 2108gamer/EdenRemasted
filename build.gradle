@@ -74,9 +74,7 @@ dependencies {
     implementation 'com.github.retrooper:packetevents-spigot:2.6.0-SNAPSHOT'
     testImplementation 'dev.imanity.mockbukkit:MockBukkit1.8:1.0.31'
     testImplementation 'junit:junit:4.13.1'
-    implementation files('libs/TabAPI.jar') //TABLIST API
-    implementation files('libs/TABLISTDEPEND.jar') //Library for the tablist API to work
-
+    implementation files('libs/ProtocolSupport.jar')
 
     //Libraries from local
     compileOnly name: 'ImanitySpigot-API-2022.08.1b2'
@@ -84,6 +82,7 @@ dependencies {
     compileOnly name: 'FastAsyncWorldEdit-bukkit-18.12.19-d131fa6-1241-22.0.3'
     compileOnly name: 'worldedit-bukkit-6.1.9'
     compileOnly name: 'ViaVersion-4.4.2'
+    compileOnly name: 'Spigot-1.7'
 
     //Libraries from others
     compileOnly 'me.clip:placeholderapi:2.11.2' //PlaceholderAPI
