@@ -281,22 +281,20 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
                 return leaderboard.get(position).getData() + "";
             }
 
-            if(param.equalsIgnoreCase("theme")) {
-                ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
-                Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
-                if (theme == null) {
-                    theme = Config.DEFAULT_THEME;
-                }
-                ChatColor c = CC.getColorFromName(theme.toString());
-                if (c == null) {
-                    c = def;
-                }
 
-                if(c != null) {
-                    return c.toString();
-                }
-                return def.toString();
+        }
+        if(param.equalsIgnoreCase("theme")) {
+            ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+            Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+            if (theme == null) {
+                theme = Config.DEFAULT_THEME;
             }
+            ChatColor c = CC.getColorFromName(theme.toString());
+            if (c == null) {
+                c = def;
+            }
+
+            return c.toString();
         }
 
         return null; // Placeholder is unknown by the Expansion
