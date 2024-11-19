@@ -6,9 +6,11 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Language;
+import rip.diamond.practice.kiteditor.menu.KitEditorSaveMenu;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
+import rip.diamond.practice.profile.data.ProfileKitData;
 import rip.diamond.practice.util.Common;
 import rip.diamond.practice.util.Util;
 import rip.diamond.practice.util.serialization.LocationSerialization;
@@ -57,17 +59,18 @@ public class KitEditorManager {
         KitEditProfile kProfile = new KitEditProfile(player.getUniqueId(), kit);
         editing.put(player.getUniqueId(), kProfile);
 
-        Util.teleport(player, editorLocation);
+
         player.getInventory().clear();
         player.getInventory().setContents(kit.getKitLoadout().getContents());
 
         Language.KIT_EDITOR_EDITING.sendListOfMessage(player, kit.getDisplayName());
+        new KitEditorSaveMenu(kit).openMenu(player);
     }
 
     public void leaveKitEditor(Player player, boolean sendToSpawnAndReset) {
         editing.remove(player.getUniqueId());
         if (sendToSpawnAndReset) {
-            plugin.getLobbyManager().sendToSpawnAndReset(player);
+            plugin.getLobbyManager().EditorEvent(player);
         }
     }
 

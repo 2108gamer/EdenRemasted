@@ -8,6 +8,7 @@ import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.EdenItems;
 import rip.diamond.practice.config.Config;
@@ -279,7 +280,7 @@ public class PlayerProfile {
         }
     }
 
-    public static PlayerProfile get(Player player) {
+    public static PlayerProfile get(@NotNull Player player) {
         return get(player.getUniqueId());
     }
     public static PlayerProfile get(String username) {
