@@ -15,10 +15,12 @@ import rip.diamond.practice.leaderboard.LeaderboardPlayerCache;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
+import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.data.ProfileKitData;
 import rip.diamond.practice.profile.themes.Themes;
 import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueType;
+import rip.diamond.practice.util.CC;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -277,6 +279,23 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
                     return "-";
                 }
                 return leaderboard.get(position).getData() + "";
+            }
+
+            if(param.equalsIgnoreCase("theme")) {
+                ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
+                Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
+                if (theme == null) {
+                    theme = Config.DEFAULT_THEME;
+                }
+                ChatColor c = CC.getColorFromName(theme.toString());
+                if (c == null) {
+                    c = def;
+                }
+
+                if(c != null) {
+                    return c.toString();
+                }
+                return def.toString();
             }
         }
 
