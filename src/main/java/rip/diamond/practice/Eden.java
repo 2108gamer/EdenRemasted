@@ -1,13 +1,10 @@
 package rip.diamond.practice;
 
-import com.github.retrooper.packetevents.PacketEvents;
-import com.github.retrooper.packetevents.PacketEventsAPI;
 import com.google.gson.Gson;
+import dev.hely.tab.api.Tab;
 import io.github.epicgo.sconey.SconeyHandler;
-import io.github.nosequel.tab.shared.TabHandler;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import rip.diamond.practice.arenas.Arena;
@@ -68,8 +65,6 @@ import rip.diamond.practice.util.menu.MenuListener;
 import rip.diamond.practice.util.nametags.NameTagManager;
 import rip.diamond.practice.util.tablist.ImanityTabHandler;
 import rip.diamond.spigotapi.SpigotAPI;
-import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
-
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -90,6 +85,7 @@ public class Eden extends JavaPlugin {
     private BasicConfigFile kitFile;
     private BasicConfigFile soundFile;
     private BasicConfigFile divisionsFile;
+    private BasicConfigFile tablistFile;
 
     private CommandManager commandManager;
     private MongoManager mongoManager;
@@ -111,7 +107,6 @@ public class Eden extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
-
 
         spigotAPI = new SpigotAPI().init(this);
 
@@ -151,13 +146,13 @@ public class Eden extends JavaPlugin {
         this.kitFile = new BasicConfigFile(this, "kit.yml");
         this.soundFile = new BasicConfigFile(this, "sound.yml");
         this.divisionsFile = new BasicConfigFile(this, "divisions.yml");
-
+        this.tablistFile = new BasicConfigFile(this, "tablist.yml");
 
         Config.loadDefault();
     }
 
     private void loadManagers() {
-        this.divisionManager.loadDivisions();
+        DivisionManager.loadDivisions();
         Common.debug(divisionManager + "Divisiones Cargadas");
         this.commandManager = new CommandManager(this);
         this.mongoManager = new MongoManager(this);
@@ -256,6 +251,10 @@ public class Eden extends JavaPlugin {
         this.placeholder = new EdenPlaceholder(this);
         if (Config.NAMETAG_ENABLED.toBoolean()) this.nameTagManager.registerAdapter(new NameTagAdapter());
 
+        if (this.getTablistFile().getBoolean("tablist.enable")) {
+            new Tab(this, new TabAdapter(this));
+        }
+
         if (Config.DISABLE_SAVE_WORLD.toBoolean()) {
             for (World world : Bukkit.getWorlds()) {
                 world.setAutoSave(false);
@@ -270,7 +269,5 @@ public class Eden extends JavaPlugin {
     public static Eden get() {
         return eden;
     }
-
-
 
 }
