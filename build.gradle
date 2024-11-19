@@ -81,7 +81,7 @@ dependencies {
     compileOnly name: 'TacoSpigot-1.8.8'
     compileOnly name: 'FastAsyncWorldEdit-bukkit-18.12.19-d131fa6-1241-22.0.3'
     compileOnly name: 'worldedit-bukkit-6.1.9'
-    compileOnly name: 'ViaVersion-4.4.2'
+    compileOnly name: 'ViaVersion-5.1.2'
     compileOnly name: 'Spigot-1.7'
 
     //Libraries from others

@@ -3,7 +3,7 @@ package dev.hely.tab.api.versions.impl;
 import dev.hely.tab.api.versions.module.IPlayerVersion;
 import dev.hely.tab.api.versions.module.PlayerVersion;
 import org.bukkit.entity.Player;
-import us.myles.ViaVersion.api.Via;
+import com.viaversion.viaversion.api.Via;
 
 /**
  * Created By LeandroSSJ
