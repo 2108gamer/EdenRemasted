@@ -21,7 +21,6 @@ public enum Themes {
     BLUE("BLUE", ChatColor.BLUE),
     WHITE("WHITE", ChatColor.WHITE);
 
-
     private final String name;
     private final ChatColor color;
 
@@ -30,24 +29,19 @@ public enum Themes {
         this.color = color;
     }
 
-
-
     public static void applyTheme(Player player, Themes theme) {
         PlayerProfile profile = PlayerProfile.get(player);
 
         if (profile == null) return;
 
-
         profile.setTheme(theme);
-        if (profile != null) {
-            profile.save(false, result -> {
-                if (result) {
-                    Common.debug("theme saved correctamente");
-                } else {
-                    Common.debug("Hubo un error al guardar el tema.");
-                }
-            });
-        }
+        profile.save(false, result -> {
+            if (result) {
+                Common.debug(player + "'s theme saved successfully");
+            } else {
+                Common.debug("Hubo un error al guardar el tema de: " + player + ".");
+            }
+        });
 
     }
 }
