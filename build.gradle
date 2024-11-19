@@ -85,7 +85,7 @@ dependencies {
     compileOnly name: 'Spigot-1.7'
 
     //Libraries from others
-    compileOnly 'me.clip:placeholderapi:2.11.2' //PlaceholderAPI
+    compileOnly 'me.clip:placeholderapi:2.11.6' //PlaceholderAPI
     compileOnly 'com.comphenix.protocol:ProtocolLib:4.7.0' //ProtocolLib
     compileOnly 'net.citizensnpcs:citizensapi:2.0.30-SNAPSHOT' //Citizens
 
