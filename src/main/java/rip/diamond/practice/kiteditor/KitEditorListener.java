@@ -1,7 +1,6 @@
 package rip.diamond.practice.kiteditor;
 
 import lombok.RequiredArgsConstructor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -20,9 +20,6 @@ import rip.diamond.practice.kiteditor.menu.KitEditorExtraItemsMenu;
 import rip.diamond.practice.kiteditor.menu.KitEditorSaveMenu;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.profile.PlayerProfile;
-import rip.diamond.practice.util.Common;
-
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class KitEditorListener implements Listener {
@@ -109,6 +106,19 @@ public class KitEditorListener implements Listener {
         }
         if (event.getInventorySlots().stream().anyMatch(i -> i > 36)) {
             event.setCancelled(true);
+        }
+    }
+
+
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent event) {
+
+        Player player = (Player) event.getPlayer();
+
+        if (plugin.getKitEditorManager().isEditing(player)) {
+
+            plugin.getKitEditorManager().leaveKitEditor(player, true);
+
         }
     }
 

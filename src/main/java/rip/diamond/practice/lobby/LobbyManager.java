@@ -2,8 +2,10 @@ package rip.diamond.practice.lobby;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
@@ -53,6 +55,24 @@ public class LobbyManager {
             player.setAllowFlight(true);
         }
     }
+    public void resetKit(Player player) {
+        PlayerProfile profile = PlayerProfile.get(player);
+
+        if (profile == null) {
+            return;
+        }
+
+        PlayerUtil.res(player, false);
+
+        profile.setupItems();
+
+        profile.setMatch(null);
+        profile.setPlayerState(PlayerState.IN_LOBBY);
+        profile.setupItems();
+    }
+
+
+
 
     public void sendToSpawnAndReset(Player player) {
         Tasks.run(()-> {
@@ -60,5 +80,9 @@ public class LobbyManager {
             teleport(player);
         });
     }
-
+    public void EditorEvent(Player player) {
+        Tasks.run(()-> {
+            resetKit(player);
+        });
+    }
 }
