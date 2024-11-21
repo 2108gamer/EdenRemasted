@@ -294,6 +294,7 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
                 c = def;
             }
 
+
             return c.toString();
         }
 

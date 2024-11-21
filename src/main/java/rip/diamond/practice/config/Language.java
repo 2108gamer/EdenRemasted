@@ -7,11 +7,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.EdenPlaceholder;
-import rip.diamond.practice.util.CC;
-import rip.diamond.practice.util.Checker;
-import rip.diamond.practice.util.Common;
-import rip.diamond.practice.util.Util;
+import rip.diamond.practice.profile.PlayerProfile;
+import rip.diamond.practice.profile.ProfileSettings;
+import rip.diamond.practice.util.*;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -55,6 +55,7 @@ public enum Language {
     SCOREBOARD_IN_SPECTATE_FFA_FIGHTING("scoreboard.in-spectate-ffa.fighting"),
     SCOREBOARD_IN_SPECTATE_FFA_ENDING("scoreboard.in-spectate-ffa.ending"),
     JOIN_MESSAGE("join-message"),
+
     MAX_BUILD_MESSAGE("max_build_message"),
     LOADING_PROFILE("loading-profile"),
     INVALID_SYNTAX("invalid-syntax"),
@@ -338,6 +339,7 @@ public enum Language {
     KIT_BUTTON_SAVE_LOADOUT_NAME("kit.button.save-loadout.name"),
     KIT_BUTTON_SAVE_LOADOUT_LORE("kit.button.save-loadout.lore"),
     KIT_BUTTON_SAVE_LOADOUT_SUCCESS("kit.button.save-loadout.success"),
+    PARTNER_FLY_STATUS("partner-fly-status"),
     KIT_BUTTON_TOGGLE_NAME("kit.button.toggle.name"),
     KIT_BUTTON_TOGGLE_LORE("kit.button.toggle.description"),
     KIT_BUTTON_TOGGLE_SUCCESS("kit.button.toggle.success"),
@@ -418,6 +420,16 @@ public enum Language {
     KIT_GAME_RULES_KNOCKBACK_NAME_RULES("kit.game-rules.knockback-name.rules"),
     KIT_GAME_RULES_KNOCKBACK_NAME_DESCRIPTION("kit.game-rules.knockback-name.description"),
     LEADERBOARD_RELOAD("leaderboard.reload"),
+    PARTNER_TP_ALL_BUTTON_NAME("partner-tp-all"),
+    PARTNER_SET_FLY_ALL("partner-set-fly-all"),
+    PARTNER_TERMINAR_MATCH("partner-terminar-match"),
+    PARTNER_KICK_LORE("partner-kick-all-lore"),
+    PARTNER_TP_ALL_LORE("partner-tp-all-lore"),
+    PARTNER_KICK_MENU("partner-kick-menu"),
+    PARTNER_FLY_ENABLED_MESSAGE("partner-enable-fly-all"),
+    PARTNER_FLY_DISABLE_MESSAGE("partner-disable-fly-all"),
+    PARTY_MEMBERS_MENU_TITLE("party-kick-partner-menu"),
+    PARTY_MEMBERS_KICKED_BY_PARTNER_LORE("party-kick-partner-message"),
     LEADERBOARD_TOP10_DISPLAY_NAME("leaderboard.top10-display.name"),
     LEADERBOARD_TOP10_DISPLAY_LORE("leaderboard.top10-display.lore"),
     LEADERBOARD_BEST_WINSTREAK_MENU_TITLE("leaderboard.best-winstreak-menu-title"),
@@ -697,6 +709,8 @@ public enum Language {
 
     private final String path;
 
+
+
     @Override
     public String toString() {
         return toString("");
@@ -708,17 +722,26 @@ public enum Language {
 
     public String toString(Player player, Object... replacements) {
         String str = Eden.INSTANCE.getLanguageFile().getString(path);
+
+
         if (str.equalsIgnoreCase("null")) {
-            return null; //Fix for #437 - If return a "null" string, it will send an empty message
+            return null;
         }
+
         if (Util.isNull(str)) {
             return path;
         }
+
+
         str = translate(str, player);
+
+
         for (int i = 0; i < replacements.length; i++) {
             String replacement = convert(replacements[i]);
             str = str.replace("{" + i + "}", replacement);
         }
+
+
         return CC.translate(str);
     }
 
@@ -787,4 +810,5 @@ public enum Language {
         }
         return str;
     }
+
 }
