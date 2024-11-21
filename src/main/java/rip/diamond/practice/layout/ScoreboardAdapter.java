@@ -29,6 +29,7 @@ public class ScoreboardAdapter implements SconeyElementAdapter {
 
     private final Eden plugin = Eden.INSTANCE;
     private int titleIndex = 0;
+    private int interval = Config.UPDATE_INTERVAL.toInteger();
 
 
     private final List<String> animatedTitles = Language.SCOREBOARD_TITLE.toStringList();
@@ -46,7 +47,7 @@ public class ScoreboardAdapter implements SconeyElementAdapter {
             public void run() {
                 titleIndex = (titleIndex + 1) % animatedTitles.size();
             }
-        }.runTaskTimer(plugin, 1, 20L);
+        }.runTaskTimer(plugin, 1, interval);
     }
 
     @Override
@@ -70,6 +71,7 @@ public class ScoreboardAdapter implements SconeyElementAdapter {
             c = def;
         }
         element.setTitle(animatedTitles.get(titleIndex).replace("<theme>", c.toString()));
+
         element.setMode(SconeyElementMode.CUSTOM);
 
         ScoreboardUpdateEvent event = new ScoreboardUpdateEvent(player);

@@ -20,6 +20,7 @@ public enum Config {
     ARENA_KIT_AUTO_SAVE("arena-kit-auto-save", false),
     DISABLE_SAVE_WORLD("disable-save-world", true),
     LOBBY_ONLY_COMMANDS("lobby-only-commands", ImmutableList.of()),
+    UPDATE_INTERVAL("scoreboard-update-interval", 10),
     //MongoDB
     MONGO_ENABLED("mongo.enabled", false),
     MONGO_URI_MODE("mongo.uri-mode", false),

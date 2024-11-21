@@ -46,11 +46,8 @@ public class SelecActionMenu extends Menu {
             @Override
             public ItemStack getButtonItem(Player player) {
 
-                List<String> lore = Collections.singletonList(
-                        Language.PARTNER_TP_ALL_LORE.toString()
-                );
                 return new ItemBuilder(Material.ENCHANTED_BOOK)
-                        .name("&b&lParty Fly")
+                        .name("&b&lParty TP")
                         .lore(Language.PARTNER_TP_ALL_LORE.toStringList())
                         .build();
             }
@@ -73,13 +70,18 @@ public class SelecActionMenu extends Menu {
 
                 String flyStatus = isFlyEnabled ? "» Activado" : "» Desactivado";
 
-
+                List<String> loreList = Language.PARTNER_FLY_STATUS.toStringList();
+                List<String> updatedLoreList = new ArrayList<>();
+                for (String lore : loreList) {
+                    String updatedLore = lore.replaceAll("%status%", flyStatus);
+                    updatedLoreList.add(updatedLore);
+                }
 
 
 
                 return new ItemBuilder(Material.FEATHER)
-                        .name(Language.PARTNER_SET_FLY_ALL.toString())
-                        .lore(Language.PARTNER_FLY_STATUS.toStringList())
+                        .name("&b&lParty Fly")
+                        .lore(updatedLoreList)
                         .build();
             }
 
