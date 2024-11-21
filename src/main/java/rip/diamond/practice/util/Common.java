@@ -26,11 +26,11 @@ public class Common {
 
     public static void debug(String str) {
         if (Config.DEBUG.toBoolean()) {
-            Bukkit.getConsoleSender().sendMessage(CC.RED + "[debug] " + CC.translate(str));
+            Bukkit.getConsoleSender().sendMessage(CC.RED + "[Debug] " + CC.translate(str));
 
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("eden.debug")) {
-                    sendMessage(player, CC.DARK_GRAY + "[debug] " + str);
+                if (player.hasPermission("prax.debug")) {
+                    sendMessage(player, CC.DARK_GRAY + "[Debug] " + str);
                 }
             }
         }
