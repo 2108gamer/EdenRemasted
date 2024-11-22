@@ -50,6 +50,7 @@ public class PlayerProfile {
     @Getter private String theme;
     @Setter private boolean temporary = false;
     private boolean saving = false;
+    @Setter @Getter private String lastMatchId = "";
 
 
 
@@ -73,6 +74,8 @@ public class PlayerProfile {
     public static void init() {
         new ProfileAutoSaveTask();
     }
+
+
 
     public void fromBson(Document document) {
         Document settingsDocument = document.get("settings", Document.class);

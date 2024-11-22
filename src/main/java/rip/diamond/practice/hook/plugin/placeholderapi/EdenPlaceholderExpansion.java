@@ -297,6 +297,23 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
 
             return c.toString();
         }
+        if(param.equalsIgnoreCase("rank_player")) {
+
+            return plugin.getRankManager().getRank().getColor(player.getUniqueId());
+        }
+        if(param.equalsIgnoreCase("aqua_tag")) {
+
+            return plugin.getRankManager().getRank().getTag(player);
+        }
+        if(param.equalsIgnoreCase("aqua_prefix")) {
+
+            return plugin.getRankManager().getRank().getPrefix(player.getUniqueId());
+        }
+        if(param.equalsIgnoreCase("aqua_rank_color")) {
+            ChatColor rankColor = plugin.getRankManager().getRank().getChatColor(player.getUniqueId());
+
+            return rankColor.toString();
+        }
 
         return null; // Placeholder is unknown by the Expansion
     }

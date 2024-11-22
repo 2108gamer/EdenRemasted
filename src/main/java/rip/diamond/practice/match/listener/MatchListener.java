@@ -1,11 +1,10 @@
 package rip.diamond.practice.match.listener;
 
 import lombok.RequiredArgsConstructor;
+import me.jumper251.replay.api.ReplayAPI;
+import me.jumper251.replay.replaysystem.Replay;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -65,9 +64,12 @@ import rip.diamond.practice.util.serialization.LocationSerialization;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
+
+
 
 @RequiredArgsConstructor
 public class MatchListener implements Listener {
@@ -116,12 +118,24 @@ public class MatchListener implements Listener {
                     c = def;
                 }
 
+                ReplayAPI api = ReplayAPI.getInstance();
+                if (api == null) {
+                    Common.debug("ReplayAPI instance is null!");
+                    return;
+                }
 
 
-
-
-
+                List<Player> players = match.getMatchPlayers();
+                if (players == null || players.isEmpty()) {
+                    Common.debug("No players found for the match!");
+                    return;
+                }
                 Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable().replace("<theme>", c.toString()), kit.getDisplayName().replace("<theme>", c.toString()),match.getArenaDetail().getArena().getDisplayName().replace("<theme>", c.toString()), opponents).forEach(s -> Common.sendMessage(p, s));
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    ReplayAPI.getInstance().recordReplay(match.getUuid().toString(), match.getMatchPlayers());
+                    Common.debug("Grabando partida " + match.getUuid().toString());
+                }, 60L); //previene que haga tp en el lobby
+
             } else if (match.getQueueType() == QueueType.RANKED && match.getMatchType() == MatchType.SOLO) {
                 int elo = PlayerProfile.get(match.getOpponent(match.getTeamPlayer(p)).getUuid()).getKitData().get(kit.getName()).getElo();
                 Language.MATCH_START_RANKED.toStringList(match.getMatchType().getReadable(), kit.getDisplayName(), match.getArenaDetail().getArena().getDisplayName(), opponents, elo).forEach(s -> Common.sendMessage(p, s));
@@ -192,6 +206,13 @@ public class MatchListener implements Listener {
                 match.score(profile, teamPlayer, lastHitDamager);
             } else {
                 match.die(player, false);
+                try {
+                    ReplayAPI.getInstance().stopReplay(match.getUuid().toString(), true, true);
+                    Common.debug("La replay para la partida con el id " + match.getUuid().toString() + "fue guardada");
+                } catch (PracticeUnexpectedException e) {
+                         e.printStackTrace();
+                }
+
             }
 
             if (gameRules.isDropItemWhenDie()) {

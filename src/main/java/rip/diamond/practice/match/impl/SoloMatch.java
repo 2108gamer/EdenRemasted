@@ -185,6 +185,7 @@ public class SoloMatch extends Match {
 
 
 
+
         kWinner.calculateWinstreak(true);
         kLoser.calculateWinstreak(false);
 

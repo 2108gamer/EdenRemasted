@@ -288,13 +288,14 @@ public class EdenPlaceholder {
             if (c == null) {
                 c = def;
             }
-
+            ChatColor rankColor = plugin.getRankManager().getRank().getChatColor(player.getUniqueId());
             return str
                     .replace("{online-players}", plugin.getCache().getPlayersSize() + "")
                     .replace("{queue-players}", plugin.getCache().getQueuePlayersSize() + "")
                     .replace("{match-players}", plugin.getCache().getMatchPlayersSize() + "")
                     .replace("<player_theme>", c.toString())
-
+                    .replace("<rank>", plugin.getRankManager().getRank().getName(player.getUniqueId()))
+                    .replace("<rank_color>", rankColor.toString())
 
                     ;
         }

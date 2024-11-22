@@ -25,6 +25,7 @@ public class ChatListener implements Listener {
                 format = plugin.getHookManager().getPlaceholderAPIHook().setPlaceholders(player, format);
             }
             event.setFormat(format);
+
         }
     }
 

@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import dev.hely.tab.api.Tab;
 import io.github.epicgo.sconey.SconeyHandler;
 import lombok.Getter;
+import me.jumper251.replay.api.ReplayAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import rip.diamond.practice.arenas.Arena;
 import rip.diamond.practice.arenas.command.ArenaCommand;
@@ -58,6 +60,7 @@ import rip.diamond.practice.profile.procedure.ProcedureListener;
 import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueListener;
 import rip.diamond.practice.queue.command.QueueCommand;
+import rip.diamond.practice.rank.RankManager;
 import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.command.CommandManager;
 import rip.diamond.practice.util.menu.Menu;
@@ -103,6 +106,9 @@ public class Eden extends JavaPlugin {
     private ImanityTabHandler tabHandler;
     private EdenCache cache;
     private EdenPlaceholder placeholder;
+    private RankManager rankManager;
+    private boolean replay = false;
+
 
     @Override
     public void onEnable() {
@@ -152,8 +158,9 @@ public class Eden extends JavaPlugin {
     }
 
     private void loadManagers() {
+        this.rankManager = new RankManager(this);
+        this.rankManager.loadRank();
         DivisionManager.loadDivisions();
-        Common.debug(divisionManager + "Divisiones Cargadas");
         this.commandManager = new CommandManager(this);
         this.mongoManager = new MongoManager(this);
         this.lobbyManager = new LobbyManager(this);
@@ -234,6 +241,11 @@ public class Eden extends JavaPlugin {
     }
 
     private void loadGeneral() {
+        Plugin advancedReplays = getServer().getPluginManager().getPlugin("AdvancedReplay");
+        if (advancedReplays != null) {
+            replay = true;
+            Common.debug("AdvancedReplay found!");
+        }
         Menu.init();
         PlayerProfile.init();
         Kit.init();

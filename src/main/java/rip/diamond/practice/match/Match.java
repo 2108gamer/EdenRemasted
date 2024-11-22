@@ -2,6 +2,7 @@ package rip.diamond.practice.match;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.jumper251.replay.api.ReplayAPI;
 import net.minecraft.server.v1_8_R3.EntityLightning;
 import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntityWeather;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
@@ -97,7 +98,7 @@ public abstract class Match {
         }
 
 
-        logPlayersInMatch();
+
         for (Player player : getMatchPlayers()) {
             PlayerProfile profile = PlayerProfile.get(player);
             profile.setMatch(this);
@@ -121,6 +122,10 @@ public abstract class Match {
                 kit.getKitLoadout().apply(this, player);
             }
             player.updateInventory();
+
+
+
+
 
             //Create the health display under NameTag, if needed
             if (kit.getGameRules().isShowHealth()) {
@@ -279,8 +284,11 @@ public abstract class Match {
         Common.debug("Ending " + getClass().getSimpleName() + " fighting (" + teams.stream().map(team -> team.getLeader().getUsername()).collect(Collectors.joining(" vs ")) + ") (Kit: " + kit.getName() + ") (Map: " + arenaDetail.getArena().getName() + ") (UUID: " + uuid + ")");
         state = MatchState.ENDING;
 
+
         MatchEndEvent event = new MatchEndEvent(this, forced);
         event.call();
+
+
 
         if (forced) {
             broadcastMessage(Language.MATCH_FORCE_END_MESSAGE.toString(reason));
@@ -292,6 +300,7 @@ public abstract class Match {
             }
 
             for (Player player : getMatchPlayers()) {
+
                 plugin.getScoreboardHandler().getScoreboard(player).unregisterHealthObjective();
             }
 
@@ -301,6 +310,7 @@ public abstract class Match {
             displayMatchEndMessages();
             calculateMatchStats();
         }
+
 
         //#442 - Teleport back to spawn location to prevent stuck in the portal
         if (kit.getGameRules().isPortalGoal()) {
@@ -336,6 +346,7 @@ public abstract class Match {
         if (kit.getGameRules().isShowHealth()) {
             plugin.getScoreboardHandler().getScoreboard(player).registerHealthObjective();
         }
+
     }
 
     public void leaveSpectate(Player player) {

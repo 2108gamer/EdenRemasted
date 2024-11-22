@@ -117,6 +117,7 @@ public class SelecActionMenu extends Menu {
             Match match = profile.getMatch();
 
             if(match != null) {
+
                 match.end(true, "&eEl partner" + "" + player.getDisplayName() + "" +"decidio terminar la partida" + "");
             }
 

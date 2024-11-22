@@ -84,6 +84,27 @@ public enum ProfileSettings {
                     }
             )
     ),
+    EXTRASETTING(
+            Material.CLAY,
+            Language.PROFILE_SETTINGS_TIME_CHANGER_NAME.toString(),
+            Language.PROFILE_SETTINGS_TIME_CHANGER_LORE.toStringList(),
+            "eden.settings.extra-setting",
+            ImmutableList.of(
+                    new Option(Config.PROFILE_DEFAULT_SETTINGS_TIME_CHANGER.toString().equals("normal"), Language.PROFILE_SETTINGS_TIME_CHANGER_NORMAL_SERVER_TIME.toString()) {
+                        @Override
+                        public void run(Player player) {
+                           player.performCommand("settings");
+                        }
+
+                        @Override
+                        public String getValue() {
+                            return "normal";
+                        }
+                    }
+
+
+            )
+    ),
     ARENA_SELECTION(
             Material.GRASS,
             Language.PROFILE_SETTINGS_ARENA_SELECTION_NAME.toString(),
@@ -133,6 +154,7 @@ public enum ProfileSettings {
             "eden.settings.event-announcement",
             getBooleanDefaultOptions(Config.PROFILE_DEFAULT_SETTINGS_EVENT_ANNOUNCEMENT.toBoolean())
     ),
+
     PING_RANGE(
             Material.STICK,
             Language.PROFILE_SETTINGS_PING_RANGE_NAME.toString(),
