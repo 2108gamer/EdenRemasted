@@ -11,7 +11,6 @@ import rip.diamond.practice.events.EventType;
 import rip.diamond.practice.events.impl.SumoEvent;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.match.MatchState;
-import rip.diamond.practice.match.impl.FFAMatch;
 import rip.diamond.practice.match.impl.SoloMatch;
 import rip.diamond.practice.match.impl.TeamMatch;
 import rip.diamond.practice.match.team.Team;
@@ -50,57 +49,55 @@ public class EdenPlaceholder {
                 c = def;
             }
 
-            if (profile == null) {
-                return str;
-            }
-
-
             Party party = Party.getByPlayer(player);
             QueueProfile qProfile = Queue.getPlayers().get(player.getUniqueId());
             Match match = profile.getMatch();
             EdenEvent event = EdenEvent.getOnGoingEvent();
 
-
-            if(str.contains("<player_theme>")) {
+            if(str.contains("{player_theme}")) {
+                assert c != null;
                 str = str
-                        .replace("<player_theme>", c.toString());
+                        .replace("{player_theme}", c.toString());
             }
 
-            //Check if the string has {event-information}, otherwise it will cause infinite loop
             if (str.contains("{event-information}")) {
                 str = str
                         .replace("{event-information}", event != null ? StringUtils.join(event.getLobbyScoreboard(player), NEW_LINE) : SKIP_LINE);
             }
 
             if (party != null) {
+                assert c != null;
                 str = str
                         .replace("{party-leader}", party.getLeader().getUsername())
-                        .replace("<player_theme>", c.toString())
+                        .replace("{player_theme}", c.toString())
                         .replace("{party-members}", party.getAllPartyMembers().size() + "")
                         .replace("{party-max}", party.getMaxSize() + "");
             }
 
             if (event != null) {
+                assert c != null;
                 str = str
                         .replace("{event-uncolored-name}", event.getUncoloredEventName())
-                        .replace("<player_theme>", c.toString())
+                        .replace("{player_theme}", c.toString())
                         .replace("{event-total-players}", event.getTotalPlayers().size() + "")
                         .replace("{event-max-players}", event.getMaxPlayers() + "")
                         .replace("{event-countdown}", event.getCountdown() == null ? "0.0" : event.getCountdown().getMilliSecondsLeft(false));
             }
 
             if (profile.getPlayerState() == PlayerState.IN_QUEUE && qProfile != null) {
+                assert c != null;
                 str = str
                         .replace("{queue-kit}", qProfile.getKit().getDisplayName())
-                        .replace("<player_theme>", c.toString())
+                        .replace("{player_theme}", c.toString())
                         .replace("{queue-time}", TimeUtil.millisToTimer(qProfile.getPassed()))
                         .replace("{queue-ranked-min}", qProfile.getMinRange() + "")
                         .replace("{queue-ranked-max}", qProfile.getMaxRange() + "")
                         .replace("{ping-range}", profile.getSettings().get(ProfileSettings.PING_RANGE).toString());
             } else if (profile.getPlayerState() == PlayerState.IN_MATCH && match != null) {
+                assert c != null;
                 str = str
                         .replace("{match-kit}", match.getKit().getDisplayName())
-                        .replace("<player_theme>", c.toString())
+                        .replace("{player_theme}", c.toString())
                         .replace("{match-duration}", TimeUtil.millisToTimer(match.getElapsedDuration()))
                         .replace("{match-build-limit}", match.getArenaDetail().getArena().getBuildMax() + "")
                         .replace("{match-build-limit-difference}", Util.renderBuildLimit(player.getLocation().getBlockY(), match.getArenaDetail().getArena().getBuildMax()))
@@ -110,7 +107,7 @@ public class EdenPlaceholder {
                 for (int i = 0; i < match.getTeams().size(); i++) {
                     Team team = match.getTeams().get(i);
                     str = str.replace("{match-team" + (i+1) + "-logo}", team.getTeamColor().getTeamLogo())
-                            .replace("<player_theme>", c.toString())
+                            .replace("{player_theme}", c.toString())
                             .replace("{match-team" + (i+1) + "-bed-status}", team.isBedDestroyed() ? CC.RED + "✘" : CC.GREEN + "✔")
                             .replace("{match-team" + (i+1) + "-points}", Util.renderPointsAsBar(team, match.getKit().getGameRules().getMaximumPoints()))
                     ;
@@ -128,7 +125,7 @@ public class EdenPlaceholder {
                         boolean opponentComboing = opponent.getCombo() > 1;
 
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{match-solo-opponent}", opponent.getUsername())
                                 .replace("{match-solo-winner}", match.getState() == MatchState.ENDING ? match.getWinningPlayers().get(0).getUsername() : "")
                                 .replace("{match-solo-loser}", match.getState() == MatchState.ENDING ? match.getTeams().stream().filter(team -> team != match.getWinningTeam()).map(team -> team.getLeader().getUsername()).findFirst().orElse(""): "")
@@ -155,7 +152,7 @@ public class EdenPlaceholder {
                         boolean yComboing = opponentTeam.getCombo() > 1;
 
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{match-team-self-alive}", team.getAliveCount() + "")
                                 .replace("{match-team-self-size}", team.getTeamPlayers().size() + "")
                                 .replace("{match-team-opponent-alive}", opponentTeam.getAliveCount() + "")
@@ -177,7 +174,7 @@ public class EdenPlaceholder {
                         long aliveCount = ffaTeams.stream().filter(t -> !t.isEliminated()).count();
 
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{match-ffa-alive}", aliveCount + "")
                                 .replace("{match-ffa-player-size}", ffaTeams.size() + "")
                                 .replace("{match-ffa-winner}", match.getState() != MatchState.ENDING ? "" : match.getWinningTeam() == null ? "" : match.getWinningTeam().getLeader().getUsername())
@@ -191,7 +188,7 @@ public class EdenPlaceholder {
                         }
                         SumoEvent sumoEvent = (SumoEvent) edenEvent;
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{match-event-type}", sumoEvent.getUncoloredEventName())
                                 .replace("{match-event-round}", sumoEvent.getRound() + "")
                                 .replace("{match-event-winner}", match.getState() == MatchState.ENDING ? sumoEvent.getTeamName(match.getWinningTeam()) : "")
@@ -200,8 +197,9 @@ public class EdenPlaceholder {
                         break;
                 }
             } else if (profile.getPlayerState() == PlayerState.IN_SPECTATING && match != null) {
+                assert c != null;
                 str = str
-                        .replace("<player_theme>", c.toString())
+                        .replace("{player_theme}", c.toString())
                         .replace("{spectate-kit}", match.getKit().getDisplayName())
                         .replace("{spectate-duration}", TimeUtil.millisToTimer(match.getElapsedDuration()))
                         .replace("{spectate-build-limit}", match.getArenaDetail().getArena().getBuildMax() + "")
@@ -222,7 +220,7 @@ public class EdenPlaceholder {
                         TeamPlayer playerB = ((SoloMatch) match).getPlayerB();
 
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{spectate-solo-player1}", playerA.getUsername())
                                 .replace("{spectate-solo-player2}", playerB.getUsername())
                                 .replace("{spectate-solo-winner}", match.getState() == MatchState.ENDING ? match.getWinningPlayers().get(0).getUsername() : "")
@@ -240,14 +238,14 @@ public class EdenPlaceholder {
                         Team teamB = ((TeamMatch) match).getTeamB();
 
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{spectate-team1-leader}", teamA.getLeader().getUsername())
                                 .replace("{spectate-team2-leader}", teamB.getLeader().getUsername())
                                 .replace("{spectate-team1-alive}", teamA.getAliveCount() + "")
                                 .replace("{spectate-team2-alive}", teamB.getAliveCount() + "")
                                 .replace("{spectate-team1-size}", teamA.getTeamPlayers().size() + "")
                                 .replace("{spectate-team2-size}", teamB.getTeamPlayers().size() + "")
-                                .replace("{spectate-team-winner}", match.getState() == MatchState.ENDING ? ((TeamMatch) match).getWinningTeam().getLeader().getUsername() : "")
+                                .replace("{spectate-team-winner}", match.getState() == MatchState.ENDING ? match.getWinningTeam().getLeader().getUsername() : "")
                                 .replace("{spectate-team-loser}", match.getState() == MatchState.ENDING ? match.getWinningTeam() == null ? "" : match.getTeams().stream().filter(t -> match.getWinningTeam() != t).map(t -> t.getLeader().getUsername()).findFirst().orElse("") : "")
                                 .replace("{spectate-team1-boxing-hit}", teamA.getHits() + "")
                                 .replace("{spectate-team2-boxing-hit}", teamB.getHits() + "")
@@ -260,16 +258,16 @@ public class EdenPlaceholder {
                         long aliveCount = ffaTeams.stream().filter(t -> !t.isEliminated()).count();
 
                         str = str
-                                .replace("<player_theme>", c.toString())
+                                .replace("{player_theme}", c.toString())
                                 .replace("{spectate-ffa-alive}", aliveCount + "")
                                 .replace("{spectate-ffa-player-size}", ffaTeams.size() + "")
-                                .replace("{spectate-ffa-winner}", ((FFAMatch) match).getWinningTeam().getLeader().getUsername())
-                                .replace("{spectate-ffa-loser}", ((FFAMatch) match).getTeams().stream().filter(t -> match.getWinningTeam() != t).map(t -> t.getLeader().getUsername()).collect(Collectors.joining(",")))
+                                .replace("{spectate-ffa-winner}", match.getWinningTeam().getLeader().getUsername())
+                                .replace("{spectate-ffa-loser}", match.getTeams().stream().filter(t -> match.getWinningTeam() != t).map(t -> t.getLeader().getUsername()).collect(Collectors.joining(",")))
                         ;
                         break;
                     default:
                         str = str
-                                .replace("<player_theme>", c.toString());
+                                .replace("{player_theme}", c.toString());
                         break;
                 }
             }
@@ -278,6 +276,7 @@ public class EdenPlaceholder {
         if (str.contains(SKIP_LINE)) {
             return null;
         } else {
+            assert player != null;
             PlayerProfile profile = PlayerProfile.get(player);
             ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
             Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
@@ -289,16 +288,16 @@ public class EdenPlaceholder {
                 c = def;
             }
             ChatColor rankColor = plugin.getRankManager().getRank().getChatColor(player.getUniqueId());
+            assert c != null;
             return str
                     .replace("{online-players}", plugin.getCache().getPlayersSize() + "")
                     .replace("{queue-players}", plugin.getCache().getQueuePlayersSize() + "")
                     .replace("{match-players}", plugin.getCache().getMatchPlayersSize() + "")
-                    .replace("<player_theme>", c.toString())
+                    .replace("{player_theme}", c.toString())
                     .replace("<rank>", plugin.getRankManager().getRank().getName(player.getUniqueId()))
                     .replace("<rank_color>", rankColor.toString())
 
                     ;
         }
     }
-
 }
