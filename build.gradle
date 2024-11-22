@@ -75,6 +75,8 @@ dependencies {
     testImplementation 'dev.imanity.mockbukkit:MockBukkit1.8:1.0.31'
     testImplementation 'junit:junit:4.13.1'
     implementation files('libs/ProtocolSupport.jar')
+    implementation files('libs/Replay.jar')
+    implementation files('libs/AquaCoreAPI.jar')
 
     //Libraries from local
     compileOnly name: 'ImanitySpigot-API-2022.08.1b2'
