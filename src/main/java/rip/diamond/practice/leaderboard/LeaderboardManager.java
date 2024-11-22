@@ -41,7 +41,7 @@ public class LeaderboardManager {
             datas.values().forEach(Leaderboard::update);
         }
         long current = System.currentTimeMillis();
-        Common.debug("Ranking updated! Time consuming" + (current - previous) + "ms");
+        Common.debug("Ranking updated! Time consuming " + (current - previous) + "ms");
     }
 
 }
