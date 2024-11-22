@@ -4,10 +4,10 @@ import dev.hely.tab.api.TabColumn;
 import dev.hely.tab.api.TabLayout;
 import dev.hely.tab.api.TabProvider;
 import dev.hely.tab.api.skin.Skin;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.Eden;
+import rip.diamond.practice.config.Language;
 import rip.diamond.practice.util.CC;
 
 import java.util.*;
@@ -44,7 +44,7 @@ public class TabAdapter implements TabProvider {
                     String prefix = path;
 
                     layoutSet.add(new TabLayout(TabColumn.getColumn(column++), row)
-                            .setText(CC.translate(applyPlaceholders(online, prefix + online.getName())))
+                            .setText(CC.translate(Language.translate(prefix + online.getName(), online)))
                             .setSkin(Skin.getSkin(online)));
 
                     if (column == 4) {
@@ -54,16 +54,16 @@ public class TabAdapter implements TabProvider {
                 }
             } else if (tablistType.equals("CUSTOM")) {
                 layoutSet.add(new TabLayout(TabColumn.LEFT, i)
-                        .setText(CC.translate(applyPlaceholders(player, getLines("left", i, "text"))))
+                        .setText(CC.translate(Language.translate(getLines("left", i, "text"), player)))
                         .setSkin(getSkin(player, getLines("left", i, "head"))));
                 layoutSet.add(new TabLayout(TabColumn.MIDDLE, i)
-                        .setText(CC.translate(applyPlaceholders(player, getLines("middle", i, "text"))))
+                        .setText(CC.translate(Language.translate(getLines("middle", i, "text"), player)))
                         .setSkin(getSkin(player, getLines("middle", i, "head"))));
                 layoutSet.add(new TabLayout(TabColumn.RIGHT, i)
-                        .setText(CC.translate(applyPlaceholders(player, getLines("right", i, "text"))))
+                        .setText(CC.translate(Language.translate(getLines("right", i, "text"), player)))
                         .setSkin(getSkin(player, getLines("right", i, "head"))));
                 layoutSet.add(new TabLayout(TabColumn.FAR_RIGHT, i)
-                        .setText(CC.translate(applyPlaceholders(player, getLines("far_right", i, "text"))))
+                        .setText(CC.translate(Language.translate(getLines("far_right", i, "text"), player)))
                         .setSkin(getSkin(player, getLines("far_right", i, "head"))));
             }
         }
@@ -110,22 +110,12 @@ public class TabAdapter implements TabProvider {
         List<String> list = new ArrayList<>();
 
         for (String str : path) {
-            list.add(CC.translate(PlaceholderAPI.setPlaceholders(player, str)));
+            list.add(CC.translate(Language.translate(str, player)));
         }
         return list;
     }
 
     private String getLines(String column, int position, String textOrHead) {
         return eden.getTablistFile().getString("tablist.lines." + column + "." + position + "." + textOrHead);
-    }
-
-    private String applyPlaceholders(Player player, String line) {
-        return PlaceholderAPI.setPlaceholders(player, CC.translate(line));
-    }
-
-    private List<String> applyPlaceholders(List<String> lines, Player player) {
-        return lines.stream()
-                .map(line -> PlaceholderAPI.setPlaceholders(player, CC.translate(line)))
-                .collect(Collectors.toList());
     }
 }
