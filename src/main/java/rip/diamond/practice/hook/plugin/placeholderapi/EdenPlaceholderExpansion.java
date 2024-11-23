@@ -9,7 +9,6 @@ import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.kits.Kit;
-import rip.diamond.practice.leaderboard.Leaderboard;
 import rip.diamond.practice.leaderboard.LeaderboardManager;
 import rip.diamond.practice.leaderboard.LeaderboardPlayerCache;
 import rip.diamond.practice.match.Match;
@@ -17,13 +16,11 @@ import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.data.ProfileKitData;
-import rip.diamond.practice.profile.themes.Themes;
 import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueType;
 import rip.diamond.practice.util.CC;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 @RequiredArgsConstructor
 public class EdenPlaceholderExpansion extends PlaceholderExpansion {
@@ -295,6 +292,7 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
             }
 
 
+            assert c != null;
             return c.toString();
         }
         if(param.equalsIgnoreCase("rank_player")) {

@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredServiceProvider;
+
 import rip.diamond.practice.rank.impl.AquaCore;
 import rip.diamond.practice.util.Common;
-
 
 @Getter @Setter
 public class RankManager {
@@ -30,6 +29,5 @@ public class RankManager {
             this.setRankSystem("AquaCore");
             Common.debug("enabled support for AquaCore");
         }
-    //añadir soporte para otros cores
     }
 }
