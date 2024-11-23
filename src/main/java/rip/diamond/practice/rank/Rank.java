@@ -1,4 +1,5 @@
 package rip.diamond.practice.rank;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

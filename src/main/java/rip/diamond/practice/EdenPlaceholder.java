@@ -65,6 +65,19 @@ public class EdenPlaceholder {
                         .replace("{event-information}", event != null ? StringUtils.join(event.getLobbyScoreboard(player), NEW_LINE) : SKIP_LINE);
             }
 
+            if (event != null) {
+                assert c != null;
+                str = str
+                        .replace("{event-name}", event.getUncoloredEventName())
+                        .replace("{event-maxminplayers}", "Players: " + event.getTotalPlayers().size() + "/" + event.getMaxPlayers())
+                        .replace("{event-time}", "Time: " + event.getCountdown().getSecondsLeft());
+            } else {
+                str = str
+                        .replace("{event-name}", "&8No events.")
+                        .replace("{event-maxminplayers}", "")
+                        .replace("{event-time}", "");
+            }
+
             if (party != null) {
                 assert c != null;
                 str = str
@@ -75,7 +88,6 @@ public class EdenPlaceholder {
             }
 
             if (event != null) {
-                assert c != null;
                 str = str
                         .replace("{event-uncolored-name}", event.getUncoloredEventName())
                         .replace("{player_theme}", c.toString())
@@ -294,8 +306,8 @@ public class EdenPlaceholder {
                     .replace("{queue-players}", plugin.getCache().getQueuePlayersSize() + "")
                     .replace("{match-players}", plugin.getCache().getMatchPlayersSize() + "")
                     .replace("{player_theme}", c.toString())
-                    .replace("<rank>", plugin.getRankManager().getRank().getName(player.getUniqueId()))
-                    .replace("<rank_color>", rankColor.toString())
+                    .replace("{rank}", plugin.getRankManager().getRank().getName(player.getUniqueId()))
+                    .replace("{rank_color}", rankColor.toString())
 
                     ;
         }
