@@ -70,7 +70,7 @@ public class EdenPlaceholder {
                 str = str
                         .replace("{event-name}", event.getUncoloredEventName())
                         .replace("{event-maxminplayers}", "Players: " + event.getTotalPlayers().size() + "/" + event.getMaxPlayers())
-                        .replace("{event-time}", "Time: " + event.getCountdown().getSecondsLeft());
+                        .replace("{event-time}", "Time: " + event.getCountdown().getSecondsLeft() + "s");
             } else {
                 str = str
                         .replace("{event-name}", "&8No events.")
