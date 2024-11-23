@@ -1,26 +1,30 @@
-# This configuration file is part of a Verse Development Project. Purchased at https://dsc.gg/versedev
 tablist:
   enable: true
   type: "CUSTOM" # VANILLA, CUSTOM
   ping: -1 #[-1 = Disabled]
   player_prefix: "&a" # Only for vanilla tablist
   header:
-    - '&b&lPrax'
+    - '&r'
+    - '{player_theme}&l&oIMANITY'
+    - '     &f&l&oNETWORK'
+    - '&r'
   footer:
-    - 'imanity.club'
+    - '&r'
+    - '&7You are playing {player_theme}Practice &7in {player_theme}imanity.club'
+    - '&r'
   lines:
     left:
       '1':
         text: ''
         head: ''
       '2':
-        text: ''
+        text: '{player_theme}&l&oYou:'
         head: ''
       '3':
-        text: ''
-        head: ''
+        text: ' %aqua_player_prefix%%aqua_player_rank_color%%player_name%'
+        head: '%PLAYER%'
       '4':
-        text: ''
+        text: ' {player_theme}Your ping&7: %player_ping%'
         head: ''
       '5':
         text: ''
@@ -29,16 +33,16 @@ tablist:
         text: ''
         head: ''
       '7':
-        text: ''
+        text: '{player_theme}&lGame:'
         head: ''
       '8':
-        text: ''
+        text: ' &fOnline: {player_theme}{online-players}'
         head: ''
       '9':
-        text: ''
+        text: ' &fIn Fight: {player_theme}{match-players}'
         head: ''
       '10':
-        text: ''
+        text: ' &fIn Queue: {player_theme}{queue-players}'
         head: ''
       '11':
         text: ''
@@ -47,26 +51,26 @@ tablist:
         text: ''
         head: ''
       '13':
-        text: ''
+        text: '{player_theme}&lEvent:'
         head: ''
       '14':
-        text: ''
+        text: '  {player_theme}{event-name}'
         head: ''
       '15':
-        text: ''
+        text: '    {event-maxminplayers}'
         head: ''
       '16':
-        text: ''
+        text: '    {event-time}'
         head: ''
       '17':
         text: ''
         head: ''
       '18':
-        text: ''
-        head: ''
-      '19':
-        text: '<theme>@Imanityclub'
+        text: '&c&lYou&f&ltube'
         head: '%YOUTUBE%'
+      '19':
+        text: '&c&l&o@Imanity&f&l&oclub'
+        head: ''
       '20':
         text: ''
         head: ''
@@ -75,59 +79,59 @@ tablist:
         text: ''
         head: ''
       '2':
-        text: ''
+        text: '{player_theme}&l&oYour stats:'
         head: ''
       '3':
         text: ''
         head: ''
       '4':
-        text: ''
+        text: ' Your Elo: %practice_player_total_elo%'
         head: ''
       '5':
-        text: ''
+        text: ' Global Elo: %practice_player_global_elo%'
         head: ''
       '6':
         text: ''
         head: ''
       '7':
-        text: ''
+        text: ' %practice_theme%Rankeds:'
         head: ''
       '8':
-        text: ''
+        text: '  Wins: %practice_player_ranked_win%'
         head: ''
       '9':
-        text: ''
+        text: '  Loss: %practice_player_ranked_loss%'
         head: ''
       '10':
         text: ''
         head: ''
       '11':
-        text: ''
+        text: ' %practice_theme%Unrankeds:'
         head: ''
       '12':
-        text: ''
+        text: '  Wins: %practice_player_unranked_win%'
         head: ''
       '13':
-        text: ''
+        text: '  Loss: %practice_player_unranked_loss%'
         head: ''
       '14':
         text: ''
         head: ''
       '15':
-        text: ''
+        text: ' Total Wins: %practice_player_overall_win%'
         head: ''
       '16':
-        text: ''
+        text: ' Total loss: %practice_player_overall_loss%'
         head: ''
       '17':
         text: ''
         head: ''
       '18':
-        text: ''
-        head: ''
-      '19':
-        text: '<theme>dsc.gg/Imanity'
+        text: '&9&lDiscord'
         head: '%DISCORD%'
+      '19':
+        text: '&9&l&oDsc.gg/Imanity'
+        head: ''
       '20':
         text: ''
         head: ''
@@ -184,72 +188,72 @@ tablist:
         text: ''
         head: ''
       '18':
-        text: ''
-        head: ''
-      '19':
-        text: '<theme>@ImanityNet'
+        text: '&b&lTwitter'
         head: '%TWITTER%'
+      '19':
+        text: '&b&l&o@ImanityClub'
+        head: ''
       '20':
         text: ''
         head: ''
     far_right:
       '1':
-        text: '%player_name%'
-        head: '%player%'
-      '2':
         text: ''
+        head: ''
+      '2':
+        text: ' %practice_theme%&lTops:'
         head: ''
       '3':
         text: ''
         head: ''
       '4':
-        text: ''
+        text: '  %practice_theme%&lRanked:'
         head: ''
       '5':
-        text: ''
+        text: '   1.'
         head: ''
       '6':
-        text: ''
+        text: '   2.'
         head: ''
       '7':
-        text: ''
+        text: '   3.'
         head: ''
       '8':
-        text: ''
+        text: '   4.'
         head: ''
       '9':
-        text: ''
+        text: '   5.'
         head: ''
       '10':
         text: ''
         head: ''
       '11':
-        text: ''
+        text: '  %practice_theme%&lUnranked:'
         head: ''
       '12':
-        text: ''
+        text: '   1.'
         head: ''
       '13':
-        text: ''
+        text: '   2.'
         head: ''
       '14':
-        text: ''
+        text: '   3.'
         head: ''
       '15':
-        text: ''
+        text: '   4.'
         head: ''
       '16':
-        text: ''
+        text: '   5.'
         head: ''
       '17':
         text: ''
         head: ''
       '18':
-        text: ''
-        head: ''
-      '19':
-        text: '<theme>Store.imanity.club'
+        text: '&c&lStore'
         head: '%STORE%'
+      '19':
+        text: '&c&l&oStore.imanity.club'
+        head: ''
       '20':
         text: ''
         head: ''
