@@ -3,5 +3,5 @@ name: Prax
 version: '${version}'
 author: GoodestEnglish forked by iRicx
 description: The best practice plugin with premium features
-depend: [WorldEdit, FastAsyncWorldEdit, ProtocolLib, ImanityReplays]
-softdepend: [ViaVersion, PlaceholderAPI, Citizens]
+depend: [WorldEdit, FastAsyncWorldEdit, ProtocolLib]
+softdepend: [ViaVersion, PlaceholderAPI, Citizens, ImanityReplays]

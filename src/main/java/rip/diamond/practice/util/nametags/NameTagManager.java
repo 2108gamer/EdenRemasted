@@ -41,6 +41,10 @@ public class NameTagManager {
         new BukkitRunnable() {
             @Override
             public void run() {
+                if (!plugin.isEnabled()) {
+                    this.cancel();
+                    return;
+                }
                 Util.getOnlinePlayers().forEach(player -> reload(player));
             }
         }.runTaskTimerAsynchronously(plugin, 0, 2);
