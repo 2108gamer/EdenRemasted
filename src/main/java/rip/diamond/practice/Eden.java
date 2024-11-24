@@ -55,6 +55,7 @@ import rip.diamond.practice.profile.command.SettingsCommand;
 import rip.diamond.practice.profile.command.StatsCommand;
 import rip.diamond.practice.profile.command.settings.*;
 import rip.diamond.practice.profile.divisions.DivisionManager;
+import rip.diamond.practice.profile.divisions.command.DivisionMenuCommand;
 import rip.diamond.practice.profile.listener.ProfileListener;
 import rip.diamond.practice.profile.procedure.ProcedureListener;
 import rip.diamond.practice.queue.Queue;
@@ -234,6 +235,7 @@ public class Eden extends JavaPlugin {
         new ToggleSpectatorJoinLeaveMessageCommand();
         new ToggleSpectatorVisibilityCommand();
         new PartnerCommand();
+        new DivisionMenuCommand();
 
         if (Config.DEBUG.toBoolean()) {
             new TestCommand();
