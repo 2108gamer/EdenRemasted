@@ -131,10 +131,6 @@ public class MatchListener implements Listener {
                     return;
                 }
                 Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable().replace("<theme>", c.toString()), kit.getDisplayName().replace("<theme>", c.toString()),match.getArenaDetail().getArena().getDisplayName().replace("<theme>", c.toString()), opponents).forEach(s -> Common.sendMessage(p, s));
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    ReplayAPI.getInstance().recordReplay(match.getUuid().toString(), match.getMatchPlayers());
-                    Common.debug("Grabando partida " + match.getUuid().toString());
-                }, 60L); //previene que haga tp en el lobby
 
             } else if (match.getQueueType() == QueueType.RANKED && match.getMatchType() == MatchType.SOLO) {
                 int elo = PlayerProfile.get(match.getOpponent(match.getTeamPlayer(p)).getUuid()).getKitData().get(kit.getName()).getElo();
@@ -206,13 +202,6 @@ public class MatchListener implements Listener {
                 match.score(profile, teamPlayer, lastHitDamager);
             } else {
                 match.die(player, false);
-                try {
-                    ReplayAPI.getInstance().stopReplay(match.getUuid().toString(), true, true);
-                    Common.debug("La replay para la partida con el id " + match.getUuid().toString() + "fue guardada");
-                } catch (PracticeUnexpectedException e) {
-                         e.printStackTrace();
-                }
-
             }
 
             if (gameRules.isDropItemWhenDie()) {
@@ -327,6 +316,9 @@ public class MatchListener implements Listener {
                 if (match.getState() != MatchState.FIGHTING) {
                     event.setCancelled(true);
                     return;
+                }
+                if (event.getDamager().getType() == EntityType.FIREBALL) {
+                    event.setCancelled(true);
                 }
 
                 Team teamEntity = match.getTeam(entity);

@@ -200,7 +200,8 @@ public abstract class Match {
         postMatchInventories.put(teamPlayer.getUuid(), postMatchInventory);
 
         displayDeathMessage(teamPlayer, deadPlayer);
-
+        Location loc = deadPlayer.getLocation();
+        deadPlayer.playSound(loc, Sound.GLASS, 1.0f, 2.0f);
         //Play lightning effect and death animation
         MatchPlayerDeathEvent event = new MatchPlayerDeathEvent(this, deadPlayer);
         event.call();
