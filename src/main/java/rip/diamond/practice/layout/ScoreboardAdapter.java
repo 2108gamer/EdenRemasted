@@ -3,7 +3,6 @@ package rip.diamond.practice.layout;
 import io.github.epicgo.sconey.element.SconeyElement;
 import io.github.epicgo.sconey.element.SconeyElementAdapter;
 import io.github.epicgo.sconey.element.SconeyElementMode;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -23,7 +22,6 @@ import rip.diamond.practice.queue.QueueType;
 import rip.diamond.practice.util.CC;
 
 import java.util.List;
-import java.util.Arrays;
 
 public class ScoreboardAdapter implements SconeyElementAdapter {
 
@@ -64,6 +62,7 @@ public class ScoreboardAdapter implements SconeyElementAdapter {
         if (c == null) {
             c = def;
         }
+        assert c != null;
         element.setTitle(animatedTitles.get(titleIndex).replace("<theme>", c.toString()));
 
         element.setMode(SconeyElementMode.CUSTOM);
