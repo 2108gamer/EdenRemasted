@@ -12,7 +12,6 @@ import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.ItemBuilder;
 import rip.diamond.practice.util.menu.Button;
-import rip.diamond.practice.util.menu.pagination.PageButton;
 import rip.diamond.practice.util.menu.pagination.PaginatedMenu;
 
 import java.util.HashMap;
@@ -82,8 +81,6 @@ public abstract class LeaderboardMenu extends PaginatedMenu {
     @Override
     public Map<Integer, Button> getGlobalButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
-
-
 
         return buttons;
     }
