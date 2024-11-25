@@ -15,7 +15,7 @@ import rip.diamond.practice.util.nametags.provider.NameTagProvider;
 public class NameTagAdapter extends NameTagProvider {
 
     public NameTagAdapter() {
-        super("Eden Provider", 1);
+        super("Prax-Eden Provider", 1);
     }
 
     @Override
