@@ -15,5 +15,4 @@ public class Division {
         private final int durability;
         private final int winsMin;
         private final int winsMax;
-
 }

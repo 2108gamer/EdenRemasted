@@ -186,12 +186,18 @@ public class MatchListener implements Listener {
         Player player = event.getEntity();
         PlayerProfile profile = PlayerProfile.get(player);
 
+
         if (profile.getPlayerState() == PlayerState.IN_MATCH && profile.getMatch() != null) {
             Match match = profile.getMatch();
             TeamPlayer teamPlayer = match.getTeamPlayer(player);
             KitGameRules gameRules = match.getKit().getGameRules();
+             //Common.debug("Sonidos de muerte reproducidos");
+             player.playSound(player.getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
+             Player team = teamPlayer.getPlayer();
+             team.playSound(team.getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
 
             if ((gameRules.isBed() && !match.getTeam(player).isBedDestroyed()) || gameRules.isBreakGoal() || gameRules.isPortalGoal()) {
+
                 new MatchRespawnTask(match, teamPlayer);
             } else if (gameRules.isPoint(match)) {
                 TeamPlayer lastHitDamager = teamPlayer.getLastHitDamager();
@@ -278,7 +284,11 @@ public class MatchListener implements Listener {
                 return;
             }
             if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
+                Common.debug("El sonido debe ser reproducido");
                 Util.damage(player, 99999);
+                player.playSound(player.getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
+                teamPlayer.getPlayer().playSound(teamPlayer.getPlayer().getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
+
                 event.setCancelled(true);
             }
         }

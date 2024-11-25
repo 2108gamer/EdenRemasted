@@ -52,6 +52,7 @@ public class PageButton extends Button {
 				Button.playNeutral(player);
 			} else {
 				Button.playFail(player);
+
 			}
 		} else {
 			if (hasPrevious(player)) {

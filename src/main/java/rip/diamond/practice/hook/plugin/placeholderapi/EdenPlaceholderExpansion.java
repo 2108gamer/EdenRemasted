@@ -318,8 +318,12 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
             int totalwins = rankedWon + unrankedWon;
             Division division = DivisionManager.getDivisionByWins(totalwins, DivisionManager.getDivisions());
 
-            assert division != null;
-            return division.getDisplayName();
+
+             if(division != null) {
+                 return division.getDisplayName();
+             } else {
+                 return "not found";
+             }
         }
 
         return null; // Placeholder is unknown by the Expansion

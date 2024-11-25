@@ -236,7 +236,6 @@ public class Eden extends JavaPlugin {
         new ToggleSpectatorVisibilityCommand();
         new PartnerCommand();
         new DivisionMenuCommand();
-
         if (Config.DEBUG.toBoolean()) {
             new TestCommand();
         }

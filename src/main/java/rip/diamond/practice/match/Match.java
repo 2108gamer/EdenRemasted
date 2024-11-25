@@ -200,8 +200,7 @@ public abstract class Match {
         postMatchInventories.put(teamPlayer.getUuid(), postMatchInventory);
 
         displayDeathMessage(teamPlayer, deadPlayer);
-        Location loc = deadPlayer.getLocation();
-        deadPlayer.playSound(loc, Sound.GLASS, 1.0f, 2.0f);
+
         //Play lightning effect and death animation
         MatchPlayerDeathEvent event = new MatchPlayerDeathEvent(this, deadPlayer);
         event.call();
@@ -263,6 +262,7 @@ public abstract class Match {
                     teamPlayer.getLastHitDamager().getUsername(),
                     getTeam(teamPlayer).getTeamColor().getColor(),
                     getTeam(teamPlayer.getLastHitDamager()).getTeamColor().getColor()
+
             ));
         } else {
             getPlayersAndSpectators().forEach(player -> Language.MATCH_DEATH_MESSAGE_DEFAULT.sendMessage(player,
@@ -598,6 +598,18 @@ public abstract class Match {
             Bukkit.getLogger().info("Jugador en el match: " + player.getName());
         }
     }
+
+
+
+    public void SoundDeath(TeamPlayer teamPlayer, Player death) {
+
+       Player team = teamPlayer.getPlayer();
+       team.playSound(team.getLocation(), Sound.GLASS, 1.0f, 2.0f);
+       death.playSound(death.getLocation(), Sound.GLASS, 1.0f, 2.0f);
+
+    }
+
+
     public void broadcastSpectatorsSound(EdenSound sound) {
         getSpectators().forEach(sound::play);
     }
