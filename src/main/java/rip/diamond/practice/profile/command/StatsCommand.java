@@ -3,7 +3,6 @@ package rip.diamond.practice.profile.command;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Language;
@@ -14,7 +13,6 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public class StatsCommand extends Command {
     @CommandArgs(name = "stats", async = true)
