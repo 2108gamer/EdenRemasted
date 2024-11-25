@@ -3,13 +3,11 @@ package rip.diamond.practice.hook;
 import lombok.Getter;
 import lombok.Setter;
 import rip.diamond.practice.Eden;
-import rip.diamond.practice.config.Config;
 import rip.diamond.practice.hook.plugin.citizens.CitizensHook;
 import rip.diamond.practice.hook.plugin.citizens.CitizensListener;
 import rip.diamond.practice.hook.plugin.placeholderapi.EdenPlaceholderExpansion;
 import rip.diamond.practice.hook.plugin.placeholderapi.PlaceholderAPIHook;
 import rip.diamond.practice.hook.spigot.ImanitySpigot3Hook;
-import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.Checker;
 import rip.diamond.spigotapi.SpigotType;
 

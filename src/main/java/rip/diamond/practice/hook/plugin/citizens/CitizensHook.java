@@ -3,7 +3,6 @@ package rip.diamond.practice.hook.plugin.citizens;
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.event.NPCCreateEvent;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
