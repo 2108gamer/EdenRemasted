@@ -2,7 +2,6 @@ package rip.diamond.practice.match.listener;
 
 import lombok.RequiredArgsConstructor;
 import me.jumper251.replay.api.ReplayAPI;
-import me.jumper251.replay.replaysystem.Replay;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -10,7 +9,6 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,15 +18,12 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import rip.diamond.practice.Eden;
-import rip.diamond.practice.arenas.Arena;
 import rip.diamond.practice.arenas.ArenaDetail;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.EdenSound;
@@ -53,9 +48,6 @@ import rip.diamond.practice.profile.PlayerState;
 import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.cooldown.Cooldown;
 import rip.diamond.practice.profile.cooldown.CooldownType;
-import rip.diamond.practice.profile.data.ProfileKitData;
-import rip.diamond.practice.profile.divisions.Division;
-import rip.diamond.practice.queue.QueueProfile;
 import rip.diamond.practice.queue.QueueType;
 import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.cuboid.Cuboid;
@@ -64,12 +56,8 @@ import rip.diamond.practice.util.serialization.LocationSerialization;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
-
-
 
 @RequiredArgsConstructor
 public class MatchListener implements Listener {
@@ -130,6 +118,7 @@ public class MatchListener implements Listener {
                     Common.debug("No players found for the match!");
                     return;
                 }
+                assert c != null;
                 Language.MATCH_START_UNRANKED.toStringList(match.getMatchType().getReadable().replace("<theme>", c.toString()), kit.getDisplayName().replace("<theme>", c.toString()),match.getArenaDetail().getArena().getDisplayName().replace("<theme>", c.toString()), opponents).forEach(s -> Common.sendMessage(p, s));
 
             } else if (match.getQueueType() == QueueType.RANKED && match.getMatchType() == MatchType.SOLO) {
@@ -191,7 +180,7 @@ public class MatchListener implements Listener {
             Match match = profile.getMatch();
             TeamPlayer teamPlayer = match.getTeamPlayer(player);
             KitGameRules gameRules = match.getKit().getGameRules();
-             //Common.debug("Sonidos de muerte reproducidos");
+            /* Common.debug("Sonidos de muerte reproducidos"); */
              player.playSound(player.getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
              Player team = teamPlayer.getPlayer();
              team.playSound(team.getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
