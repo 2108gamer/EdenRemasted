@@ -146,7 +146,7 @@ public class EventSettingsMenu extends Menu {
                         sumoEvent.create();
                         return;
                     default:
-                        throw new PracticeUnexpectedException("Event type " + eventType.getName() + " is not initialized yet");
+                        throw new PracticeUnexpectedException("The Event type " + eventType.getName() + " is not initialized yet");
                 }
             }
         });
