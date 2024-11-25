@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class LegacyClient {
 
-
-
     public static ArrayList<String> ENTRY = getTabEntrys();
     public static ArrayList<String> NAMES = getTeamNames();
 

@@ -28,7 +28,6 @@ public class Skin {
 
     public static final Map<UUID, Skin> CACHE = new ConcurrentHashMap<>();
 
-
     @Override
     public boolean equals(Object object) {
         if (object == null) return false;

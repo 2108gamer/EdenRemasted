@@ -1,17 +1,12 @@
 package rip.diamond.practice.config;
 
 import lombok.AllArgsConstructor;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.EdenPlaceholder;
-import rip.diamond.practice.profile.PlayerProfile;
-import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.util.*;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public enum Language {
 
+    //Scoreboard
     SCOREBOARD_TITLE("scoreboard.title"),
     SCOREBOARD_BOXING_COUNTER_NO_COMBO("scoreboard.boxing-counter.no-combo"),
     SCOREBOARD_BOXING_COUNTER_TEXT_SOLO("scoreboard.boxing-counter.text-solo"),
@@ -54,6 +50,7 @@ public enum Language {
     SCOREBOARD_IN_SPECTATE_TEAMS_ENDING("scoreboard.in-spectate-teams.ending"),
     SCOREBOARD_IN_SPECTATE_FFA_FIGHTING("scoreboard.in-spectate-ffa.fighting"),
     SCOREBOARD_IN_SPECTATE_FFA_ENDING("scoreboard.in-spectate-ffa.ending"),
+
     JOIN_MESSAGE("join-message"),
 
     MAX_BUILD_MESSAGE("max_build_message"),
@@ -67,6 +64,7 @@ public enum Language {
     CONFIRM_TITLE("confirm-title"),
     REACHED_BUILD_LIMIT("reached-build-limit"),
     BANNED_COMMAND("banned-command"),
+
     ARENA_ALREADY_EXISTS("arena.exists"),
     ARENA_NOT_EXISTS("arena.not-exists"),
     ARENA_CREATED("arena.created"),
@@ -153,6 +151,7 @@ public enum Language {
     ARENA_EDIT_ALLOWED_KITS_REMOVED("arena.edit.allowed-kits-removed"),
     ARENA_EDIT_CANNOT_EDIT_NOT_FINISHED_SETUP("arena.edit.cannot-edit-not-finished-setup"),
     ARENA_EDIT_CANNOT_EDIT_NEED_RESTART("arena.edit.cannot-edit-need-restart"),
+
     DUEL_CANNOT_FIND_PLAYER("duel.cannot-find-player"),
     DUEL_CANNOT_DUEL_SELF("duel.cannot-duel-self"),
     DUEL_CANNOT_DUEL_NOT_IN_PARTY("duel.cannot-duel-not-in-party"),
@@ -188,6 +187,7 @@ public enum Language {
     DUEL_VERIFY_TARGET_NOT_IN_A_PARTY("duel.verify.target-not-in-a-party"),
     DUEL_VERIFY_CANNOT_DUEL_SAME_PARTY("duel.verify.cannot-duel-same-party"),
     DUEL_VERIFY_PLAYER_NOT_IN_LOBBY("duel.verify.player-not-in-lobby"),
+
     EVENT_EVENT_IS_RUNNING("event.event-is-running"),
     EVENT_EVENT_IS_NOT_RUNNING("event.event-is-not-running"),
     EVENT_EVENT_ALREADY_STARTED("event.event-already-started"),
@@ -258,9 +258,11 @@ public enum Language {
     EVENT_SUMO_EVENT_STATUS_FIGHTING("event.sumo-event.status.fighting"),
     EVENT_SUMO_EVENT_NEW_ROUND_COUNTDOWN("event.sumo-event.new-round.countdown"),
     EVENT_SUMO_EVENT_NEW_ROUND_STARTED("event.sumo-event.new-round.started"),
+
     HOOK_FOUND_CUSTOM_SPIGOT("hook.found-custom-spigot"),
     HOOK_CANNOT_FIND_CUSTOM_SPIGOT("hook.cannot-find-custom-spigot"),
     HOOK_ERROR_KNOCKBACK_NOT_FOUND("hook.error-knockback-not-found"),
+
     KIT_EDITOR_CANNOT_EDIT_WRONG_STATE("kit-editor.cannot-edit-wrong-state"),
     KIT_EDITOR_EXTRA_ITEM_MENU_NAME("kit-editor.extra-item-menu-name"),
     KIT_EDITOR_SAVE_MENU_NAME("kit-editor.save-menu.name"),
@@ -339,7 +341,6 @@ public enum Language {
     KIT_BUTTON_SAVE_LOADOUT_NAME("kit.button.save-loadout.name"),
     KIT_BUTTON_SAVE_LOADOUT_LORE("kit.button.save-loadout.lore"),
     KIT_BUTTON_SAVE_LOADOUT_SUCCESS("kit.button.save-loadout.success"),
-    PARTNER_FLY_STATUS("partner-fly-status"),
     KIT_BUTTON_TOGGLE_NAME("kit.button.toggle.name"),
     KIT_BUTTON_TOGGLE_LORE("kit.button.toggle.description"),
     KIT_BUTTON_TOGGLE_SUCCESS("kit.button.toggle.success"),
@@ -419,7 +420,12 @@ public enum Language {
     KIT_GAME_RULES_CLEAR_BLOCK_TIME_DESCRIPTION("kit.game-rules.clear-block-time.description"),
     KIT_GAME_RULES_KNOCKBACK_NAME_RULES("kit.game-rules.knockback-name.rules"),
     KIT_GAME_RULES_KNOCKBACK_NAME_DESCRIPTION("kit.game-rules.knockback-name.description"),
+    KIT_SLOT_EDIT_SUCCES("kit.button.edit-slot.procedure.success"),
+    KIT_BUTTON_EDIT_SLOT_NAME("kit.button.edit-slot.name"),
+    KIT_BUTTON_EDIT_SLOT_LORE("kit.button.edit-slot.lore"),
+
     LEADERBOARD_RELOAD("leaderboard.reload"),
+
     PARTNER_TP_ALL_BUTTON_NAME("partner-tp-all"),
     PARTNER_SET_FLY_ALL("partner-set-fly-all"),
     PARTNER_TERMINAR_MATCH("partner-terminar-match"),
@@ -428,8 +434,11 @@ public enum Language {
     PARTNER_KICK_MENU("partner-kick-menu"),
     PARTNER_FLY_ENABLED_MESSAGE("partner-enable-fly-all"),
     PARTNER_FLY_DISABLE_MESSAGE("partner-disable-fly-all"),
+    PARTNER_FLY_STATUS("partner-fly-status"),
+
     PARTY_MEMBERS_MENU_TITLE("party-kick-partner-menu"),
     PARTY_MEMBERS_KICKED_BY_PARTNER_LORE("party-kick-partner-message"),
+
     LEADERBOARD_TOP10_DISPLAY_NAME("leaderboard.top10-display.name"),
     LEADERBOARD_TOP10_DISPLAY_LORE("leaderboard.top10-display.lore"),
     LEADERBOARD_BEST_WINSTREAK_MENU_TITLE("leaderboard.best-winstreak-menu-title"),
@@ -444,8 +453,7 @@ public enum Language {
     LEADERBOARD_ERROR_NOT_ENOUGH_SLOT("leaderboard.error-not-enough-slot"),
     LEADERBOARD_SWITCH_LEADERBOARD_BUTTON_VIEW_STATS_BUTTON_NAME("leaderboard.switch-leaderboard-button.view-stats-button.name"),
     LEADERBOARD_SWITCH_LEADERBOARD_BUTTON_VIEW_STATS_BUTTON_LORE("leaderboard.switch-leaderboard-button.view-stats-button.lore"),
-    PROFILE_SETTINGS_THEME_SELECTION_NAME("profile-theme-selection"),
-    PROFILE_SETTINGS_THEME_SELECTION_LORE("profile-theme-selection-lore"),
+
     MATCH_SEPARATE("match.separate"),
     MATCH_START_UNRANKED("match.start-unranked"),
     MATCH_START_RANKED("match.start-ranked"),
@@ -559,10 +567,8 @@ public enum Language {
     MATCH_END_TITLE_WIN_SUBTITLE("match.end-title.win.subtitle"),
     MATCH_END_TITLE_LOSE_TITLE("match.end-title.lose.title"),
     MATCH_END_TITLE_LOSE_SUBTITLE("match.end-title.lose.subtitle"),
+
     PARTY_CREATED("party.created"),
-    KIT_SLOT_EDIT_SUCCES("kit.button.edit-slot.procedure.success"),
-    KIT_BUTTON_EDIT_SLOT_NAME("kit.button.edit-slot.name"),
-    KIT_BUTTON_EDIT_SLOT_LORE("kit.button.edit-slot.lore"),
     PARTY_SUCCESSFULLY_SET_MAX_SIZE("party.successfully-set-max-size"),
     PARTY_SUCCESSFULLY_SET_CHAT("party.successfully-set-chat"),
     PARTY_ANNOUNCE_MESSAGE("party.announce.message"),
@@ -632,6 +638,7 @@ public enum Language {
     PARTY_START_PARTY_FIGHT_ARENA_DISABLED("party.start-party-fight.arena-disabled"),
     PARTY_START_PARTY_FIGHT_CANNOT_FIND_ARENA("party.start-party-fight.cannot-find-arena"),
     PARTY_START_PARTY_FIGHT_PLAYERS_NOT_IN_LOBBY("party.start-party-fight.players-not-in-lobby"),
+
     PROFILE_CANNOT_FIND_PLAYER("profile.cannot-find-player"),
     PROFILE_ERROR_CANNOT_LOAD_PLAYER("profile.error-cannot-load-player"),
     PROFILE_KIT_RIGHT_CLICK_TO_RECEIVE("profile.kit-right-click-to-receive"),
@@ -665,8 +672,12 @@ public enum Language {
     PROFILE_SETTINGS_PING_RANGE_NAME("profile.settings.ping-range.name"),
     PROFILE_SETTINGS_PING_RANGE_LORE("profile.settings.ping-range.lore"),
     PROFILE_SETTINGS_THEME_LORE("profile-theme-selection-lore"),
-    THEME_CHANGED("profile-theme-selection-changed"),
+    PROFILE_SETTINGS_THEME_SELECTION_NAME("profile-theme-selection"),
+    PROFILE_SETTINGS_THEME_SELECTION_LORE("profile-theme-selection-lore"),
     PROFILE_SETTINGS_THEME_NAME("profile-theme-selection-name"),
+
+    THEME_CHANGED("profile-theme-selection-changed"),
+
     QUEUE_USAGE("queue.usage"),
     QUEUE_CANNOT_QUIT_QUEUE("queue.cannot-quit-queue"),
     QUEUE_CANNOT_QUEUE("queue.cannot-queue"),
@@ -681,6 +692,7 @@ public enum Language {
     QUEUE_ERROR_NOT_ENOUGH_WINS("queue.error-not-enough-wins"),
     QUEUE_SUCCESS_JOIN("queue.success-join"),
     QUEUE_SUCCESS_QUIT("queue.success-quit"),
+
     BUTTON_BACK_NAME("button.back.name"),
     BUTTON_BACK_LORE("button.back.lore"),
     BUTTON_CONFIRM_NAME_CONFIRM("button.confirm.name-confirm"),
@@ -699,6 +711,7 @@ public enum Language {
     BUTTON_PAGE_FILTER_NAME("button.page-filter.name"),
     BUTTON_PAGE_FILTER_LORE("button.page-filter.lore"),
     BUTTON_PAGE_FILTER_NO_FILTERS("button.page-filter.no-filters"),
+
     MENU_VIEW_ALL_PAGES_TITLE("menu.view-all-pages.title"),
     EDIT_KIT_NAME("edit-kit-slot-name"),
     EDIT_KIT_NAME_LORE("edit-kit-slot-lore"),
@@ -728,15 +741,12 @@ public enum Language {
             return path;
         }
 
-
         str = translate(str, player);
-
 
         for (int i = 0; i < replacements.length; i++) {
             String replacement = convert(replacements[i]);
             str = str.replace("{" + i + "}", replacement);
         }
-
 
         return CC.translate(str);
     }

@@ -116,7 +116,7 @@ public class Tab_v1_7_R4 implements TabNMS {
         final Player player = playerTablist.getPlayer();
         final PlayerVersion playerVersion = PlayerVersionManager.getPlayerVersion(player);
 
-        GameProfile profile = new GameProfile(offlinePlayer.getUniqueId(), LegacyClient.ENTRY.get(rawSlot - 1) + "");
+        GameProfile profile = new GameProfile(offlinePlayer.getUniqueId(), LegacyClient.ENTRY.get(rawSlot - 1));
         EntityPlayer entity = new EntityPlayer(server,
                 world, profile, manager);
 
@@ -161,7 +161,7 @@ public class Tab_v1_7_R4 implements TabNMS {
 
         GameProfile profile = new GameProfile(
                 tabEntry.getOfflinePlayer().getUniqueId(),
-                LegacyClient.ENTRY.get(tabEntry.getRawSlot() - 1) + "");
+                LegacyClient.ENTRY.get(tabEntry.getRawSlot() - 1));
         EntityPlayer entity = new EntityPlayer(server, world, profile, manager);
         entity.ping = latency;
 
@@ -174,7 +174,7 @@ public class Tab_v1_7_R4 implements TabNMS {
         if (skin == null || tabEntry.getSkin().equals(skin)) return;
 
         GameProfile profile = new GameProfile(tabEntry.getOfflinePlayer().getUniqueId(),
-                LegacyClient.ENTRY.get(tabEntry.getRawSlot() - 1) + "");
+                LegacyClient.ENTRY.get(tabEntry.getRawSlot() - 1));
         EntityPlayer entity = new EntityPlayer(Tab_v1_7_R4.server, Tab_v1_7_R4.world, profile, Tab_v1_7_R4.manager);
 
         profile.getProperties().put("textures", new Property("textures", skin.getValue(), skin.getSignature()));

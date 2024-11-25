@@ -1,6 +1,5 @@
 package dev.hely.tab.api;
 
-
 import dev.hely.tab.api.versions.PlayerVersionManager;
 import dev.hely.tab.api.versions.module.PlayerVersion;
 import lombok.Getter;
@@ -22,17 +21,13 @@ public enum TabColumn {
     FAR_RIGHT(60, 61, 1);
 
     private final int startNumber;
-    private final int incrementBy;
-    private final int rawStart;
 
     @Getter
     private final List<Integer> slotList = new ArrayList<>();
 
 
     TabColumn(int rawStart, int startNumber, int incrementBy) {
-        this.rawStart = rawStart;
         this.startNumber = startNumber;
-        this.incrementBy = incrementBy;
 
         for (int i = 1; i <= 20; i++) {
             slotList.add(rawStart + (i * incrementBy));

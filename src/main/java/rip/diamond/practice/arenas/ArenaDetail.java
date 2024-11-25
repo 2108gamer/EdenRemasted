@@ -56,18 +56,18 @@ public class ArenaDetail {
         try {
             cuboid.getChunks().forEach(chunk -> cachedChunks.add(new ArenaChunk(chunk)));
         } catch (Exception e) {
-            Common.log("&c[Eden] An error occurred while trying to copy your arena. This will cause arena will not reset and strongly recommend to fix it ASAP. (min:" + LocationSerialization.toReadable(min) + " &cmax:" + LocationSerialization.toReadable(max) + "&c)");
+            Common.log("&c[Prax-Eden] An error occurred while trying to copy your arena. This will cause arena will not reset and strongly recommend to fix it ASAP. (min:" + LocationSerialization.toReadable(min) + " &cmax:" + LocationSerialization.toReadable(max) + "&c)");
             e.printStackTrace();
         }
     }
 
     public void restoreChunk() {
         long started = System.currentTimeMillis();
-        Common.debug("Trying to restore venue...");
+        Common.debug("Trying to restore Venue...");
 
         cachedChunks.forEach(IArenaChunk::restore);
 
         long ended = System.currentTimeMillis();
-        Common.debug("Site restoration successful! Cost" + (ended - started) + "ms");
+        Common.debug("Site restoration successful! Time consuming: " + (ended - started) + "ms");
     }
 }

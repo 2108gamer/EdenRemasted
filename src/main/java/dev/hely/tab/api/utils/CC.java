@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
  */
 public class CC {
 
-
-
     public static String translate(String input) {
         return ChatColor.translateAlternateColorCodes('&', input);
     }

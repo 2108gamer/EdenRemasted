@@ -30,7 +30,7 @@ public class Tab {
     private final Map<UUID, PlayerTablist> playerTablist;
     private TabThread tabThread;
     private TabNMS tabNMS;
-    private PlayerVersionManager playerVersionManager;
+    private final PlayerVersionManager playerVersionManager;
 
     public Tab(JavaPlugin plugin, TabProvider provider) {
         if (plugin == null) {

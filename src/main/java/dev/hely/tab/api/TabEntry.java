@@ -1,15 +1,15 @@
 package dev.hely.tab.api;
 
-/**
- * Created By LeandroSSJ
- * Created on 22/09/2021
- */
-
 import dev.hely.tab.api.skin.Skin;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.OfflinePlayer;
+
+/**
+ * Created By LeandroSSJ
+ * Created on 22/09/2021
+ */
 
 @Getter
 @Setter
