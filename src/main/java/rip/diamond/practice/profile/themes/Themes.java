@@ -1,11 +1,8 @@
 package rip.diamond.practice.profile.themes;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import rip.diamond.practice.Eden;
-import rip.diamond.practice.config.Language;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.util.Common;
 
@@ -37,7 +34,7 @@ public enum Themes {
         profile.setTheme(theme);
         profile.save(false, result -> {
             if (result) {
-                Common.debug(player + "'s theme saved successfully");
+                Common.debug(player + " = theme saved successfully");
             } else {
                 Common.debug("Hubo un error al guardar el tema de: " + player + ".");
             }
