@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import rip.diamond.practice.config.Language;
-import rip.diamond.practice.event.SettingsChangeEvent;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.util.CC;
