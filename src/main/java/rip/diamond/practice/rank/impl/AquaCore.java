@@ -65,7 +65,8 @@ public class AquaCore implements Rank {
 
             return false;
         }
-    */
+    **/
+
     @Override
     public int getWeight(UUID uuid) {
         GlobalPlayer globalPlayer = AquaCoreAPI.INSTANCE.getGlobalPlayer(uuid);
