@@ -8,13 +8,8 @@ import rip.diamond.practice.event.MatchResetEvent;
 import rip.diamond.practice.events.EdenEvent;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.match.MatchTaskTicker;
-import rip.diamond.practice.match.MatchType;
 import rip.diamond.practice.match.impl.SoloMatch;
-import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
-import rip.diamond.practice.util.TaskTicker;
-import rip.diamond.practice.util.Util;
-
 import java.util.Objects;
 
 public class MatchResetTask extends MatchTaskTicker {
