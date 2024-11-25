@@ -10,7 +10,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.github.paperspigot.Title;
 import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.Common;
 import rip.diamond.practice.util.TitleSender;
