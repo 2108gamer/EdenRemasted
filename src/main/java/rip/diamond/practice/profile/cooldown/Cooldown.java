@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import java.text.DecimalFormat;
 
-
 @Getter
 @Setter
 public class Cooldown {

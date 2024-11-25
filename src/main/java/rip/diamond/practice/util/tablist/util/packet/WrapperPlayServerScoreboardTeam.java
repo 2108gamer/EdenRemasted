@@ -55,7 +55,7 @@ public class WrapperPlayServerScoreboardTeam extends AbstractPacket {
     }
     
     /**
-     * Retrieve an unique name for the team. (Shared with scoreboard)..
+     * Retrieve an unique name for the team. (Shared with scoreboard).
      * @return The current Team Name
     */
     public String getTeamName() {
@@ -63,7 +63,7 @@ public class WrapperPlayServerScoreboardTeam extends AbstractPacket {
     }
     
     /**
-     * Set an unique name for the team. (Shared with scoreboard)..
+     * Set an unique name for the team. (Shared with scoreboard).
      * @param value - new value.
     */
     public void setTeamName(String value) {

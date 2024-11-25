@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.github.paperspigot.Title;
-import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 
 import java.util.List;

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import dev.hely.tab.api.Tab;
 import io.github.epicgo.sconey.SconeyHandler;
 import lombok.Getter;
-import me.jumper251.replay.api.ReplayAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
@@ -199,7 +198,7 @@ public class Eden extends JavaPlugin {
         new EnchantCommand();
         new GoldenHeadCommand();
         new KitCommand();
-        new EdenCommand();
+        new PraxCommand();
         new EloResetCommand();
         new LocationCommand();
         new ToggleItemFlagCommand();
