@@ -68,13 +68,14 @@ public class KitStatsMenu extends LeaderboardMenu {
             if (c == null) {
                 c = def;
             }
+            assert c != null;
             return new ItemBuilder(Material.NETHER_STAR)
                     .name(Language.LEADERBOARD_KIT_STATS_MENU_GLOBAL_STATS_NAME.toString().replace("<theme>", c.toString()))
                     .lore(Language.LEADERBOARD_KIT_STATS_MENU_GLOBAL_STATS_LORE.toStringList(player,
                             unrankedWon,
                             unrankedLost,
                             Eden.DECIMAL.format((double) unrankedWon / (double) (unrankedLost == 0 ? 1 : unrankedLost)),
-                            (profile.getKitData().values().stream().mapToInt(ProfileKitData::getElo).sum() / (profile.getKitData().size() == 0 ? 1 : profile.getKitData().size())),
+                            (profile.getKitData().values().stream().mapToInt(ProfileKitData::getElo).sum() / (profile.getKitData().isEmpty() ? 1 : profile.getKitData().size())),
                             rankedWon,
                             rankedLost,
                             Eden.DECIMAL.format((double) rankedWon / (double) (rankedLost == 0 ? 1 : rankedLost))
@@ -105,15 +106,13 @@ public class KitStatsMenu extends LeaderboardMenu {
                 c = def;
             }
 
-
-
-
             int rankedWon = profile.getKitData().get(kitName).getRankedWon();
             int rankedLost = profile.getKitData().get(kitName).getRankedLost();
             int unrankedWon = profile.getKitData().get(kitName).getUnrankedWon();
             int unrankedLost = profile.getKitData().get(kitName).getUnrankedLost();
             int winstreak = profile.getKitData().get(kitName).getWinstreak();
             int bestWinstreak = profile.getKitData().get(kitName).getBestWinstreak();
+            assert c != null;
             return new ItemBuilder(kit.getDisplayIcon().clone())
                     .name(Language.LEADERBOARD_KIT_STATS_MENU_KIT_STATS_NAME.toString(kit.getDisplayName()).replace("<theme>", c.toString()))
                     .lore(Language.LEADERBOARD_KIT_STATS_MENU_KIT_STATS_LORE.toStringList(player,
