@@ -2,10 +2,8 @@ package rip.diamond.practice.lobby;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
@@ -51,7 +49,7 @@ public class LobbyManager {
         profile.setupItems();
         profile.getCooldowns().forEach((name, cooldown) -> cooldown.cancelCountdown());
 
-        if (player.hasPermission("eden.extra.lobby-flight")) {
+        if (player.hasPermission("prax.extra.lobby-flight")) {
             player.setAllowFlight(true);
         }
     }
@@ -71,9 +69,6 @@ public class LobbyManager {
         profile.setupItems();
     }
 
-
-
-
     public void sendToSpawnAndReset(Player player) {
         Tasks.run(()-> {
             reset(player);
@@ -81,8 +76,6 @@ public class LobbyManager {
         });
     }
     public void EditorEvent(Player player) {
-        Tasks.run(()-> {
-            resetKit(player);
-        });
+        Tasks.run(()-> resetKit(player));
     }
 }
