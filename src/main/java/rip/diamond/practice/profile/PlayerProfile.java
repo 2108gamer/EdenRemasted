@@ -21,7 +21,6 @@ import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.cooldown.Cooldown;
 import rip.diamond.practice.profile.cooldown.CooldownType;
 import rip.diamond.practice.profile.data.ProfileKitData;
-import rip.diamond.practice.profile.divisions.Division;
 import rip.diamond.practice.profile.task.ProfileAutoSaveTask;
 import rip.diamond.practice.util.*;
 import rip.diamond.practice.util.option.Option;
@@ -47,7 +46,7 @@ public class PlayerProfile {
     @Setter private Party party;
     @Setter @Getter private int winStreak = 0;
     private final int wins = 0;
-    @Getter private String theme;
+    private String theme;
     @Setter private boolean temporary = false;
     private boolean saving = false;
     @Setter @Getter private String lastMatchId = "";
@@ -56,7 +55,6 @@ public class PlayerProfile {
         this.uniqueId = uniqueId;
         this.username = username;
     }
-
 
     public Themes getTheme() {
         try {
@@ -72,7 +70,6 @@ public class PlayerProfile {
     public static void init() {
         new ProfileAutoSaveTask();
     }
-
 
 
     public void fromBson(Document document) {
@@ -108,8 +105,6 @@ public class PlayerProfile {
         for (Map.Entry<ProfileSettings, Option> options : settings.entrySet()) {
                 settingsDocument.put(options.getKey().name(), options.getValue().getValue());
         }
-
-
 
         Document kitDataDocument = new Document();
         for (Map.Entry<String, ProfileKitData> kitDataMap : kitData.entrySet()) {
