@@ -40,8 +40,7 @@ public class TabAdapter implements TabProvider {
                     playerSize++;
                     if (playerSize >= 60) break;
 
-                    String path = eden.getTablistFile().getString("tablist.player_prefix");
-                    String prefix = path;
+                    String prefix = eden.getTablistFile().getString("tablist.player_prefix");
 
                     layoutSet.add(new TabLayout(TabColumn.getColumn(column++), row)
                             .setText(CC.translate(Language.translate(prefix + online.getName(), online)))
