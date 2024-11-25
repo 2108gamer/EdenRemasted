@@ -2,7 +2,6 @@ package rip.diamond.practice.profile.listener;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -18,21 +17,15 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import rip.diamond.practice.Eden;
-import rip.diamond.practice.EdenItems;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.event.PlayerProfileLoadedEvent;
 import rip.diamond.practice.event.SettingsChangeEvent;
-import rip.diamond.practice.kits.KitLoadout;
 import rip.diamond.practice.match.Match;
-import rip.diamond.practice.match.menu.SpectateTeleportMenu;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
 import rip.diamond.practice.profile.ProfileSettings;
-import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.util.*;
-import rip.diamond.practice.util.exception.PracticeUnexpectedException;
-import rip.diamond.practice.util.option.Option;
 
 import java.util.List;
 
