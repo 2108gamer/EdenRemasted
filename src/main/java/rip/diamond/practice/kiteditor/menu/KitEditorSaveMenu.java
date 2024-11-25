@@ -9,11 +9,9 @@ import rip.diamond.practice.config.Language;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.kits.KitLoadout;
 import rip.diamond.practice.profile.PlayerProfile;
-import rip.diamond.practice.profile.PlayerState;
 import rip.diamond.practice.profile.procedure.Procedure;
 import rip.diamond.practice.profile.procedure.ProcedureType;
 import rip.diamond.practice.util.ItemBuilder;
-import rip.diamond.practice.util.PlayerUtil;
 import rip.diamond.practice.util.menu.Button;
 import rip.diamond.practice.util.menu.Menu;
 

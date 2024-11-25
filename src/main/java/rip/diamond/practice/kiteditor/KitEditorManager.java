@@ -10,9 +10,7 @@ import rip.diamond.practice.kiteditor.menu.KitEditorSaveMenu;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
-import rip.diamond.practice.profile.data.ProfileKitData;
 import rip.diamond.practice.util.Common;
-import rip.diamond.practice.util.Util;
 import rip.diamond.practice.util.serialization.LocationSerialization;
 
 import java.util.HashMap;
