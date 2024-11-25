@@ -123,11 +123,7 @@ public class Kit {
 	}
 
 
-	public int getSlot() {
-		return slot;
-	}
-
-	public void autoSave() {
+    public void autoSave() {
 		if (Config.ARENA_KIT_AUTO_SAVE.toBoolean()) {
 			save();
 		}
