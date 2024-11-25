@@ -18,22 +18,18 @@ import rip.diamond.practice.util.ItemBuilder;
 import rip.diamond.practice.util.menu.Button;
 import rip.diamond.practice.util.menu.Menu;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class SelecActionMenu extends Menu {
 
-
     @Override
     public Map<Integer, Button> getButtons(Player player) {
-
 
         PlayerProfile profile = PlayerProfile.get(player);
         ChatColor def = CC.getColorFromName(Config.DEFAULT_THEME.toString());
         Object theme = profile.getSettings().get(ProfileSettings.THEME_SELECTION);
 
         ChatColor c = CC.getColorFromName(theme.toString());
-
 
         Party party = Party.getByPlayer(player);
         if (party == null) {
@@ -54,6 +50,7 @@ public class SelecActionMenu extends Menu {
 
             @Override
             public void clicked(Player player, ClickType clickType) {
+                assert party != null;
                 List<PartyMember> members = party.getAllPartyMembers();
                 Location location = player.getLocation();
                 teleportPartyMembers(members, location);
@@ -67,7 +64,6 @@ public class SelecActionMenu extends Menu {
                 Party party = Party.getByPlayer(player);
                 boolean isFlyEnabled = checkFlyStatusForPartyMembers(player);
 
-
                 String flyStatus = isFlyEnabled ? "» Activado" : "» Desactivado";
 
                 List<String> loreList = Language.PARTNER_FLY_STATUS.toStringList();
@@ -76,8 +72,6 @@ public class SelecActionMenu extends Menu {
                     String updatedLore = lore.replaceAll("%status%", flyStatus);
                     updatedLoreList.add(updatedLore);
                 }
-
-
 
                 return new ItemBuilder(Material.FEATHER)
                         .name("&b&lParty Fly")
@@ -95,7 +89,6 @@ public class SelecActionMenu extends Menu {
         });
 
 
-        ChatColor finalC = c;
         buttons.put(14, new Button() {
             @Override
             public ItemStack getButtonItem(Player player) {
@@ -103,7 +96,6 @@ public class SelecActionMenu extends Menu {
                 List<String> lore = Collections.singletonList(
                         Language.PARTNER_TERMINAR_MATCH.toString()
                 );
-
 
                 return new ItemBuilder(Material.BARRIER)
                         .name("&b&lTermina la partida")
@@ -117,18 +109,14 @@ public class SelecActionMenu extends Menu {
             Match match = profile.getMatch();
 
             if(match != null) {
-
-                match.end(true, "&eEl partner" + "" + player.getDisplayName() + "" +"decidio terminar la partida" + "");
+                match.end(true, "&eEl partner " + player.getDisplayName() + " decidio terminar la partida");
             }
-
             }
         });
 
         buttons.put(16, new Button() {
             @Override
             public ItemStack getButtonItem(Player player) {
-                ;
-
                 return new ItemBuilder(Material.LAVA_BUCKET)
                         .name("&b&lParty Kick")
                         .lore(Language.PARTNER_KICK_LORE.toStringList(player))
@@ -168,12 +156,10 @@ public class SelecActionMenu extends Menu {
             Player player = member.getPlayer();
             if (player != null && player.isOnline()) {
                 if (player.getAllowFlight()) {
-
                     player.setFlying(false);
                     player.setAllowFlight(false);
                     player.sendMessage(Language.PARTNER_FLY_DISABLE_MESSAGE.toString());
                 } else {
-
                     player.setAllowFlight(true);
                     player.setFlying(true);
                     player.sendMessage(Language.PARTNER_FLY_ENABLED_MESSAGE.toString());
@@ -185,7 +171,6 @@ public class SelecActionMenu extends Menu {
         Party party = Party.getByPlayer(player);
         boolean isFlyEnabled = false;
         List<PartyMember> members = party.getAllPartyMembers();
-
 
         for (PartyMember member : members) {
             Player partyPlayer = member.getPlayer();
@@ -202,9 +187,6 @@ public class SelecActionMenu extends Menu {
 
 
     public void Cancel(Player player) {
-
         Language.PARTY_NOT_IN_A_PARTY.sendMessage(player);
-        return ;
-
     }
 }
