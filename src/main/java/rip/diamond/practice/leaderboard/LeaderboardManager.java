@@ -1,7 +1,6 @@
 package rip.diamond.practice.leaderboard;
 
 import lombok.Getter;
-import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.leaderboard.impl.KitLeaderboard;
