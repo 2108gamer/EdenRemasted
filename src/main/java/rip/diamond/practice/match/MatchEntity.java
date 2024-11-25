@@ -2,7 +2,6 @@ package rip.diamond.practice.match;
 
 import lombok.Getter;
 import org.bukkit.entity.Entity;
-import rip.diamond.practice.util.Common;
 
 @Getter
 public class MatchEntity {
