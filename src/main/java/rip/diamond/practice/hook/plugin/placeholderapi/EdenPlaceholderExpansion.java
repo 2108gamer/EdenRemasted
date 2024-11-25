@@ -318,12 +318,26 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
             int totalwins = rankedWon + unrankedWon;
             Division division = DivisionManager.getDivisionByWins(totalwins, DivisionManager.getDivisions());
 
-
              if(division != null) {
                  return division.getDisplayName();
              } else {
                  return "not found";
              }
+        }
+
+        if (param.equalsIgnoreCase("next_division")) {
+            int rankedWon = profile.getKitData().values().stream().mapToInt(ProfileKitData::getRankedWon).sum();
+            int unrankedWon = profile.getKitData().values().stream().mapToInt(ProfileKitData::getUnrankedWon).sum();
+
+            int totalwins = rankedWon + unrankedWon;
+            Division division = DivisionManager.getDivisionByWins(totalwins, DivisionManager.getDivisions());
+            Division nextDivision = DivisionManager.getNextDivision(division);
+
+            if(nextDivision != null) {
+                return nextDivision.getDisplayName();
+            } else {
+                return "not found";
+            }
         }
 
         return null; // Placeholder is unknown by the Expansion
