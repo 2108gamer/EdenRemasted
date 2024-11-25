@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import rip.diamond.practice.config.Language;
-import rip.diamond.practice.kits.menu.button.impl.KitRulesSetIntegerButton;
-import rip.diamond.practice.kits.menu.button.impl.KitRulesSetStringButton;
-import rip.diamond.practice.kits.menu.button.impl.KitRulesToggleButton;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.queue.QueueType;
 
