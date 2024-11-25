@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EdenCommand extends Command {
+public class PraxCommand extends Command {
 
-    @CommandArgs(name = "eden", inGameOnly = false)
+    @CommandArgs(name = "prax", inGameOnly = false)
     public void execute(CommandArguments command) {
         CommandSender sender = command.getSender();
         String[] args = command.getArgs();
@@ -34,7 +34,7 @@ public class EdenCommand extends Command {
             return;
         }
 
-        if (sender instanceof Player && !sender.hasPermission("eden.command.eden")) {
+        if (sender instanceof Player && !sender.hasPermission("prax.cmd.prax")) {
             Language.NO_PERMISSION.sendMessage((Player) sender);
             return;
         }
@@ -63,10 +63,10 @@ public class EdenCommand extends Command {
                 plugin.getConfigFile().getConfiguration().set("debug", !plugin.getConfigFile().getBoolean("debug"));
                 plugin.getConfigFile().save();
                 plugin.getConfigFile().load();
-                Common.sendMessage(sender, CC.GREEN + "Debug is now: " + (plugin.getConfigFile().getBoolean("debug") ? CC.GREEN + Language.ENABLED.toString() : CC.RED + Language.DISABLED.toString()));
+                Common.sendMessage(sender, CC.GREEN + "Debug is now: " + (plugin.getConfigFile().getBoolean("debug") ? CC.GREEN + Language.ENABLED : CC.RED + Language.DISABLED));
                 return;
             case SPIGOT:
-                Common.sendMessage(sender, CC.YELLOW + "Eden is currently hooked to " + CC.AQUA + SpigotAPI.INSTANCE.getSpigotType().name());
+                Common.sendMessage(sender, CC.YELLOW + "Prax-Eden is currently hooked to " + CC.AQUA + SpigotAPI.INSTANCE.getSpigotType().name());
         }
     }
 
