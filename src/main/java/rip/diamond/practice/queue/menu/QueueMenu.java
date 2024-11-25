@@ -23,7 +23,6 @@ public class QueueMenu extends PaginatedMenu {
 
     private final QueueType queueType;
 
-
     private final Integer[] ALLOWED_SLOT = new Integer[]{
             10, 11, 12, 13, 14, 15, 16,
             19, 20, 21, 22, 23, 24, 25,
@@ -70,7 +69,6 @@ public class QueueMenu extends PaginatedMenu {
         return buttons;
     }
 
-
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
@@ -94,7 +92,6 @@ public class QueueMenu extends PaginatedMenu {
             buttons.put(40, new PageButton(1, this));
         }
 
-
         for (int i = 0; i < getSize(); i++) {
             if (!buttons.containsKey(i)) {
                 buttons.put(i, new Button() {
@@ -111,7 +108,6 @@ public class QueueMenu extends PaginatedMenu {
 
         return buttons;
     }
-
 
     @Override
     public int getMaxItemsPerPage(Player player) {

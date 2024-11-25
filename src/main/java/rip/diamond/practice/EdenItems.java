@@ -8,8 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import rip.diamond.practice.config.Language;
-import rip.diamond.practice.kits.KitLoadout;
 import rip.diamond.practice.util.BasicConfigFile;
 import rip.diamond.practice.util.CC;
 import rip.diamond.practice.util.ItemBuilder;

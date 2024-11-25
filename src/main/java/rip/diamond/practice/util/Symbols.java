@@ -1,7 +1,6 @@
 package rip.diamond.practice.util;
 
 import org.apache.commons.lang.*;
-import org.bukkit.*;
 
 public class Symbols {
 

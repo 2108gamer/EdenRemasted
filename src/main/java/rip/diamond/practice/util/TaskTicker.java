@@ -2,7 +2,6 @@ package rip.diamond.practice.util;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import rip.diamond.practice.Eden;
 

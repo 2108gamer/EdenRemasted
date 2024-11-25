@@ -1,9 +1,7 @@
 package rip.diamond.practice.util;
 
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.party.Party;
@@ -50,7 +48,6 @@ public class VisibilityController {
         if (pViewer == null || pTarget == null || pViewer.getPlayerState() == PlayerState.LOADING || pTarget.getPlayerState() == PlayerState.LOADING) {
             return false;
         }
-
 
         Match targetMatch = pTarget.getMatch();
 

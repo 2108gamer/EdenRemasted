@@ -63,14 +63,9 @@ public class Util {
                 ((CraftPlayer)player).getHandle().invulnerableTicks = 0;
             }
             player.damage(damage);
-
-
         }
 
     }
-
-
-
 
     public static void performCommand(Player player, String command) {
         PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(player, "/" + command);
@@ -204,7 +199,6 @@ public class Util {
 
         return (ImmutableSet.copyOf(classes));
     }
-
 
     //Credit: https://github.com/lulu2002/DatouNms/blob/master/src/main/java/me/lulu/datounms/v1_8_R3/CraftCommonNMS.java
     public static void playDeathAnimation(Player player, List<Player> viewers) {
