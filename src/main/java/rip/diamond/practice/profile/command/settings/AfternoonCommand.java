@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class AfternoonCommand extends Command {
-    @CommandArgs(name = "afternoon", permission = "eden.settings.time-changer")
+    @CommandArgs(name = "afternoon", permission = "prax.settings.time-changer")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

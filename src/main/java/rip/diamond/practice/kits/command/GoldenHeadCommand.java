@@ -13,7 +13,7 @@ import rip.diamond.practice.util.exception.PracticeUnexpectedException;
 import rip.diamond.practice.util.serialization.BukkitSerialization;
 
 public class GoldenHeadCommand extends Command {
-    @CommandArgs(name = "goldenhead", permission = "eden.command.goldenhead")
+    @CommandArgs(name = "goldenhead", permission = "prax.cmd.goldenhead")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class TogglePartyInviteCommand extends Command {
-    @CommandArgs(name = "togglepartyinvite", permission = "eden.settings.allow-party-invite")
+    @CommandArgs(name = "togglepartyinvite", permission = "prax.settings.allow-party-invite")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class KitCommand extends Command {
-    @CommandArgs(name = "kit", permission = "eden.command.kit")
+    @CommandArgs(name = "kit", permission = "prax.cmd.kit")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

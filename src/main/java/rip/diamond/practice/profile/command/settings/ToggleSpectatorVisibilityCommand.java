@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class ToggleSpectatorVisibilityCommand extends Command {
-    @CommandArgs(name = "togglespectatorvisibility", permission = "eden.settings.spectator-visibility")
+    @CommandArgs(name = "togglespectatorvisibility", permission = "prax.settings.spectator-visibility")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

@@ -5,7 +5,6 @@ import rip.diamond.practice.config.Language;
 import rip.diamond.practice.match.Match;
 import rip.diamond.practice.match.menu.ViewInventoryMenu;
 import rip.diamond.practice.profile.PlayerProfile;
-import rip.diamond.practice.profile.PlayerState;
 import rip.diamond.practice.util.Checker;
 import rip.diamond.practice.util.command.Command;
 import rip.diamond.practice.util.command.CommandArgs;

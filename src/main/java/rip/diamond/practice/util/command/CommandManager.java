@@ -5,7 +5,6 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.SimplePluginManager;
 import rip.diamond.practice.Eden;
-import rip.diamond.practice.util.command.Command;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
 @Getter
 public class CommandManager {
 
-    private Eden plugin;
+    private final Eden plugin;
 
     private List<Command> loadedCommands = new ArrayList<>();
 

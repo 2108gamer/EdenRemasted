@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class ToggleArenaSelectionCommand extends Command {
-    @CommandArgs(name = "togglearenaselection", permission = "eden.settings.arena-selection")
+    @CommandArgs(name = "togglearenaselection", permission = "prax.settings.arena-selection")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

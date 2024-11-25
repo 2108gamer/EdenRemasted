@@ -20,7 +20,7 @@ public class EventCommand extends Command {
 
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("create")) {
-                if (!player.hasPermission("eden.command.event.create")) {
+                if (!player.hasPermission("prax.cmd.event.create")) {
                     Language.NO_PERMISSION.sendMessage(player);
                     return;
                 }
@@ -30,7 +30,7 @@ public class EventCommand extends Command {
                 }
                 new EventCreateMenu().openMenu(player);
             } else if (args[0].equalsIgnoreCase("forcestart")) {
-                if (!player.hasPermission("eden.command.event.forcestart")) {
+                if (!player.hasPermission("prax.cmd.event.forcestart")) {
                     Language.NO_PERMISSION.sendMessage(player);
                     return;
                 }
@@ -55,7 +55,7 @@ public class EventCommand extends Command {
 
                 Common.sendMessage(player, event.getStatus(player));
             } else if (args[0].equalsIgnoreCase("cancel")) {
-                if (!player.hasPermission("eden.command.event.cancel")) {
+                if (!player.hasPermission("prax.cmd.event.cancel")) {
                     Language.NO_PERMISSION.sendMessage(player);
                     return;
                 }

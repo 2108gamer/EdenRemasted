@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class ToggleEventAnnouncementCommand extends Command {
-    @CommandArgs(name = "toggleeventannouncement", permission = "eden.settings.event-announcement")
+    @CommandArgs(name = "toggleeventannouncement", permission = "prax.settings.event-announcement")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

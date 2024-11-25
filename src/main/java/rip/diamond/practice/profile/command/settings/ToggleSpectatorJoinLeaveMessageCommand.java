@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class ToggleSpectatorJoinLeaveMessageCommand extends Command {
-    @CommandArgs(name = "togglespectatorjoinleavemessage", permission = "eden.settings.spectator-join-leave-message")
+    @CommandArgs(name = "togglespectatorjoinleavemessage", permission = "prax.settings.spectator-join-leave-message")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

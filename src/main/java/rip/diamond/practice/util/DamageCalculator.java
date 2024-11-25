@@ -1,9 +1,6 @@
 package rip.diamond.practice.util;
 
-import net.minecraft.server.v1_8_R3.DamageSource;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class DamageCalculator {

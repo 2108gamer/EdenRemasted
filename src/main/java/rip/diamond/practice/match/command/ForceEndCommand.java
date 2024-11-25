@@ -12,7 +12,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class ForceEndCommand extends Command {
-    @CommandArgs(name = "forceend", permission = "eden.command.forceend")
+    @CommandArgs(name = "forceend", permission = "prax.cmd.forceend")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

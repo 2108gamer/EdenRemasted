@@ -10,7 +10,7 @@ import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class DayCommand extends Command {
 
-    @CommandArgs(name = "day", permission = "eden.settings.time-changer")
+    @CommandArgs(name = "day", permission = "prax.settings.time-changer")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

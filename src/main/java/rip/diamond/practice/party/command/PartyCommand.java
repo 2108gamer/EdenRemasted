@@ -167,7 +167,7 @@ public class PartyCommand extends Command {
                     party.join(player, false);
                 } else if (party.getPrivacy() == PartyPrivacy.OPEN) {
                     party.join(player, false);
-                } else if (player.hasPermission("eden.party.forcejoin")){
+                } else if (player.hasPermission("prax.party.forcejoin")){
                     party.join(player, true);
                 } else {
                     Language.PARTY_NOT_INVITED.sendMessage(player);

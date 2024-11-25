@@ -9,7 +9,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class ToggleDuelRequestCommand extends Command {
-    @CommandArgs(name = "toggleduelrequest", permission = "eden.settings.allow-duel-request")
+    @CommandArgs(name = "toggleduelrequest", permission = "prax.eden.settings.allow-duel-request")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);

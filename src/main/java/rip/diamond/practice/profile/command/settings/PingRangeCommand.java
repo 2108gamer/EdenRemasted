@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PingRangeCommand extends Command {
-    @CommandArgs(name = "pingrange", aliases = {"pr"}, permission = "eden.settings.ping-range")
+    @CommandArgs(name = "pingrange", aliases = {"pr"}, permission = "prax.eden.settings.ping-range")
     public void execute(CommandArguments command) {
         String[] args = command.getArgs();
         Player player = command.getPlayer();

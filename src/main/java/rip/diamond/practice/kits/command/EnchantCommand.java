@@ -11,7 +11,7 @@ import rip.diamond.practice.util.command.CommandArgs;
 import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class EnchantCommand extends Command {
-    @CommandArgs(name = "enchant", aliases = {"forceenchant"}, permission = "eden.command.enchant")
+    @CommandArgs(name = "enchant", aliases = {"forceenchant"}, permission = "prax.cmd.enchant")
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

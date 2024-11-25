@@ -22,7 +22,7 @@ import rip.diamond.practice.util.command.argument.CommandArguments;
 
 public class TestCommand extends Command {
 
-    @CommandArgs(name = "test", permission = "prax.command.test", async = false)
+    @CommandArgs(name = "test", permission = "prax.cmd.test", async = false)
     public void execute(CommandArguments command) {
         Player player = command.getPlayer();
         PlayerProfile profile = PlayerProfile.get(player);
