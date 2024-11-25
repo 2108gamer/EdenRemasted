@@ -16,6 +16,8 @@ import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.profile.data.ProfileKitData;
+import rip.diamond.practice.profile.divisions.Division;
+import rip.diamond.practice.profile.divisions.DivisionManager;
 import rip.diamond.practice.queue.Queue;
 import rip.diamond.practice.queue.QueueType;
 import rip.diamond.practice.util.CC;
@@ -296,21 +298,28 @@ public class EdenPlaceholderExpansion extends PlaceholderExpansion {
             return c.toString();
         }
         if(param.equalsIgnoreCase("rank_player")) {
-
             return plugin.getRankManager().getRank().getColor(player.getUniqueId());
         }
         if(param.equalsIgnoreCase("aqua_tag")) {
-
             return plugin.getRankManager().getRank().getTag(player);
         }
         if(param.equalsIgnoreCase("aqua_prefix")) {
-
             return plugin.getRankManager().getRank().getPrefix(player.getUniqueId());
         }
         if(param.equalsIgnoreCase("aqua_rank_color")) {
             ChatColor rankColor = plugin.getRankManager().getRank().getChatColor(player.getUniqueId());
-
             return rankColor.toString();
+        }
+
+        if (param.equalsIgnoreCase("division")) {
+            int rankedWon = profile.getKitData().values().stream().mapToInt(ProfileKitData::getRankedWon).sum();
+            int unrankedWon = profile.getKitData().values().stream().mapToInt(ProfileKitData::getUnrankedWon).sum();
+
+            int totalwins = rankedWon + unrankedWon;
+            Division division = DivisionManager.getDivisionByWins(totalwins, DivisionManager.getDivisions());
+
+            assert division != null;
+            return division.getDisplayName();
         }
 
         return null; // Placeholder is unknown by the Expansion

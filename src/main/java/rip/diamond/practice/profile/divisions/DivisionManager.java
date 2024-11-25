@@ -11,8 +11,6 @@ import java.util.List;
 
 public class DivisionManager {
 
-
-
     @Getter
     private static final List<Division> divisions = new ArrayList<>();
 
@@ -34,15 +32,6 @@ public class DivisionManager {
         }
     }
 
-
-
-
-
-
-
-
-
-
     public static Division loadDivision(String path) {
         BasicConfigFile file = Eden.INSTANCE.getDivisionsFile();
         try {
@@ -52,8 +41,6 @@ public class DivisionManager {
             int durability = file.getInt(path + ".DURABILITY");
             int winsMin = file.getInt(path + ".WINS-MIN");
             int winsMax = file.getInt(path + ".WINS-MAX");
-
-
             return new Division(path, displayName, miniLogo, icon, durability, winsMin, winsMax);
 
         } catch (Exception e) {
@@ -72,7 +59,6 @@ public class DivisionManager {
         return null;
     }
 
-
     public static Division getDivisionByName(String name) {
         for (Division division : divisions) {
             if (division.getDisplayName().equalsIgnoreCase(name)) {
@@ -90,9 +76,4 @@ public class DivisionManager {
         }
         return null;
     }
-
-
-
-
-
 }

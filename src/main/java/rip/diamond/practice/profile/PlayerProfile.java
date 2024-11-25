@@ -46,13 +46,11 @@ public class PlayerProfile {
     @Setter private Match match;
     @Setter private Party party;
     @Setter @Getter private int winStreak = 0;
-    private int wins = 0;
+    private final int wins = 0;
     @Getter private String theme;
     @Setter private boolean temporary = false;
     private boolean saving = false;
     @Setter @Getter private String lastMatchId = "";
-
-
 
     public PlayerProfile(UUID uniqueId, String username) {
         this.uniqueId = uniqueId;
