@@ -1,6 +1,5 @@
 package rip.diamond.practice.match.task;
 
-import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
