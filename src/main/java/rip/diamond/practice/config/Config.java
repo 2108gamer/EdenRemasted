@@ -3,11 +3,9 @@ package rip.diamond.practice.config;
 import com.google.common.collect.ImmutableList;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.bukkit.Material;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.util.BasicConfigFile;
 import rip.diamond.practice.util.Common;
-import rip.diamond.practice.util.Util;
 
 import java.util.List;
 

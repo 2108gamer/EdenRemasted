@@ -6,13 +6,11 @@ import rip.diamond.practice.Eden;
 import rip.diamond.practice.arenas.Arena;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.duel.DuelRequest;
-import rip.diamond.practice.duel.menu.ChooseArenaMenu;
 import rip.diamond.practice.duel.menu.ChooseKitMenu;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.party.Party;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
-import rip.diamond.practice.profile.ProfileSettings;
 import rip.diamond.practice.util.InsertUtil;
 import rip.diamond.practice.util.command.Command;
 import rip.diamond.practice.util.command.CommandArgs;
@@ -92,7 +90,6 @@ public class DuelCommand extends Command {
 
         if (args.length == 1) {
             new ChooseKitMenu(target.getUniqueId(), pParty != null).openMenu(player);
-            return;
         } else if (args.length == 2) {
             Kit kit = Kit.getByName(args[1]);
             if (kit == null) {
@@ -100,7 +97,6 @@ public class DuelCommand extends Command {
                 return;
             }
             Eden.INSTANCE.getDuelRequestManager().sendDuelRequest(player, target, kit, Arena.getEnabledArena(kit));
-            return;
         } else if (args.length == 3) {
             Kit kit = Kit.getByName(args[1]);
             if (kit == null) {
@@ -113,7 +109,6 @@ public class DuelCommand extends Command {
                 return;
             }
             Eden.INSTANCE.getDuelRequestManager().sendDuelRequest(player, target, kit, arena);
-            return;
         }
     }
 }

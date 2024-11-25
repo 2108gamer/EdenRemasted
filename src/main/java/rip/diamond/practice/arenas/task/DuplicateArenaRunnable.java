@@ -7,7 +7,6 @@ import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitRunnable;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.arenas.Arena;
-import rip.diamond.practice.arenas.ArenaDetail;
 import rip.diamond.practice.util.cuboid.Cuboid;
 import rip.diamond.practice.util.cuboid.CuboidDirection;
 

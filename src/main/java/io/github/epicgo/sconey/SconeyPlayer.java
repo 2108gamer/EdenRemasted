@@ -3,7 +3,6 @@ package io.github.epicgo.sconey;
 import com.google.common.collect.ImmutableSet;
 import io.github.epicgo.sconey.element.SconeyElement;
 import io.github.epicgo.sconey.element.SconeyElementAdapter;
-import io.github.epicgo.sconey.element.SconeyElementMode;
 import io.github.epicgo.sconey.reflection.impl.RPacketScoreboardScore;
 import io.github.epicgo.sconey.reflection.impl.RPacketScoreboardTeam;
 import org.bukkit.Bukkit;

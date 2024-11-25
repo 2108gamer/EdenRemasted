@@ -1,6 +1,5 @@
 package rip.diamond.practice.arenas.chunk;
 
-import com.boydti.fawe.FaweAPI;
 import io.github.epicgo.sconey.reflection.Reflection;
 import lombok.Getter;
 import net.minecraft.server.v1_8_R3.ChunkSection;

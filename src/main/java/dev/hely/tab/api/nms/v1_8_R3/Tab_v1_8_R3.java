@@ -22,7 +22,6 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +107,7 @@ public class Tab_v1_8_R3 implements TabNMS {
         PlayerVersion playerVersion = PlayerVersionManager.getPlayerVersion(player);
         PacketContainer packet = ProtocolLibrary.getProtocolManager().createPacket(PacketType.Play.Server.PLAYER_INFO);
         packet.getPlayerInfoAction().write(0, EnumWrappers.PlayerInfoAction.ADD_PLAYER);
-        WrappedGameProfile profile = new WrappedGameProfile(offlinePlayer.getUniqueId(), (playerVersion != PlayerVersion.v1_7) ? string : (LegacyClient.ENTRY.get(rawSlot - 1) + ""));
+        WrappedGameProfile profile = new WrappedGameProfile(offlinePlayer.getUniqueId(), (playerVersion != PlayerVersion.v1_7) ? string : (LegacyClient.ENTRY.get(rawSlot - 1)));
         PlayerInfoData playerInfoData = new PlayerInfoData(profile, 1, EnumWrappers.NativeGameMode.NOT_SET, WrappedChatComponent.fromText((playerVersion != PlayerVersion.v1_7) ? "" : profile.getName()));
         if (playerVersion != PlayerVersion.v1_7) {
             playerInfoData.getProfile().getProperties().put("textures", new WrappedSignedProperty("textures", Skin.DEFAULT.getValue(), Skin.DEFAULT.getSignature()));

@@ -1,6 +1,5 @@
 package io.github.epicgo.sconey;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import rip.diamond.practice.util.Util;
 
