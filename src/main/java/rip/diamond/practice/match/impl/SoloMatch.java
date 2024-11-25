@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.arenas.ArenaDetail;
@@ -66,9 +65,9 @@ public class SoloMatch extends Match {
         TeamPlayer tWinner = getWinningPlayers().get(0);
         TeamPlayer tLoser = getOpponent(getWinningPlayers().get(0));
 
-        Clickable clickable = new Clickable(Language.MATCH_POST_MATCH_INVENTORY_WINNER.toString() + tWinner.getUsername(), Language.MATCH_POST_MATCH_INVENTORY_HOVER.toString(tWinner.getUsername()), "/viewinv " + tWinner.getUuid());
+        Clickable clickable = new Clickable(Language.MATCH_POST_MATCH_INVENTORY_WINNER + tWinner.getUsername(), Language.MATCH_POST_MATCH_INVENTORY_HOVER.toString(tWinner.getUsername()), "/viewinv " + tWinner.getUuid());
         clickable.add(CC.GRAY + " - ");
-        clickable.add(Language.MATCH_POST_MATCH_INVENTORY_LOSER.toString() + tLoser.getUsername(), Language.MATCH_POST_MATCH_INVENTORY_HOVER.toString(tLoser.getUsername()), "/viewinv " + tLoser.getUuid());
+        clickable.add(Language.MATCH_POST_MATCH_INVENTORY_LOSER + tLoser.getUsername(), Language.MATCH_POST_MATCH_INVENTORY_HOVER.toString(tLoser.getUsername()), "/viewinv " + tLoser.getUuid());
 
         Language.MATCH_POST_MATCH_INVENTORY_MESSAGE.toStringList().forEach(s -> {
             if (s.contains("{post-match-inventories}")) {
@@ -106,7 +105,9 @@ public class SoloMatch extends Match {
             co = de;
         }
 
+        assert c != null;
         tWinner.broadcastTitle(Language.MATCH_END_TITLE_WIN_TITLE.toString(), Language.MATCH_END_TITLE_WIN_SUBTITLE.toString(tWinner.getUsername()).replace("<theme>", c.toString()));
+        assert co != null;
         tLoser.broadcastTitle(Language.MATCH_END_TITLE_LOSE_TITLE.toString(), Language.MATCH_END_TITLE_LOSE_SUBTITLE.toString(tWinner.getUsername()).replace("<theme>", co.toString()));
     }
 
@@ -154,7 +155,7 @@ public class SoloMatch extends Match {
 
         if (newDivisionWinner != null && !newDivisionWinner.getDisplayName().equals(kWinner.getDivision())) {
 
-            kWinner.setDivision(newDivisionWinner.getDisplayName().toString());
+            kWinner.setDivision(newDivisionWinner.getDisplayName());
 
 
             Division nextDivision = DivisionManager.getNextDivision(newDivisionWinner);
@@ -174,7 +175,7 @@ public class SoloMatch extends Match {
 
             pWinner.save(true, sucess -> {
                 if(sucess) {
-                Common.debug("saved division data for player" + pWinner.getUsername() + "Division" + newDivisionWinner.toString());
+                Common.debug("saved division data for player" + pWinner.getUsername() + "Division" + newDivisionWinner);
                 }
             });
 
