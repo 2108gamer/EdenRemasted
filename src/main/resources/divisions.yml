@@ -1,25 +1,194 @@
 DIVISIONS:
   ENABLED: true
+  XP-BASED: true
   RANKS:
     SILVER_1:
       DISPLAY_NAME: "&7Silver I"
       ICON: IRON_INGOT
       DURABILITY: 0
       MINI-LOGO: "&7[I]"
-      DEFAULT: true
       WINS-MIN: 0
-      WINS-MAX: 10
+      WINS-MAX: 3
+      DEFAULT: true
     SILVER_2:
       DISPLAY_NAME: "&7Silver II"
       ICON: IRON_INGOT
       DURABILITY: 0
       MINI-LOGO: "&7[II]"
-      WINS-MIN: 11
-      WINS-MAX: 20
+      WINS-MIN: 4
+      WINS-MAX: 5
+    SILVER_3:
+      DISPLAY_NAME: "&7Silver III"
+      ICON: IRON_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&7[III]"
+      WINS-MIN: 6
+      WINS-MAX: 7
+    SILVER_4:
+      DISPLAY_NAME: "&7Silver IV"
+      ICON: IRON_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&7[IV]"
+      WINS-MIN: 8
+      WINS-MAX: 9
+    SILVER_5:
+      DISPLAY_NAME: "&7Silver V"
+      ICON: IRON_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&7[V]"
+      WINS-MIN: 9
+      WINS-MAX: 10
     GOLD_1:
       DISPLAY_NAME: "&6Gold I"
       ICON: GOLD_INGOT
       DURABILITY: 0
       MINI-LOGO: "&6[I]"
+      WINS-MIN: 11
+      WINS-MAX: 12
+    GOLD_2:
+      DISPLAY_NAME: "&6Gold II"
+      ICON: GOLD_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&6[II]"
+      WINS-MIN: 13
+      WINS-MAX: 14
+    GOLD_3:
+      DISPLAY_NAME: "&6Gold III"
+      ICON: GOLD_INGOT
+      DURABILITY: 0
+      MINI-LOGO: "&6[III]"
+      WINS-MIN: 15
+      WINS-MAX: 16
+    DIAMOND_1:
+      DISPLAY_NAME: "&bDiamond I"
+      ICON: DIAMOND
+      DURABILITY: 0
+      MINI-LOGO: "&b[I]"
+      WINS-MIN: 17
+      WINS-MAX: 18
+    DIAMOND_2:
+      DISPLAY_NAME: "&bDiamond II"
+      ICON: DIAMOND
+      DURABILITY: 0
+      MINI-LOGO: "&b[II]"
+      WINS-MIN: 19
+      WINS-MAX: 20
+    DIAMOND_3:
+      DISPLAY_NAME: "&bDiamond III"
+      ICON: DIAMOND
+      DURABILITY: 0
+      MINI-LOGO: "&b[III]"
       WINS-MIN: 21
+      WINS-MAX: 22
+    EMERALD_1:
+      DISPLAY_NAME: "&aEmerald I"
+      ICON: EMERALD
+      DURABILITY: 0
+      MINI-LOGO: "&a[I]"
+      WINS-MIN: 23
+      WINS-MAX: 24
+    EMERALD_2:
+      DISPLAY_NAME: "&aEmerald II"
+      ICON: EMERALD
+      DURABILITY: 0
+      MINI-LOGO: "&a[II]"
+      WINS-MIN: 25
+      WINS-MAX: 26
+    EMERALD_3:
+      DISPLAY_NAME: "&aEmerald III"
+      ICON: EMERALD
+      DURABILITY: 0
+      MINI-LOGO: "&a[III]"
+      WINS-MIN: 27
+      WINS-MAX: 28
+    EMERALD_4:
+      DISPLAY_NAME: "&aEmerald IV"
+      ICON: EMERALD
+      DURABILITY: 0
+      MINI-LOGO: "&a[IV]"
+      WINS-MIN: 29
       WINS-MAX: 30
+    EMERALD_5:
+      DISPLAY_NAME: "&aEmerald V"
+      ICON: EMERALD
+      DURABILITY: 0
+      MINI-LOGO: "&a[V]"
+      WINS-MIN: 31
+      WINS-MAX: 32
+    SAPPHIRE_1:
+      DISPLAY_NAME: "&9Sapphire I"
+      ICON: INK_SACK
+      DURABILITY: 4
+      MINI-LOGO: "&9[I]"
+      WINS-MIN: 33
+      WINS-MAX: 34
+    SAPPHIRE_2:
+      DISPLAY_NAME: "&9Sapphire II"
+      ICON: INK_SACK
+      DURABILITY: 4
+      MINI-LOGO: "&9[II]"
+      WINS-MIN: 35
+      WINS-MAX: 36
+    SAPPHIRE_3:
+      DISPLAY_NAME: "&9Sapphire III"
+      ICON: INK_SACK
+      DURABILITY: 4
+      MINI-LOGO: "&9[III]"
+      WINS-MIN: 37
+      WINS-MAX: 38
+    PLATINUM_1:
+      DISPLAY_NAME: "&ePlatinum I"
+      ICON: QUARTZ
+      DURABILITY: 0
+      MINI-LOGO: "&e[I]"
+      WINS-MIN: 39
+      WINS-MAX: 40
+    PLATINUM_2:
+      DISPLAY_NAME: "&ePlatinum II"
+      ICON: QUARTZ
+      DURABILITY: 0
+      MINI-LOGO: "&e[II]"
+      WINS-MIN: 41
+      WINS-MAX: 42
+    PLATINUM_3:
+      DISPLAY_NAME: "&ePlatinum III"
+      ICON: QUARTZ
+      DURABILITY: 0
+      MINI-LOGO: "&e[III]"
+      WINS-MIN: 43
+      WINS-MAX: 44
+    PLATINUM_4:
+      DISPLAY_NAME: "&ePlatinum IV"
+      ICON: QUARTZ
+      DURABILITY: 0
+      MINI-LOGO: "&e[IV]"
+      WINS-MIN: 45
+      WINS-MAX: 46
+    PLATINUM_5:
+      DISPLAY_NAME: "&ePlatinum V"
+      ICON: QUARTZ
+      DURABILITY: 0
+      MINI-LOGO: "&e[V]"
+      WINS-MIN: 47
+      WINS-MAX: 48
+    MASTER_1:
+      DISPLAY_NAME: "&cMaster I"
+      ICON: BLAZE_POWDER
+      DURABILITY: 0
+      MINI-LOGO: "&c[I]"
+      WINS-MIN: 49
+      WINS-MAX: 50
+    MASTER_2:
+      DISPLAY_NAME: "&cMaster II"
+      ICON: BLAZE_POWDER
+      DURABILITY: 0
+      MINI-LOGO: "&c[II]"
+      WINS-MIN: 51
+      WINS-MAX: 52
+    MASTER_3:
+      DISPLAY_NAME: "&cMaster III"
+      ICON: BLAZE_POWDER
+      DURABILITY: 0
+      MINI-LOGO: "&c[III]"
+      WINS-MIN: 53
+      WINS-MAX: 54

@@ -24,28 +24,28 @@ tablist:
         text: ' %aqua_player_prefix%%aqua_player_rank_color%%player_name%'
         head: '%PLAYER%'
       '4':
-        text: ' {player_theme}Your ping&7: %player_ping%'
+        text: ' &fYour ping: %player_ping%'
         head: ''
       '5':
-        text: ''
+        text: ' &fYour Division: %practice_division%'
         head: ''
       '6':
-        text: ''
+        text: ' &fNext Division: %practice_next_division%'
         head: ''
       '7':
-        text: '{player_theme}&lGame:'
+        text: ''
         head: ''
       '8':
-        text: ' &fOnline: {player_theme}{online-players}'
+        text: '{player_theme}&lGame:'
         head: ''
       '9':
-        text: ' &fIn Fight: {player_theme}{match-players}'
+        text: ' &fOnline: {player_theme}{online-players}'
         head: ''
       '10':
-        text: ' &fIn Queue: {player_theme}{queue-players}'
+        text: ' &fIn Fight: {player_theme}{match-players}'
         head: ''
       '11':
-        text: ''
+        text: ' &fIn Queue: {player_theme}{queue-players}'
         head: ''
       '12':
         text: ''

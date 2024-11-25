@@ -8,7 +8,7 @@ items:
       material: IRON_SWORD
       durability: 0
       slot: 0
-      command: "eden:queue unranked"
+      command: "queue unranked"
     ranked-queue:
       enabled: true
       name: "&bRanked Queue &7(Right-Click)"
@@ -17,7 +17,7 @@ items:
       material: DIAMOND_SWORD
       durability: 0
       slot: 1
-      command: "eden:queue ranked"
+      command: "queue ranked"
     create-event:
       enabled: true
       name: "&bCreate Event &7(Right-Click)"
@@ -26,7 +26,7 @@ items:
       material: EYE_OF_ENDER
       durability: 0
       slot: 2
-      command: "eden:event create"
+      command: "event create"
     join-event:
       enabled: true
       name: "&bJoin Event &7(Right-Click)"
@@ -35,7 +35,7 @@ items:
       material: ENDER_PEARL
       durability: 0
       slot: 2
-      command: "eden:joinevent"
+      command: "joinevent"
     party-open:
       enabled: true
       name: "&bCreate Party &7(Right-Click)"
@@ -44,7 +44,7 @@ items:
       material: NETHER_STAR
       durability: 0
       slot: 4
-      command: "eden:party create"
+      command: "party create"
     leaderboard:
       enabled: true
       name: "&bView Leaderboard &7(Right-Click)"
@@ -53,7 +53,7 @@ items:
       material: EMERALD
       durability: 0
       slot: 6
-      command: "eden:stats"
+      command: "stats"
     settings:
       enabled: true
       name: "&bEdit Settings &7(Right-Click)"
@@ -62,7 +62,7 @@ items:
       material: WATCH
       durability: 0
       slot: 7
-      command: "eden:settings"
+      command: "psettings"
     editor:
       enabled: true
       name: "&bEdit Kits &7(Right-Click)"
@@ -71,7 +71,7 @@ items:
       material: BOOK
       durability: 0
       slot: 8
-      command: "eden:editkits"
+      command: "editkits"
   party:
     party-list:
       enabled: true
@@ -81,7 +81,7 @@ items:
       material: NETHER_STAR
       durability: 0
       slot: 0
-      command: "eden:party list"
+      command: "party list"
     party-fight:
       enabled: true
       name: "&bParty Events &7(Right-Click)"
@@ -90,7 +90,7 @@ items:
       material: COMPASS
       durability: 0
       slot: 1
-      command: "eden:choosematchtype"
+      command: "choosematchtype"
     other-parties:
       enabled: true
       name: "&bOther Parties &7(Right-Click)"
@@ -99,7 +99,7 @@ items:
       material: SKULL_ITEM
       durability: 0
       slot: 6
-      command: "eden:otherparties"
+      command: "otherparties"
     editor:
       enabled: true
       name: "&bEdit kits &7(Right-Click)"
@@ -108,7 +108,7 @@ items:
       material: BOOK
       durability: 0
       slot: 7
-      command: "eden:editkits"
+      command: "editkits"
     party-leave:
       enabled: true
       name: "&cLeave Party &7(Right-Click)"
@@ -117,7 +117,7 @@ items:
       material: INK_SACK
       durability: 1
       slot: 8
-      command: "eden:party leave"
+      command: "party leave"
   queue:
     leave-queue:
       enabled: true
@@ -127,7 +127,7 @@ items:
       material: INK_SACK
       durability: 1
       slot: 8
-      command: "eden:queue leave"
+      command: "queue leave"
   match:
     requeue:
       enabled: true
@@ -137,7 +137,7 @@ items:
       material: PAPER
       durability: 0
       slot: -1
-      command: "eden:requeue"
+      command: "requeue"
   spectate:
     teleporter:
       enabled: true
@@ -147,7 +147,7 @@ items:
       material: COMPASS
       durability: 0
       slot: 3
-      command: "eden:teleporter"
+      command: "teleporter"
     leave-spectate:
       enabled: true
       name: "&cLeave Spectate &7(Right-Click)"
@@ -156,7 +156,7 @@ items:
       material: INK_SACK
       durability: 1
       slot: 4
-      command: "eden:leavespectate"
+      command: "leavespectate"
     toggle-visibility-off:
       enabled: true
       name: "&bDisable Spectators &7(Right-Click)"
@@ -165,7 +165,7 @@ items:
       material: REDSTONE_TORCH_ON
       durability: 0
       slot: 5
-      command: "eden:togglespectatorvisibility"
+      command: "togglespectatorvisibility"
     toggle-visibility-on:
       enabled: true
       name: "&bEnable Spectators &7(Right-Click)"
@@ -174,4 +174,4 @@ items:
       material: LEVER
       durability: 0
       slot: 5
-      command: "eden:togglespectatorvisibility"
+      command: "togglespectatorvisibility"
