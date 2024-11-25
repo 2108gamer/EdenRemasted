@@ -22,22 +22,20 @@ public class KitsManagementMenu extends PaginatedMenu {
     public Map<Integer, Button> getAllPagesButtons(Player player) {
         final Map<Integer, Button> buttons = new HashMap<>();
 
-        Kit.getKits().forEach(kit -> {
-            buttons.put(buttons.size(), new Button() {
-                @Override
-                public ItemStack getButtonItem(Player player) {
-                    return new ItemBuilder(kit.getDisplayIcon().clone())
-                            .name(Language.KIT_KIT_MANAGEMENT_MENU_BUTTON_NAME.toString(kit.getDisplayName(), kit.getName()))
-                            .lore(Language.KIT_KIT_MANAGEMENT_MENU_BUTTON_LORE.toStringList(player))
-                            .build();
-                }
+        Kit.getKits().forEach(kit -> buttons.put(buttons.size(), new Button() {
+            @Override
+            public ItemStack getButtonItem(Player player) {
+                return new ItemBuilder(kit.getDisplayIcon().clone())
+                        .name(Language.KIT_KIT_MANAGEMENT_MENU_BUTTON_NAME.toString(kit.getDisplayName(), kit.getName()))
+                        .lore(Language.KIT_KIT_MANAGEMENT_MENU_BUTTON_LORE.toStringList(player))
+                        .build();
+            }
 
-                @Override
-                public void clicked(Player player, int slot, ClickType clickType, int hotbarSlot) {
-                    new KitDetailsMenu(kit, KitsManagementMenu.this).openMenu(player);
-                }
-            });
-        });
+            @Override
+            public void clicked(Player player, int slot, ClickType clickType, int hotbarSlot) {
+                new KitDetailsMenu(kit, KitsManagementMenu.this).openMenu(player);
+            }
+        }));
 
         return buttons;
     }
