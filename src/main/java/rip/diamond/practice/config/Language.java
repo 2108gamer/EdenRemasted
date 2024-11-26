@@ -20,6 +20,7 @@ public enum Language {
     SCOREBOARD_BOXING_COUNTER_NO_COMBO("scoreboard.boxing-counter.no-combo"),
     SCOREBOARD_BOXING_COUNTER_TEXT_SOLO("scoreboard.boxing-counter.text-solo"),
     SCOREBOARD_BOXING_COUNTER_TEXT_TEAM("scoreboard.boxing-counter.text-team"),
+    END_DIVISION_MESSAGE("end-division-message"),
     SCOREBOARD_LOADING("scoreboard.loading"),
     SCOREBOARD_IN_LOBBY("scoreboard.in-lobby"),
     SCOREBOARD_IN_PARTY("scoreboard.in-party"),

@@ -70,7 +70,7 @@ public class KitEditorListener implements Listener {
                     Language.KIT_EDITOR_DISALLOW_EXTRA_ITEM.sendMessage(player);
                     break;
                 }
-                new KitEditorExtraItemsMenu(kit).openMenu(player);
+                new KitEditorExtraItemsMenu(kit, player).openMenu(player);
                 break;
             case ANVIL:
                 new KitEditorSaveMenu(kit).openMenu(player);

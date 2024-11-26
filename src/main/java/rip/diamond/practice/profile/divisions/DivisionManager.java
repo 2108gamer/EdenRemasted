@@ -76,4 +76,34 @@ public class DivisionManager {
         }
         return null;
     }
+    public static String getProgressBar(int wins, Division currentDivision) {
+        if (currentDivision == null) return "No division found";
+
+        int winsMin = currentDivision.getWinsMin();
+        int winsMax = currentDivision.getWinsMax();
+        int totalSteps = 12;
+
+
+        double progress = (double) (wins - winsMin) / (winsMax - winsMin);
+        progress = Math.max(0, Math.min(1, progress));
+
+
+        int filledBars = (int) (progress * totalSteps);
+        int emptyBars = totalSteps - filledBars;
+
+        StringBuilder progressBar = new StringBuilder();
+        for (int i = 0; i < filledBars; i++) {
+            progressBar.append("§d■");
+        }
+        for (int i = 0; i < emptyBars; i++) {
+            progressBar.append("§7■");
+        }
+
+        int percentage = (int) (progress * 100);
+        progressBar.append(" §7(").append(percentage).append("%) / 100");
+
+        return progressBar.toString();
+    }
+
+
 }

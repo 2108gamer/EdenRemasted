@@ -7,6 +7,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.kits.Kit;
+import rip.diamond.practice.kits.KitExtraItem;
 import rip.diamond.practice.kits.KitLoadout;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.procedure.Procedure;
@@ -108,6 +109,21 @@ public class KitEditorSaveMenu extends Menu {
                     profile.getKitData().get(kit.getName()).deleteKit(index);
                     new KitEditorSelectKitMenu().openMenu(player);
                     plugin.getKitEditorManager().leaveKitEditor(player,true);
+                }
+            });
+            buttons.put(18, new Button() {
+                @Override
+                public ItemStack getButtonItem(Player player) {
+                    return new ItemBuilder(Material.FEATHER)
+                            .name(Language.KIT_EDITOR_SAVE_MENU_DELETE_LOADOUT_BUTTON_NAME.toString(kitLoadoutCustomName))
+                            .build();
+                }
+
+                @Override
+                public void clicked(Player player, ClickType clickType) {
+                    profile.getKitData().get(kit.getName()).deleteKit(index);
+                    new KitEditorExtraItemsMenu(kit, player).openMenu(player);
+
                 }
             });
         }

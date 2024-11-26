@@ -1528,4 +1528,4 @@ UPDATE-DIVISION-MESSAGE:
   - "%practice_theme% &l Progress"
   - "%practice_theme% Unlock {2} with {1} more wins"
   - "({3})"
-  - "%practice_theme% Best Winstreak: {4}"
+  - ""

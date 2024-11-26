@@ -153,19 +153,21 @@ public class SoloMatch extends Match {
         Division newDivisionWinner = DivisionManager.getDivisionByWins(totalKitWinsWinner, DivisionManager.getDivisions());
 
 
-        if (newDivisionWinner != null && !newDivisionWinner.getDisplayName().equals(kWinner.getDivision())) {
+
 
             kWinner.setDivision(newDivisionWinner.getDisplayName());
+
 
 
             Division nextDivision = DivisionManager.getNextDivision(newDivisionWinner);
 
             if (nextDivision != null) {
                 int winsToNextDivision = nextDivision.getWinsMin() - kWinner.getWon();
+               String progress = DivisionManager.getProgressBar(totalKitWinsWinner, newDivisionWinner);
 
 
                 if (winsToNextDivision > 0) {
-                    Language.UPDATE_DIVISION.sendListOfMessage(pWinner.getPlayer(), newDivisionWinner.getDisplayName(), winsToNextDivision, nextDivision.getDisplayName());
+                    Language.UPDATE_DIVISION.sendListOfMessage(pWinner.getPlayer(), newDivisionWinner.getDisplayName(), winsToNextDivision, nextDivision.getDisplayName(), progress, kWinner.getBestWinstreak());
                 }
             } else {
 
@@ -180,7 +182,7 @@ public class SoloMatch extends Match {
             });
 
 
-        }
+
 
         kWinner.calculateWinstreak(true);
         kLoser.calculateWinstreak(false);

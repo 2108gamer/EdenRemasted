@@ -27,7 +27,7 @@ public class KitEditExtraItemsButton extends KitButton {
 
     @Override
     public void clicked(Player player, int slot, ClickType clickType, int hotbarSlot) {
-        Inventory inventory = Bukkit.createInventory(null, InventoryType.CHEST, kit.getName() + "的額外物品");
+        Inventory inventory = Bukkit.createInventory(null, InventoryType.CHEST, kit.getName() + "extra items");
         kit.getKitExtraItems().forEach(item -> {
             ItemBuilder builder = new ItemBuilder(item.getMaterial()).amount(item.getAmount()).durability(item.getData()).enchantments(item.getEnchantments());
             if (item.getName() != null) {

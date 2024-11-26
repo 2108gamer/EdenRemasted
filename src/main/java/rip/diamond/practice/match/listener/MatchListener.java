@@ -273,10 +273,9 @@ public class MatchListener implements Listener {
                 return;
             }
             if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
-                Common.debug("El sonido debe ser reproducido");
-                Util.damage(player, 99999);
-                player.playSound(player.getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
-                teamPlayer.getPlayer().playSound(teamPlayer.getPlayer().getLocation(), Sound.NOTE_PLING, 0.5f, 1.5f);
+                // Common.debug("El sonido debe ser reproducido");
+               Util.damage(player, 99999);
+
 
                 event.setCancelled(true);
             }
@@ -1073,5 +1072,4 @@ public class MatchListener implements Listener {
         }
         player.updateInventory();
     }
-
 }

@@ -145,6 +145,28 @@ public class ProfileKitData {
 		return toReturn;
 	}
 
+	public List<ItemStack> getKitItemsWithoutArmor(Kit kit) {
+		List<ItemStack> toReturn = new ArrayList<>();
+
+		for (KitLoadout loadout : loadouts) {
+			if (loadout != null) {
+				ItemStack itemStack = new ItemBuilder(Material.ENCHANTED_BOOK)
+						.name(CC.AQUA + loadout.getCustomName())
+						.lore(Language.PROFILE_KIT_RIGHT_CLICK_TO_RECEIVE.toStringList())
+						.build();
+
+				net.minecraft.server.v1_8_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(itemStack);
+				NBTTagCompound compound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
+				compound.set("contents", new NBTTagString(loadout.getContentsAsBase64()));
+				compound.remove("armor");
+				toReturn.add(CraftItemStack.asBukkitCopy(nmsItem));
+			}
+		}
+
+		return toReturn;
+	}
+
+
 
 
 }
