@@ -2,13 +2,20 @@ package rip.diamond.practice.match;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.arenas.Arena;
 import rip.diamond.practice.arenas.ArenaDetail;
 import rip.diamond.practice.config.Config;
 import rip.diamond.practice.kits.Kit;
 import rip.diamond.practice.kits.KitGameRules;
+import rip.diamond.practice.match.task.MatchClearBlockTask;
+import rip.diamond.practice.match.task.MatchRespawnTask;
 import rip.diamond.practice.match.team.Team;
 import rip.diamond.practice.match.team.TeamPlayer;
 import rip.diamond.practice.profile.PlayerProfile;
@@ -19,6 +26,7 @@ import rip.diamond.practice.util.Util;
 import rip.diamond.practice.util.cuboid.CuboidDirection;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class MatchMovementHandler {
 
@@ -47,7 +55,9 @@ public class MatchMovementHandler {
                 }
 
                 if ((!arenaDetail.getCuboid().clone().outset(CuboidDirection.HORIZONTAL, 10).contains(player) && Config.MATCH_OUTSIDE_CUBOID_INSTANT_DEATH.toBoolean()) || arena.getYLimit() > player.getLocation().getY()) {
-                    Util.damage(player, 99999);
+
+                   /* Util.damage(player, 99999); */
+                    onDeath(player);
                     return;
                 }
 
@@ -71,6 +81,7 @@ public class MatchMovementHandler {
                                 }
                                 match.score(profile, teamPlayer, lastHitDamager);
                             } else {
+
                                 Util.damage(player, 99999);
                             }
                             return;
@@ -88,7 +99,9 @@ public class MatchMovementHandler {
                                 match.score(profile, null, match.getTeamPlayer(player));
                             } else {
                                 //Prevent player scoring their own goal
+                                Common.debug("Pase por el evento en la liinea 92 de match movement handler");
                                 Util.damage(player, 99999);
+
                             }
                         }
                     }
@@ -103,5 +116,77 @@ public class MatchMovementHandler {
                 }
             }
         });
+    }
+
+    public void onDeath(Player player) {
+
+
+        PlayerProfile profile = PlayerProfile.get(player);
+
+        if(profile.getMatch().canEnd()) {
+            return;
+        }
+
+        if (profile.getPlayerState() == PlayerState.IN_MATCH && profile.getMatch() != null) {
+            Match match = profile.getMatch();
+            TeamPlayer teamPlayer = match.getTeamPlayer(player);
+
+
+
+          Common.debug("player" + player.getDisplayName().toLowerCase());
+            KitGameRules gameRules = match.getKit().getGameRules();
+            /* Common.debug("Sonidos de muerte reproducidos"); */
+
+
+           if(profile.getParty() == null) {
+               Player opponent = match.getOpponent(match.getTeamPlayer(player)).getPlayer();
+               if(opponent != player) {
+                   opponent.playSound(opponent.getLocation(), Sound.ORB_PICKUP, 1.0f, 1.0f);
+
+               } else {
+                   player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1.0f, 1.0f);
+
+               }
+           }
+
+
+
+
+
+
+
+            if ((gameRules.isBed() && !match.getTeam(player).isBedDestroyed()) || gameRules.isBreakGoal() || gameRules.isPortalGoal()) {
+
+                new MatchRespawnTask(match, teamPlayer);
+            } else if (gameRules.isPoint(match)) {
+                TeamPlayer lastHitDamager = teamPlayer.getLastHitDamager();
+                //Players have a chance to die without being attacked by the enemy, such as lava. If so, just randomly draw a player from the enemy team.
+                if (lastHitDamager == null) {
+                    lastHitDamager = match.getOpponentTeam(match.getTeam(player)).getAliveTeamPlayers().get(0);
+                }
+                match.score(profile, teamPlayer, lastHitDamager);
+            } else {
+                match.die(player, false);
+            }
+
+
+
+            if (gameRules.isClearBlock()) {
+                match.getTasks().stream()
+                        .filter(task -> task instanceof MatchClearBlockTask)
+                        .map(task -> (MatchClearBlockTask) task)
+                        .filter(task -> task.getBlockPlacer() == teamPlayer)
+                        .forEach(task -> task.setActivateCallback(false));
+            }
+        }
+
+        player.setHealth(20);
+        player.setVelocity(new Vector());
+
+
+
+        if (Config.MATCH_TP_2_BLOCKS_UP_WHEN_DIE.toBoolean()) {
+            Util.teleport(player, player.getLocation().clone().add(0,2,0)); //Teleport 2 blocks higher, to try to re-do what MineHQ did (Make sure to place this line of code after setHealth, otherwise it won't work)
+        }
     }
 }

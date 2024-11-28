@@ -4,16 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import rip.diamond.practice.Eden;
 import rip.diamond.practice.config.Language;
 import rip.diamond.practice.kiteditor.menu.KitEditorSaveMenu;
 import rip.diamond.practice.kits.Kit;
+import rip.diamond.practice.kits.KitLoadout;
 import rip.diamond.practice.profile.PlayerProfile;
 import rip.diamond.practice.profile.PlayerState;
+import rip.diamond.practice.profile.data.ProfileKitData;
 import rip.diamond.practice.util.Common;
 import rip.diamond.practice.util.serialization.LocationSerialization;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -51,15 +55,26 @@ public class KitEditorManager {
             Language.KIT_EDITOR_CANNOT_FIND_EDITOR_LOCATION.sendMessage(player);
             return;
         }
+
         PlayerProfile profile = PlayerProfile.get(player);
+        ProfileKitData data = profile.getKitData().get(kit.getName());
+        KitLoadout load = data.getLoadout(0);
+
         profile.setPlayerState(PlayerState.IN_EDIT);
 
         KitEditProfile kProfile = new KitEditProfile(player.getUniqueId(), kit);
         editing.put(player.getUniqueId(), kProfile);
+        ;
+
 
 
         player.getInventory().clear();
-        player.getInventory().setContents(kit.getKitLoadout().getContents());
+        if(load != null) {
+            player.getInventory().setContents(load.getContents());
+        } else {
+            player.getInventory().setContents(kit.getKitLoadout().getContents());
+        }
+       // player.getInventory().setContents(kit.getKitLoadout().getContents());
 
         Language.KIT_EDITOR_EDITING.sendListOfMessage(player, kit.getDisplayName());
         new KitEditorSaveMenu(kit).openMenu(player);

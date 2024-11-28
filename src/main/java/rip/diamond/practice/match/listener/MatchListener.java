@@ -274,6 +274,7 @@ public class MatchListener implements Listener {
             }
             if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
                 // Common.debug("El sonido debe ser reproducido");
+
                Util.damage(player, 99999);
 
 

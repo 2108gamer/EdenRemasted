@@ -67,6 +67,9 @@ public class LobbyManager {
         profile.setMatch(null);
         profile.setPlayerState(PlayerState.IN_LOBBY);
         profile.setupItems();
+        if(player.hasPermission("eden.extra.lobby.flight")) {
+            player.setAllowFlight(true);
+        }
     }
 
     public void sendToSpawnAndReset(Player player) {
